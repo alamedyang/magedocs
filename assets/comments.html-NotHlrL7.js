@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-30c9650c","path":"/comments.html","title":"Comments","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"JSON","slug":"json","link":"#json","children":[]},{"level":2,"title":"MGS Natlang","slug":"mgs-natlang","link":"#mgs-natlang","children":[]}],"git":{},"filePathRelative":"comments.md"}');export{t as data};
