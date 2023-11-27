@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-477bac48","path":"/techniques/chains_of_small_checks.html","title":"Chains of Small Checks","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"techniques/chains_of_small_checks.md"}');export{e as data};

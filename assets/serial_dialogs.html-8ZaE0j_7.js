@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-3c616d7c","path":"/dialogs/serial_dialogs.html","title":"Serial Dialogs","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Structure","slug":"structure","link":"#structure","children":[]}],"git":{},"filePathRelative":"dialogs/serial_dialogs.md"}');export{e as data};

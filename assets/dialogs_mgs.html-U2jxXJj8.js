@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-4c6235a3","path":"/mgs/dialogs_mgs.html","title":"Dialogs (MGS)","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Structure","slug":"structure","link":"#structure","children":[]},{"level":2,"title":"Example","slug":"example","link":"#example","children":[]}],"git":{},"filePathRelative":"mgs/dialogs_mgs.md"}');export{e as data};

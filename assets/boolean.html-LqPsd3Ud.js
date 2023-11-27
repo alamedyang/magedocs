@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-adb1ac90","path":"/mgs/variables/boolean.html","title":"Boolean","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/variables/boolean.md"}');export{a as data};

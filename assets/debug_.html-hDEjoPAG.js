@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-7e2f5c22","path":"/mgs/advanced_syntax/debug_.html","title":"debug!()","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/advanced_syntax/debug_.md"}');export{e as data};

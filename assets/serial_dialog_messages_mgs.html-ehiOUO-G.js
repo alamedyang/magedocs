@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-825949d0","path":"/mgs/serial_dialog_messages_mgs.html","title":"Serial Dialog Messages (MGS)","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/serial_dialog_messages_mgs.md"}');export{e as data};

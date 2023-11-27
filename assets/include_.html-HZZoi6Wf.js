@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-fcc877f8","path":"/mgs/advanced_syntax/include_.html","title":"include!()","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/advanced_syntax/include_.md"}');export{e as data};

@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-f6937670","path":"/techniques/actors.html","title":"Actors","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Using an Actor","slug":"using-an-actor","link":"#using-an-actor","children":[]}],"git":{},"filePathRelative":"techniques/actors.md"}');export{t as data};

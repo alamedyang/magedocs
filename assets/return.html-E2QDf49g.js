@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-9c91b8aa","path":"/mgs/advanced_syntax/return.html","title":"Return","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Returning a value","slug":"returning-a-value","link":"#returning-a-value","children":[]}],"git":{},"filePathRelative":"mgs/advanced_syntax/return.md"}');export{e as data};

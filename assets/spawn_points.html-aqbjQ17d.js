@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-501658c2","path":"/techniques/spawn_points.html","title":"Spawn Points","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"techniques/spawn_points.md"}');export{t as data};

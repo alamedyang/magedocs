@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-fa64ff4c","path":"/scripts/scripts_json.html","title":"Scripts (JSON)","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"scripts/scripts_json.md"}');export{t as data};

@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-2a956add","path":"/mgs/variables/distance.html","title":"Distance","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/variables/distance.md"}');export{a as data};

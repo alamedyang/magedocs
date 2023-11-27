@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-68fca2fd","path":"/dialogs/serial_dialog_properties.html","title":"Serial Dialog Properties","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"dialogs/serial_dialog_properties.md"}');export{e as data};

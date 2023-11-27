@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-f5c1405a","path":"/entities/null_entity.html","title":"Null Entity","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"entities/null_entity.md"}');export{t as data};

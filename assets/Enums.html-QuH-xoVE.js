@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-c327a9c8","path":"/structure/enums.html","title":"Enums","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"structure/enums.md"}');export{t as data};

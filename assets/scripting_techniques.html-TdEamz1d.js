@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-fc7ea5ca","path":"/techniques/scripting_techniques.html","title":"Scripting Techniques","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"techniques/scripting_techniques.md"}');export{e as data};

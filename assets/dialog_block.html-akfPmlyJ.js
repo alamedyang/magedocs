@@ -1,0 +1,1 @@
+const l=JSON.parse('{"key":"v-3c250ff4","path":"/mgs/dialog_block.html","title":"Dialog Block","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Combination Block","slug":"combination-block","link":"#combination-block","children":[]}],"git":{},"filePathRelative":"mgs/dialog_block.md"}');export{l as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-c3e901c6","path":"/techniques/handlers.html","title":"Handlers","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Example: Bender","slug":"example-bender","link":"#example-bender","children":[]}],"git":{},"filePathRelative":"techniques/handlers.md"}');export{e as data};

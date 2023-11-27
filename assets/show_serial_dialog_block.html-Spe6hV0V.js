@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-e48d802a","path":"/mgs/show_serial_dialog_block.html","title":"Show Serial Dialog Block","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/show_serial_dialog_block.md"}');export{a as data};

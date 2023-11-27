@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-beee8af0","path":"/encoder/cli_encoder.html","title":"CLI Encoder","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"encoder/cli_encoder.md"}');export{e as data};

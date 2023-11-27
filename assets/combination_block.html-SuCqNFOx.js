@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-c27d636a","path":"/mgs/combination_block.html","title":"Combination Blocks","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/combination_block.md"}');export{t as data};

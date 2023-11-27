@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-5361bc94","path":"/scripts/save_flags.html","title":"Save Flags","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"scripts/save_flags.md"}');export{a as data};

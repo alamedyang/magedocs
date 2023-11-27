@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-b87aa124","path":"/techniques/coordinate_considerations.html","title":"Coordinate Considerations","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Example","slug":"example","link":"#example","children":[]}],"git":{},"filePathRelative":"techniques/coordinate_considerations.md"}');export{e as data};

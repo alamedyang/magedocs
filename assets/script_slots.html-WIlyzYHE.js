@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-de9024d0","path":"/scripts/script_slots.html","title":"Script Slots","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"One Slot, One Script","slug":"one-slot-one-script","link":"#one-slot-one-script","children":[]}],"git":{},"filePathRelative":"scripts/script_slots.md"}');export{t as data};

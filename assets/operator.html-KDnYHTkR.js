@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-d98338e4","path":"/mgs/variables/operator.html","title":"Operator","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/variables/operator.md"}');export{e as data};
