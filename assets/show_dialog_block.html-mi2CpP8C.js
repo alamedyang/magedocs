@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-59da5570","path":"/mgs/show_dialog_block.html","title":"Show Dialog Block","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/show_dialog_block.md"}');export{a as data};

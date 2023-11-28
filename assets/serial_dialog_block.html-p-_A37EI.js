@@ -1,1 +1,0 @@
-const l=JSON.parse('{"key":"v-e2372e32","path":"/mgs/serial_dialog_block.html","title":"Serial Dialog Block","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Combination Block","slug":"combination-block","link":"#combination-block","children":[]}],"git":{},"filePathRelative":"mgs/serial_dialog_block.md"}');export{l as data};

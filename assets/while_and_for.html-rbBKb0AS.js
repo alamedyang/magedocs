@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-51ce1db8","path":"/mgs/advanced_syntax/while_and_for.html","title":"While and For","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/advanced_syntax/while_and_for.md"}');export{a as data};

@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-a6109716","path":"/structure/entity_types.json.html","title":"entity_types.json","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"Animations","slug":"animations","link":"#animations","children":[]}],"git":{},"filePathRelative":"structure/entity_types.json.md"}');export{t as data};

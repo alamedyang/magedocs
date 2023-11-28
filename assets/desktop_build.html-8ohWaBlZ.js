@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-16c54fc8","path":"/hardware/desktop_build.html","title":"Desktop Build","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"hardware/desktop_build.md"}');export{e as data};

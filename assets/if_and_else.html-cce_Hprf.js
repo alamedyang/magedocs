@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-19e1cb18","path":"/mgs/advanced_syntax/if_and_else.html","title":"If and Else","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Compound conditions","slug":"compound-conditions","link":"#compound-conditions","children":[]}],"git":{},"filePathRelative":"mgs/advanced_syntax/if_and_else.md"}');export{e as data};

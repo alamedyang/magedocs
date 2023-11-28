@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-2f271092","path":"/mgs/advanced_mgs_natlang_syntax.html","title":"Advanced MGS Natlang Syntax","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/advanced_mgs_natlang_syntax.md"}');export{a as data};

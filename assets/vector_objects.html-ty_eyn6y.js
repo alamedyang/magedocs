@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-7fd9037c","path":"/maps/vector_objects.html","title":"Vector Objects","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Coordinate Overflow","slug":"coordinate-overflow","link":"#coordinate-overflow","children":[]}],"git":{},"filePathRelative":"maps/vector_objects.md"}');export{e as data};

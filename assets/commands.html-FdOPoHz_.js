@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-c1f0fcba","path":"/hardware/commands.html","title":"Commands","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Relevant actions","slug":"relevant-actions","link":"#relevant-actions","children":[]}],"git":{},"filePathRelative":"hardware/commands.md"}');export{a as data};

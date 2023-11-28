@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-1bbc1d4a","path":"/mgs/serial_styles.html","title":"Serial Styles","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Example","slug":"example","link":"#example","children":[]}],"git":{},"filePathRelative":"mgs/serial_styles.md"}');export{e as data};

@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-67a9ed66","path":"/actions/conditional_gotos.html","title":"Conditional Gotos","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"actions/conditional_gotos.md"}');export{t as data};

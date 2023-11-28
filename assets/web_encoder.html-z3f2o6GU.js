@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-c444b658","path":"/encoder/web_encoder.html","title":"Web Encoder","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Entity Manager","slug":"entity-manager","link":"#entity-manager","children":[]}],"git":{},"filePathRelative":"encoder/web_encoder.md"}');export{e as data};

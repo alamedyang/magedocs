@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-1c72edfa","path":"/scripts/integer_variables.html","title":"Integer Variables","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"scripts/integer_variables.md"}');export{e as data};

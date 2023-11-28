@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-5c35dda8","path":"/structure/scenario.json.html","title":"scenario.json","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"MGS Files","slug":"mgs-files","link":"#mgs-files","children":[]}],"git":{},"filePathRelative":"structure/scenario.json.md"}');export{e as data};

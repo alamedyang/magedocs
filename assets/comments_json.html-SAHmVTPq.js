@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-3c1f9686","path":"/scripts/comments_json.html","title":"Comments (JSON)","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"scripts/comments_json.md"}');export{t as data};

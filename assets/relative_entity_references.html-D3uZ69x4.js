@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-5a9f0173","path":"/entities/relative_entity_references.html","title":"Relative Entity References","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Example","slug":"example","link":"#example","children":[]}],"git":{},"filePathRelative":"entities/relative_entity_references.md"}');export{e as data};

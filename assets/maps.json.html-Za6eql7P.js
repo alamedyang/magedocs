@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-f406b322","path":"/structure/maps.json.html","title":"maps.json","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Map Properties","slug":"map-properties","link":"#map-properties","children":[]}],"git":{},"filePathRelative":"structure/maps.json.md"}');export{e as data};

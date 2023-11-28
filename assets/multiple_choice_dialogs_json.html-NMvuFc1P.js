@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-960de35e","path":"/dialogs/multiple_choice_dialogs_json.html","title":"Multiple Choice Dialogs (JSON)","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"dialogs/multiple_choice_dialogs_json.md"}');export{e as data};

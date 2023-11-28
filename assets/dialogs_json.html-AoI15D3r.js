@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-6d6d9420","path":"/dialogs/dialogs_json.html","title":"Dialogs (JSON)","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Behavior","slug":"behavior","link":"#behavior","children":[]},{"level":2,"title":"Format","slug":"format","link":"#format","children":[]}],"git":{},"filePathRelative":"dialogs/dialogs_json.md"}');export{e as data};

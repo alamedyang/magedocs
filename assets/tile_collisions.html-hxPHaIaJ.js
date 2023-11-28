@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-019fae1e","path":"/tilesets/tile_collisions.html","title":"Tile Collisions","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"tilesets/tile_collisions.md"}');export{e as data};

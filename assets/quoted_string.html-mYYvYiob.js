@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-4db2f1d8","path":"/mgs/variables/quoted_string.html","title":"Quoted String","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/variables/quoted_string.md"}');export{t as data};

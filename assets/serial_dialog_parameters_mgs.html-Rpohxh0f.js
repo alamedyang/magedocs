@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-0d2c36fa","path":"/mgs/serial_dialog_parameters_mgs.html","title":"Serial Dialog Parameters (MGS)","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/serial_dialog_parameters_mgs.md"}');export{a as data};

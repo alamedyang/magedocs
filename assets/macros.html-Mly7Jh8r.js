@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-51c08514","path":"/mgs/advanced_syntax/macros.html","title":"Macros","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/advanced_syntax/macros.md"}');export{a as data};

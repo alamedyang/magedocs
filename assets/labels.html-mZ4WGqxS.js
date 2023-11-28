@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-43756a3c","path":"/mgs/advanced_syntax/labels.html","title":"Labels","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"mgs/advanced_syntax/labels.md"}');export{a as data};
