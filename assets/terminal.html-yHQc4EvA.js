@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-09e574f8","path":"/terminal.html","title":"Terminal","lang":"en-US","frontmatter":{"tags":["commands","serial dialogs"]},"headers":[],"git":{},"filePathRelative":"terminal.md"}');export{a as data};
