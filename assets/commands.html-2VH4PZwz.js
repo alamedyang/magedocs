@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-dd581610","path":"/commands.html","title":"Commands","lang":"en-US","frontmatter":{"tags":["alias","aliases","register","unregister"]},"headers":[{"level":2,"title":"Relevant actions","slug":"relevant-actions","link":"#relevant-actions","children":[]}],"git":{},"filePathRelative":"commands.md"}');export{e as data};
