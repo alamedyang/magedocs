@@ -1,0 +1,1 @@
+import{_ as a,c as t,o,ah as i}from"./chunks/framework.l_r_SdPt.js";const p=JSON.parse('{"title":"Encoder","description":"","frontmatter":{},"headers":[],"relativePath":"encoder.md","filePath":"encoder.md"}'),n={name:"encoder.md"};function r(d,e,l,s,c,h){return o(),t("div",null,[...e[0]||(e[0]=[i("",37)])])}const m=a(n,[["render",r]]);export{p as __pageData,m as default};

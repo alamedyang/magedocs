@@ -3,8 +3,7 @@ node_modules/
 .temp
 .cache
 docs/*.md
-docs/media/
 docs/.vitepress/cache/
 docs/.vitepress/magedocs/
-dist/
+# dist/
 

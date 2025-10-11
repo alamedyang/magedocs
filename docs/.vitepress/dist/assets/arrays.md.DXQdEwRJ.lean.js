@@ -1,0 +1,1 @@
+import{_ as a,c as i,o as t,ah as s}from"./chunks/framework.l_r_SdPt.js";const g=JSON.parse('{"title":"Arrays","description":"","frontmatter":{},"headers":[],"relativePath":"arrays.md","filePath":"arrays.md"}'),r={name:"arrays.md"};function n(l,e,o,d,h,c){return t(),i("div",null,[...e[0]||(e[0]=[s("",34)])])}const u=a(r,[["render",n]]);export{g as __pageData,u as default};

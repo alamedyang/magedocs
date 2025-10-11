@@ -1,0 +1,1 @@
+import{_ as a,c as i,o as s,ah as t}from"./chunks/framework.l_r_SdPt.js";const g=JSON.parse('{"title":"Macros","description":"","frontmatter":{},"headers":[],"relativePath":"macros.md","filePath":"macros.md"}'),n={name:"macros.md"};function l(r,e,o,c,p,d){return s(),i("div",null,[...e[0]||(e[0]=[t("",23)])])}const u=a(n,[["render",l]]);export{g as __pageData,u as default};

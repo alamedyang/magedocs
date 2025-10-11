@@ -1,0 +1,1 @@
+import{_ as a,c as o,o as t,ah as r}from"./chunks/framework.l_r_SdPt.js";const u=JSON.parse('{"title":"MGE VM","description":"","frontmatter":{},"headers":[],"relativePath":"mge_vm.md","filePath":"mge_vm.md"}'),i={name:"mge_vm.md"};function l(n,e,s,h,d,c){return t(),o("div",null,[...e[0]||(e[0]=[r("",19)])])}const p=a(i,[["render",l]]);export{u as __pageData,p as default};

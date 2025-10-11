@@ -1,0 +1,1 @@
+import{_ as o,c as t,o as i,ah as s}from"./chunks/framework.l_r_SdPt.js";const u=JSON.parse('{"title":"TODO","description":"","frontmatter":{},"headers":[],"relativePath":"todos.md","filePath":"todos.md"}'),a={name:"todos.md"};function n(l,e,r,d,c,h){return i(),t("div",null,[...e[0]||(e[0]=[s("",2)])])}const g=o(a,[["render",n]]);export{u as __pageData,g as default};

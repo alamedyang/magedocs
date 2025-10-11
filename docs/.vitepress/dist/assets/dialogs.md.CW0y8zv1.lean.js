@@ -1,0 +1,1 @@
+import{_ as a,c as s,o as e,ah as t}from"./chunks/framework.l_r_SdPt.js";const c=JSON.parse('{"title":"Dialogs","description":"","frontmatter":{},"headers":[],"relativePath":"dialogs.md","filePath":"dialogs.md"}'),l={name:"dialogs.md"};function n(o,i,h,r,d,p){return e(),s("div",null,[...i[0]||(i[0]=[t("",31)])])}const k=a(l,[["render",n]]);export{c as __pageData,k as default};
