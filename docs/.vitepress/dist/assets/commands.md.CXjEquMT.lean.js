@@ -1,1 +1,0 @@
-import{_ as t,c as i,o,ah as l}from"./chunks/framework.l_r_SdPt.js";const h=JSON.parse('{"title":"Commands","description":"","frontmatter":{},"headers":[],"relativePath":"commands.md","filePath":"commands.md"}'),a={name:"commands.md"};function r(n,e,s,d,c,m){return o(),i("div",null,[...e[0]||(e[0]=[l("",13)])])}const u=t(a,[["render",r]]);export{h as __pageData,u as default};

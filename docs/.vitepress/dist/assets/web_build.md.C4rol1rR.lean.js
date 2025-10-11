@@ -1,1 +1,0 @@
-import{_ as a,c as t,o,ah as d}from"./chunks/framework.l_r_SdPt.js";const b=JSON.parse('{"title":"Web Build","description":"","frontmatter":{},"headers":[],"relativePath":"web_build.md","filePath":"web_build.md"}'),r={name:"web_build.md"};function i(l,e,n,s,c,p){return o(),t("div",null,[...e[0]||(e[0]=[d("",4)])])}const h=a(r,[["render",i]]);export{b as __pageData,h as default};

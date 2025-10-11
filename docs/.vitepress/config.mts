@@ -1,5 +1,4 @@
 import { defineConfig } from 'vitepress'
-
 import { readFileSync } from 'fs'
 
 const mgsGrammar = JSON.parse(readFileSync("mgs.tmLanguage.json", 'utf8'))

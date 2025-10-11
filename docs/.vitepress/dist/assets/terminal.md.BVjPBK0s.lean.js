@@ -1,1 +1,0 @@
-import{_ as a,c as t,o as r,ah as i}from"./chunks/framework.l_r_SdPt.js";const p=JSON.parse('{"title":"Terminal","description":"","frontmatter":{},"headers":[],"relativePath":"terminal.md","filePath":"terminal.md"}'),s={name:"terminal.md"};function n(l,e,o,m,c,h){return r(),t("div",null,[...e[0]||(e[0]=[i("",4)])])}const _=a(s,[["render",n]]);export{p as __pageData,_ as default};

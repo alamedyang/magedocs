@@ -1,1 +1,0 @@
-import{_ as t,c as a,o,ah as n}from"./chunks/framework.l_r_SdPt.js";const m=JSON.parse('{"title":"Actors","description":"","frontmatter":{},"headers":[],"relativePath":"actors.md","filePath":"actors.md"}'),s={name:"actors.md"};function r(i,e,l,c,h,p){return o(),a("div",null,[...e[0]||(e[0]=[n("",13)])])}const u=t(s,[["render",r]]);export{m as __pageData,u as default};

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TODOS.md",
+                "file": "actions.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "TODOS"
+              "title": "actions"
             }
           }
         ]
@@ -171,6 +171,7 @@
   },
   "active": "df823e4d8dfba883",
   "lastOpenFiles": [
+    "TODOS.md",
     "index.md",
     "what_youll_need.md",
     "entity_types.md",
@@ -192,7 +193,6 @@
     "actors.md",
     "dialogs.md",
     "vector_objects.md",
-    "TODOS.md",
     "state.md",
     "maps.md",
     "serial_dialogs.md",
