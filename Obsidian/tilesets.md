@@ -103,7 +103,3 @@ Precise collision shapes are possible, but avoid very concave shapes and avoid d
 
 When defining your collision polygons and designing your maps, test the tiles in their map contexts and determine whether the player character is able to push themselves inside one of these shapes.
 :::
-
----
-
-[[index|Quick Links]]

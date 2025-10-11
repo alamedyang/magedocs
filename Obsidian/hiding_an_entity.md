@@ -30,7 +30,3 @@ Depending on your needs, you might either:
 1. Have the entity offscreen (in the void) by default, and have the map's `on_load` teleport it to the correct place if [[state#Save Flags|conditions]] have been met.
 2. Have the entity in the correct place by default, but have the map's `on_load` teleport it offscreen if conditions have *not* been met.
 
----
-
-[[index|Quick Links]]
-

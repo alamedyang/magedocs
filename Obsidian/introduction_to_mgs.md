@@ -46,7 +46,3 @@ The `direction` property is an artificial construct; it isn't a value that's bei
 All files within `SD_Card/MAGE/scenario_source_files/` with filenames ending in `.mgs` will be parsed by the MGS parser. (See [[what_youll_need#`MAGE/`|`MAGE/`]]) All that is required is the tree-sitter engine and the MGS language grammar, both WASM. Both have been attached to the existing [[encoder|CLI/web encoder]] for the game.
 
 To alter the grammar, you must make changes in `grammar.js`, rebuild the grammar using tree-sitter (targeting WASM), and then rebuild the library using Vite. That final step is required for seeing the changes in the MGE encoder, but not necessary for using the tree-sitter playground or running the language unit tests.
-
----
-
-[[index|Quick Links]]

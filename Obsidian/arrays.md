@@ -134,7 +134,3 @@ Can be used as part of an int assignment operation: `<LHS> = <RHS: int expressio
 -  **Bytecode actions**:
 	- `ARRAY_WRITE_INTO_INDEX_FROM_VALUE`
 	- `ARRAY_WRITE_INTO_INDEX_FROM_VARIABLE`
-
----
-
-[[index|Quick Links]]

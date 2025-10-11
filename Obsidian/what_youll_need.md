@@ -296,7 +296,3 @@ IntelliJ has a plugin, available by default, to install TextMate bundles. Acquir
 ### Other IDEs
 
 Many other IDEs will accept TextMate grammars, but you will have to find and follow your IDE's specific instructions.
-
----
-
-[[index|Quick Links]]

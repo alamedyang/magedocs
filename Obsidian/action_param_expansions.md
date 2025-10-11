@@ -54,7 +54,3 @@ __TEMP_0 = RNG(0, =1);
 	- E.g. `[var_name, flag_name] = [10, true];`
 - The param "chunk" that is allowed to be expanded varies per phrase.
 	- E.g. for `[camera, entity Bob position] = geometry stick;`, it is the "movable" in the LHS that can be expanded, not the entity name.
-
----
-
-[[index|Quick Links]]

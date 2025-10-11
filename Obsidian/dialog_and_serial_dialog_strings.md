@@ -118,7 +118,3 @@ serial_dialog accumulation {
 ```
 
 > plain text <span style="color:#b00;">add red </span><span style="color:#f33;font-weight:bold;">add bold </span><span style="color:#f33;font-weight:bold;background-color:#00b">add blue background</span> clear all
-
----
-
-[[index|Quick Links]]

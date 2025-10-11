@@ -8,9 +8,9 @@ Handlers are necessary because [[scripts|scripts]] [[scripts#One Slot, One Threa
 
 This is a classic example of a handler listening on behalf of and acting upon other entities.
 
-In chapter 1 of the game, there are a pair of baby goats cavorting in the grass. If the player approaches them, they will run to a secondary spot to cavort instead. Each goat has an `on_tick` script that moves it around in a [[vector_objects|small circle]], and as that [[actions#Position Over Time|loop over path forever]] action will play back [[actions#Forever|forever]], they can perform no other logic (such as watching for where the player is).
+In the Black Mage Game, there are a pair of baby goats cavorting in the grass. If the player approaches them, they will run to a secondary spot to cavort instead. Each goat has an `on_tick` script that moves it around in a [[vector_objects|small circle]], and as that [[actions#Position Over Time|loop over path forever]] action will play back [[actions#Forever|forever]], they can perform no other logic (such as watching for where the player is).
 
-(While we might use a [[actions#Position Over Time|Position Over Time]] action as the sole action in an `on_tick` script to perform this same looping walk, the only time we'd be able to intercept their pathing logic is at the beginning or end of that loop. The walk itself takes long enough that they will not appear to be reacting to the player if they only fled during that small window. Plus it would be apparent that they were always fleeing from the same spot. And since the goat's loops took a different amount of time, the goats would only very rarely react simultaneously.)
+(While we might use a [[actions#Position Over Time|Position Over Time]] action as the sole action in an `on_tick` script to perform this same looping walk, the only time we'd be able to intercept their pathing logic is at the beginning or end of that loop. The walk itself takes long enough that they will not appear to be reacting to the player if they only fled during that small window. Plus it would be apparent that they were always fleeing from the same spot. And since the goat's loops take a different amount of time, the goats would only very rarely react simultaneously.)
 
 The handler's `on_tick` starts as `check_if_player_is_goat_high`.
 
@@ -28,6 +28,7 @@ check_if_player_is_goat_high {
     self on_tick = check_if_player_is_goat_low;
   }
 }
+
 check_if_player_is_goat_low {
   if (player intersects geometry low) {
     entity Billy on_tick = {
@@ -48,11 +49,11 @@ These scripts are engineered so that the identity of the handler is not importan
 
 Here, a handler is used not to control multiple entities, but to overlap secondary behavior onto an entity with existing behaviors. This time the handler does not control the logic of this complex behavior (Bender does this himself with his `on_interact` script, choosing which of three idle behaviors to perform), but the handler's `on_tick` script is still being leveraged for this.
 
-The handler in this case is the entity "Bob Austin." Because the handler is not controlling his own logic, he must be referenced by name externally. This means swapping him for a different handler would be a little involved.
+The handler in this case is the entity "Bob Austin." Because the handler is not controlling his own logic, he must be referenced by name. This means swapping him for a different handler would be a little more involved.
 
 ### Bender Watches You
 
-Bender's default idle behavior involves two threads of logic: one to [[actions#Assign Direction Value|turn him toward the player]] at all times, and the other to [[actions#Play Entity Animation|play back]] the "I've got my eye on you" [[animations|animation]] [[actions#Non-Blocking Delay|after a certain length of time]]. These two behaviors can happen simultaneously (as he can turn toward the player while performing that animation) and so must be done with two [[scripts#Script Slots|script slots]].
+Bender's default idle behavior involves two threads of logic: one to [[actions#Assign Direction Value|turn him toward the player]] at all times, and the other to [[actions#Play Entity Animation|play back]] the "I've got my eye on you" [[animations|animation]] [[actions#Non-Blocking Delay|after a certain length of time]]. These two behaviors can happen simultaneously (as he can turn toward the player while performing that animation), so this must be done with two [[scripts#Script Slots|script slots]].
 
 In the Tiled [[maps|map]], Bender and his handler have these scripts set to their `on_tick` slots, so this is their default behavior.
 
@@ -101,7 +102,3 @@ on_tick_bender_loiter {
   wait 2000ms;
 }
 ```
-
----
-
-[[index|Quick Links]]

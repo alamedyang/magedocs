@@ -69,7 +69,3 @@ Regex: `\$[_a-zA-Z0-9]+/`
 
 - A single `$` followed by any number of alphanumeric characters or underscores (`_`).
 - This must be a single token, i.e. `$const_name`, not `$ const_name`.
-
----
-
-[[index|Quick Links]]

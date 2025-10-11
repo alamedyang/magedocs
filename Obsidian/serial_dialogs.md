@@ -129,7 +129,3 @@ WHEN DO THE FLYING TOASTERS COME OUT?
 
 >_
 ```
-
----
-
-[[index|Quick Links]]

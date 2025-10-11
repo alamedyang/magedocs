@@ -76,7 +76,3 @@ What's special about character entities is that they can have a number of [[anim
 In the MGE, character entities will default to their idle animation regardless of the tile that was placed Tiled. (I.e. if you use a "walking animation" tile for the entity on the Tiled map, the entity will appear to be walking in Tiled, but not within the MGE.)
 
 Character entities will face the north by default, but if the tile placed has been [[entity_management_system|assigned to a NSEW direction and a purpose]], the entity will instead face the direction associated with that tile's assignment.
-
----
-
-[[index|Quick Links]]

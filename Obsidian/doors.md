@@ -87,7 +87,3 @@ For doorway/warp behavior, there are two ways to handle player spawn points:
 
 To prevent the player from instantly returning to where they came from, the player spawn point should not overlap with the doorway trigger in the new destination.
 
----
-
-[[index|Quick Links]]
-

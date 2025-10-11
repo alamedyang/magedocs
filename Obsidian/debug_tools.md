@@ -95,7 +95,3 @@ The player's collision spokes (drawn in purple) are projected in front of the pl
 ### Collision Details
 
 In the upper-left corner of the screen is a more detailed view of the actual math behind the collision algorithm.
-
----
-
-[[index|Quick Links]]

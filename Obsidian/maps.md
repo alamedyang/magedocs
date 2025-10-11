@@ -131,7 +131,3 @@ Note that turning on [[debug_tools#Vector View|vector view]] does not reload the
 All [[entities#Entity Properties|entity state]] is reset (apart from the player name). This includes every entity's appearance, script slots (both their script assignments and their progress within their scripts), and location.
 
 All registered [[terminal]] [[commands|commands]] are reset. For a command that needs to persist throughout the game, you must initialize them afresh at the beginning of the map load. (We recommend using [[macros#Copy Script|Copy Script]] on a separate map initialization script so that such logic checks can be shared between all relevant maps.)
-
----
-
-[[index|Quick Links]]

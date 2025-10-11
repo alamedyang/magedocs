@@ -104,7 +104,3 @@ To make a single script perform multiple simultaneous behaviors, it must tell ot
 When the simultaneous behaviors are finished, the `on_tick` slots must be then set to something else or the new behavior will loop indefinitely (unless that's what you want). Halt an `on_tick` script by having that slot [[actions#Run Script|goto]] [[#Null Script|`null_script`]] as its final action, or by [[actions#Assign Script Value|setting the target slot]] goto `null_script`.
 
 See [[handlers|Handlers]].
-
----
-
-[[index|Quick Links]]

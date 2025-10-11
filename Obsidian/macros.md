@@ -67,7 +67,3 @@ Copy script literally copies all items from the named [[scripts|script]] and pas
 - The copy script macro resembles a fn call in appearance only in order to resemble modern programming languages (because anything less was frustrating).
 - Fn names and script names may collide because they have separate name spaces.
 - Copy script and fn calls are both baked in place, but scripts still exist in the final game output. This means copied scripts can be triggered by players at arbitrary times, even if the script was never meant to run on its own.
-
----
-
-[[index|Quick Links]]

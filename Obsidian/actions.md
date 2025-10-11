@@ -466,7 +466,3 @@ Makes an [[entities|entity]] face the target. To make relative turns (e.g. 90º 
 
 - [[arrays#Array Action Phrases|Array Action Phrases]]
 - [[commands#Command Actions]]
-
----
-
-[[index|Quick Links]]

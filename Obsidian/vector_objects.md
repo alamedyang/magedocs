@@ -39,7 +39,3 @@ To design and manage puzzles meant only to involve the least significant byte, y
  ![sheep pen with 256px boxes](media/sheep-pen.png)
 
 Lock the layer containing this vector guide and/or place it below all other object layers to keep it from preventing you from selecting other elements in Tiled.
-
----
-
-[[index|Quick Links]]

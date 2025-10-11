@@ -14,7 +14,7 @@ const sanitizeSpaces = (str) => {
 
 const makeRealLink = (match, fileName, anchor, _, label) => {
 	const sanitizedFileName = sanitizeSpaces((fileName ||'').replace(/\.md$/, ''));
-	const printFile = fileName !== undefined ? sanitizedFileName + '.md' : '';
+	const printFile = fileName !== undefined ? sanitizedFileName : '';
 	const printAnchor = anchor !== undefined ? '#' + sanitizeSpaces(anchor) : '';
 	const printText = label || fileName;
 	return `[${printText}](${printFile}${printAnchor})`;

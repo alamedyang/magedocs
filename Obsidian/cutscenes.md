@@ -39,7 +39,3 @@ To cut to another credits page, space your text according to the screen size and
 Don't forget to re-enable player control etc. when the credits are done/
 
 Feel free to experiment with other styles of game credits; you need not be bound to traditional cinematic tropes. E.g. some games have a "credits" building featuring characters that correspond to the game's developers, and who might say a few sentences about what their job was.
-
----
-
-[[index|Quick Links]]

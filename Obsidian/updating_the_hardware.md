@@ -50,7 +50,3 @@ Would you like to update your scenario data?
 Press `MEM3` (the lowest button on the right side of the screen) to tell the hardware to flash the new data. The time it takes to copy will depend on the size of the `game.dat` file, but it may take a few minutes. (The Chapter 2 `game.dat`, released August 2024, takes about 90 seconds.)
 
 The badge should reboot automatically once the write is completed.
-
----
-
-[[index|Quick Links]]

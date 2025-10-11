@@ -61,7 +61,3 @@ Note: the shorthands `player` and `self` are only valid as params inside [[actio
 - `entity_path`
 	- The assigned path of the  `self` entity
 	- Short for `entity "%ENTITY_PATH%"`
-
----
-
-[[index|Quick Links]]

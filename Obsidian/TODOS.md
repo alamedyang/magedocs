@@ -18,7 +18,3 @@
 - Does LOOP_CAMERA_ALONG_GEOMETRY work?
 - Can you set serial connect message to a serial dialog literal?
 - do the `on_look` slots use the `command` slot? They have their own space on the entity struct, so....
-
----
-
-[[index|Quick Links]]

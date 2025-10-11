@@ -156,7 +156,3 @@ Without an `is_player` entity:
 6. [[dialogs|dialogs]] referencing the player entity will use a random portrait and the name `MISSING: 253`.
 7. [[actions|actions]] targeting the player entity will generally do nothing.
 	- If you want to change the player's name via an action (e.g. in your game's main menu), this means you must have an `is_player` entity somewhere on the map.
-
----
-
-[[index|Quick Links]]

@@ -168,7 +168,3 @@ dialog sampleDialog {
 	- The label is a [[dialog_and_serial_dialog_strings|dialog string]], meaning it behaves like [[#Dialog Message|dialog messages]] in terms of inserting variables (with `$` or `%`), escaped characters, etc.
 	- Must be wrapped in quotes.
 - In the MGE, dialog options are displayed underneath the final dialog message. Therefore, final dialog message (before any options) should consist of a single line of no more than 42 characters.
-
----
-
-[[index|Quick Links]]

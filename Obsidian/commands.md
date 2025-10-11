@@ -68,7 +68,3 @@
 	- `alias <string[]> = <command: string[]>;`
 - **Delete alias**:
 	- `delete alias <string[]>;`
-
----
-
-[[index|Quick Links]]

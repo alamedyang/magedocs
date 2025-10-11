@@ -40,7 +40,3 @@ To reset the actor, either:
 	4. `on_tick` script slot (if changed)
 	5. `on_look` script slot (if changed)
 	6. `name`
-
----
-
-[[index|Quick Links]]

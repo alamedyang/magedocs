@@ -83,7 +83,3 @@ while (<condition>) {
 Labels are a means of setting destinations for jump actions. These are [[scripts|script level]].
 
 **Syntax**: `<bareword>:`
-
----
-
-[[index|Quick Links]]

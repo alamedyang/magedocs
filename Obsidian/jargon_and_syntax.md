@@ -67,7 +67,3 @@ A unit of text the parser considers to be a single word or word-ish unit.
 - Anything in the insert wrapped in quotes is a literal word, not a lookup to another pattern. This is done when the word is optional or has other repeat properties.
 	- e.g. `<"script"?>` means the word `script` is optional in the pattern.
 - All (or almost all) single tokens that are one of the three [[primitive_types|primitive types]] (number, string, boolean) may be replaced by a constant, even if the dictionary entry doesn't say as much. This only goes for inserted values in the phrase, not keywords.
-
----
-
-[[index|Quick Links]]

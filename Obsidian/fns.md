@@ -99,7 +99,3 @@ script on_tick_yank {
 	self direction = player;
 }
 ```
-
----
-
-[[index|Quick Links]]

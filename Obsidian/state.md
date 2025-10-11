@@ -80,7 +80,3 @@ The state that is preserved when a game is saved includes:
 - `MEM` button offsets (the player can change the `MEM` button mapping)
 - Hex editor clipboard contents (up to 32 bytes)
 - Current map id (NOTE: this is saved, but not currently used upon load; player position is captured and restored manually in the Black Mage Game).
-
----
-
-[[index|Quick Links]]

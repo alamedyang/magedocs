@@ -233,7 +233,3 @@ These are string operands that can be "checked," or used in a [[expressions_and_
 - `CHECK_ENTITY_TICK_SCRIPT`
 - `CHECK_ENTITY_LOOK_SCRIPT`
 - `CHECK_ENTITY_DIRECTION`
-
----
-
-[[index|Quick Links]]

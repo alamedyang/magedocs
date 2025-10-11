@@ -49,7 +49,3 @@ Incorporating hint variations will likely require more frequent hint logic check
 ### Hintiger Abstraction
 
 Hintigers might count as [magic numbers](https://en.wikipedia.org/wiki/Magic_number_%28programming%29#Unnamed_numerical_constants), which are to be avoided when possible. Solutions include using [[constants|constants]] to define these values in one place or using [[actions#Copy Script|Copy Script]] (or [[fns|fns]]) to import actions to change a value rather than needing to know what the value should be changed to. (The [[macros#Include|Include Macro]] is required when using constants or fns in multiple files as they are [[syntax_scopes#File Scope|file scope]], but is not needed for scripts as they are [[syntax_scopes#Project Scope|project scope]].)
-
----
-
-[[index|Quick Links]]

@@ -53,7 +53,3 @@ Animations will use the first tile in the tileset by default.
 To assign tiles to entity animation slots, click on animation tile in the animations pane (on the left), then click a tileset tile in the tileset pane (on the right).
 
 Selected tiles are outlined in green.
-
----
-
-[[index|Quick Links]]

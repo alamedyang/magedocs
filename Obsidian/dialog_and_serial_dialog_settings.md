@@ -65,7 +65,3 @@ dialog test {
 - **Serial dialog parameters**: A property and a value pair.
 	- They are never comma-separated.
 	- See: [[serial_dialogs#Serial Dialog Parameter|Serial Dialog Parameter]]
-
----
-
-[[index|Quick Links]]

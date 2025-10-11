@@ -37,7 +37,3 @@ In the example above, `$total_rounds` has been extracted to a constant so that t
 
 - Constants are [[syntax_scopes#File Scope|File scope]], and [[state#Integer Variables|integer variables]] are [[syntax_scopes#Project Scope|Project scope]].
 - Constants are meant to prevent magic numbers, and not meant to maintain their identity in the final game output.
-
----
-
-[[index|Quick Links]]

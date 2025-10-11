@@ -45,7 +45,3 @@ You could do all your game development in your host OS, but you might have to be
 The VM already contains the raw game data for the Black Mage Game, which you could copy to use as a template for your own project, but we have also prepared a bare-bones [sample project repo](https://github.com/AdmiralPotato/mage_game-external_scenario_source_files), which has all of the necessary structure but without the bloat of the finished game.
 
 The [[encoder|encoder]] is capable of generating a `game.dat` file from an arbitrary `scenario_source_files/` folder, so having multiple project folders is not a problem.
-
----
-
-[[index|Quick Links]]
