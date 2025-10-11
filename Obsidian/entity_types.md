@@ -8,12 +8,12 @@ In the MGE, there are three types of [[entities|entities]]. Each has a `primary_
 
 For the first two types (tile and animation), the tile will rotate when the entity changes which direction it is "facing," whereas the last type (character) will instead choose the correct [[animations|animation]] among those it was [[entity_management_system|assigned]] (north, south, east, or west). Therefore entities that are meant to have standard character animations (like the sheep below) or that need to retain their appearance when moving around the [[maps|map]] (like the rake below) *must* be the third type.
 
-| Rotating Tiles | Assigned Animations|
-| :-- | :-- |
-| sheep (animation) | sheep (character) |
+| Rotating Tiles                             | Assigned Animations                    |
+| :----------------------------------------- | :------------------------------------- |
+| sheep (animation)                          | sheep (character)                      |
 | ![rotating rake](media/sheep-rotating.gif) | ![stable rake](media/sheep-stable.gif) |
-| rake (tile) | rake (character) |
-| ![rotating rake](media/rake-rotating.gif) | ![stable rake](media/rake-stable.gif) |
+| rake (tile)                                | rake (character)                       |
+| ![rotating rake](media/rake-rotating.gif)  | ![stable rake](media/rake-stable.gif)  |
 
 In addition, there is currently no way to control animations with scripts unless the entity is a character entity. (See the the modem and bookcase in Chapter 1 of the Black Mage Game.)
 

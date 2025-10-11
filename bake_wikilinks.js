@@ -21,6 +21,7 @@ const makeRealLink = (match, fileName, anchor, _, label) => {
 }
 
 const bakeWikiLinks = (str) => {
+	// TODO make ![[]] image links into real links, first
 	const replaced = str.replaceAll(/\[\[([a-zA-Z_ ]+)?(\#[^\|]+)?(\\?\|([^\]]+))?\]\]/g, makeRealLink);
 	if (replaced.includes('[[')) {
 		throw new Error ('"[[" case not handled!')

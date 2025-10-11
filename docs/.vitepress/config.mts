@@ -6,7 +6,7 @@ const mgsGrammar = JSON.parse(readFileSync("mgs.tmLanguage.json", 'utf8'))
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "MageGame Docs",
+  title: "MageGameScript Docs",
   description: "Documentation for working with MageGameScript",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -15,7 +15,15 @@ export default defineConfig({
 		provider: 'local',
 	},
 	nav: [
-		{ text: 'Quick Links', link: '/' },
+		{ text: 'Docs Home', link: '/' },
+		{ text: 'Play the Game', link: 'https://dc801.github.io/BM-Badge/' },
+		{
+			text: 'Repos',
+			items: [
+				{ text: 'Black Mage Game', link: "https://github.com/DC801/BM-Badge" },
+				{ text: 'MGS Syntax Colors', link: "https://github.com/alamedyang/magegamescript-syntax-highlighting" },
+			]
+		},
     ],
 	sidebar: [
 		{

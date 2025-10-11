@@ -271,23 +271,37 @@ Save game data persists per `game.dat` file.
 
 A syntax coloring grammar (tmLanguage) for MageGameScript is in development here: [github.com/alamedyang/magegamescript-syntax-highlighting](https://github.com/alamedyang/magegamescript-syntax-highlighting). This makes coding MGS much, much easier.
 
-Syntax colors in this documentation were made possible by [shiki](https://v2.vuepress.vuejs.org/reference/plugin/shiki.html), a TextMate grammar plugin for VuePress.
+It has been tested against dozens of themes and is fairly robust. The chosen color scopes mimic real programming languages, so if you are familiar with the colors in your theme, it should feel comfortable.
+
+Syntax colors in this documentation were made possible by [shiki](https://v2.vuepress.vuejs.org/reference/plugin/shiki.html), a TextMate grammar plugin built into Vitepress.
 
 ### Visual Studio Code
 
-When you open an MGS file, VSCode will offer a [marketplace extension](https://marketplace.visualstudio.com/items?itemName=goat-and-bird.magegamescript-colors) for it. Alternatively, search for "MageGameScript Colors" in the Visual Studio Code extensions marketplace.
+![VSCode with syntax colors](media/colors-vscode.png)
 
-After installing the extension, all MGS files will have syntax coloring. VSCode will offer to update the extension whenever a new version comes out.
+When you open an MGS file, VSCode might offer a [marketplace extension](https://marketplace.visualstudio.com/items?itemName=goat-and-bird.magegamescript-colors) for it. If not, search for "MageGameScript Colors" in the Visual Studio Code extensions marketplace.
 
-### Sublime Text
+![VSCode plugin for MageGameScriptColors](media/vscode-plugin.png)
 
-Visit the syntax colors repo above (or clone it locally), then find the `mgs.tmLanguage` file in the `syntaxes` folder. Move this file to wherever Sublime Text wants its coloring grammars in your operating system. After this, you can select MageGameScript under View > Syntax to style the text in your MGS files.
+If you are using VSCodium or want to avoid the extensions marketplace, you may download the vsix file itself [here](https://github.com/alamedyang/magegamescript-syntax-highlighting/releases) and install it manually, though you will have to check for updates yourself.
 
-You will have to update the `mgs.tmLanguage` manually by repeating the above process when a new version is released.
+After installing the extension, all MGS files will have syntax coloring.
 
 ### TextMate
 
-A `tmbundle` version of the above grammar has been quickly prepared (as of Nov 2023), but may not have feature parity, is not automatically generated, and it is not bundled with the repo yet. Ask the DC801 badge game devs if you want a preview copy to try.
+![TextMate with syntax colors](media/colors-textmate.png)
+
+A `tmbundle` version of the above grammar has been quickly prepared (as of mid 2025), but may not have feature parity, is not automatically generated, and it is not bundled with the repo yet. Ask the DC801 badge game devs if you want a preview copy to try.
+
+### Sublime Text
+
+![Sublime Text with syntax colors](media/colors-sublime.png)
+
+Sublime Text has its own highlighting grammar syntax, but still supports TextMate grammars.
+
+Acquire the `tmbundle` file and put it into Sublime Text's `Packages` folder in your user settings. After this, you can select MageGameScript under View > Syntax to style the text in your MGS files.
+
+You will have to update the `mgs.tmBundle` manually by repeating the above process when a new version is released.
 
 ### IntelliJ
 

@@ -1,6 +1,8 @@
-# Mage Game Engine (MGE) Documentation and Content Creation Guide
+# MageGameScript Documentation and Content Creation Guide
 
-Content creation guide for the "Mage Game Engine" (MGE), and other information for working with the "Black Mage Game" for DC801's party badge.
+Content creation guide for the "Mage Game Engine" (MGE) using MageGameScript (MGS), a custom domain-specific language.
+
+![syntax color sample with the Dark+ theme](media/syntax-colors-demo.png)
 
 Devs also see: [[TODOS|TODOS]]
 

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "action_param_expansions.md",
+                "file": "TODOS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "action_param_expansions"
+              "title": "TODOS"
             }
           }
         ]
@@ -171,9 +171,17 @@
   },
   "active": "df823e4d8dfba883",
   "lastOpenFiles": [
+    "index.md",
+    "what_youll_need.md",
+    "entity_types.md",
+    "media/colors-textmate.png",
+    "media/colors-vscode.png",
+    "media/colors-sublime.png",
+    "media/vscode-plugin.png",
+    "action_param_expansions.md",
+    "media/syntax-colors-demo.png",
     "media/MageGameScript-MAGE.png",
     "actions.md",
-    "action_param_expansions.md",
     "handlers.md",
     "entity_management_system.md",
     "cutscenes.md",
@@ -182,14 +190,12 @@
     "arrays.md",
     "animations.md",
     "actors.md",
-    "index.md",
     "dialogs.md",
     "vector_objects.md",
     "TODOS.md",
     "state.md",
     "maps.md",
     "serial_dialogs.md",
-    "entity_types.md",
     "scripts.md",
     "macros.md",
     "doors.md",
@@ -202,12 +208,6 @@
     "media/rake-rotating.gif",
     "media/tiled-animation-editor.png",
     "media/tileset-example.png",
-    "media/game-sample-x4.png",
-    "media/main-menu.gif",
-    "media/sheep-pen.png",
-    "media/sheep-rotating.gif",
-    "media/tiled-entities.png",
-    "media/mge-encoder-tileset-pane.png",
     "media",
     "Untitled.base"
   ]
