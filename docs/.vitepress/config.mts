@@ -8,6 +8,7 @@ const mgsGrammar = JSON.parse(readFileSync("mgs.tmLanguage.json", 'utf8'))
 export default defineConfig({
   title: "MageGameScript Docs",
   description: "Documentation for working with MageGameScript",
+  base: '/magedocs/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
 	logo: 'media/MageGameScript-MAGE.png',
