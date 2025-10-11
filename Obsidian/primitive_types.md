@@ -1,0 +1,75 @@
+# Primitive Types
+
+If a value (e.g. an arg or param) is said to be limited to a primitive value, it is usually one of these: string, number, boolean. Sometimes this also includes constants.
+
+No type coercion:
+
+- Ints and strings cannot be coerced to bools. (No checking the truthiness of `0`!)
+- Bools and ints cannot be printed as strings. (No `toString()`!)
+- Strings can only be set or checked, and cannot be parsed in any way. (No `parseInt()`!)
+
+## String
+
+A **string** can be either a bareword or a quoted string.
+
+### Bareword
+
+Regex: `/[_a-zA-Z][_a-zA-Z0-9]*/`
+
+- Any number of alphanumeric characters or underscore.
+- A number may not be the first character.
+
+### Quoted String
+
+Regex: `/"(?:[^"\]|\.)*"/`
+
+- Any characters within a pair of double quotes.
+- May contain escaped quotes (`\"`).
+- [[dialogs|Dialog]] and [[serial_dialogs|serial dialog]] messages are quoted strings, but they have [[dialog_and_serial_dialog_strings|Extra attributes]] primarily having to do with styling and auto-wrapping.
+
+## Number
+
+- "Number" usually refers to a **number literal** specifically.
+- Number suffixes must be attached to the number itself, i.e. one token. Otherwise the suffix would count as a separate bareword.
+
+### Number Literal
+
+- Sometimes called "int" in these docs.
+- A `u16`, i.e. any positive whole number up to 65535.
+
+### Duration
+
+- Any number with optional suffixes `ms` for milliseconds or `s` for seconds.
+
+### Distance
+
+- Any number with optional suffixes `pix` or `px` for pixels.
+
+### Quantity
+
+- Any number with optional suffix `x`.
+- The words `once`, `twice`, or `thrice`.
+
+### Color
+
+- Any CSS-style hexadecimal color value (e.g. `#FF0000`) using upper or lowercase letters.
+	- These can be 3 or 6 digits (e.g. `#a0b` or `#aa00bb`).
+- The words `white`, `black`, `red`, `green`, `blue`, `magenta`, `cyan`, or `yellow`.
+
+## Boolean
+
+- Sometimes called "bools" in these docs.
+- `true` and `false` are the traditional values, but other natural language words are allowed because these make certain [[state#Engine Flags|engine flags]] easier to understand when setting them or checking them, e.g. `debug_mode == on`.
+- **True values**: `true`, `on`, `open`, and `up`.
+- **False values**: `false`, `off`, `closed`, and `down`.
+
+## Constant
+
+Regex: `\$[_a-zA-Z0-9]+/`
+
+- A single `$` followed by any number of alphanumeric characters or underscores (`_`).
+- This must be a single token, i.e. `$const_name`, not `$ const_name`.
+
+---
+
+[[index|Quick Links]]

@@ -1,0 +1,9 @@
+.DS_Store
+node_modules/
+.temp
+.cache
+docs/*.md
+docs/media/
+docs/.vitepress/cache/
+dist/
+

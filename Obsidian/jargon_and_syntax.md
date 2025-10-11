@@ -1,0 +1,73 @@
+# Documentation Jargon and Syntax
+
+## General
+
+- White space agnostic.
+- Comments can be line level (`//` until end of line) or block level (`/*` until `*/`). These can occur anywhere.
+- Three types of bracket pairs are used:
+    - `()`: macro/fn args and condition statements
+    - `[]`: arrays, action param expansions
+    - `{}`: block bodies
+- Trailing commas are allowed in arrays, expansions, fn args, etc.
+    - They are _not_ allowed in JSON literals.
+- Actions and other phrases that don't end with a closing bracket (`]`, `)`, `}`) are instead ended with a semicolon (`;`). This helps the parser disambiguate incomplete phrases.
+- Dialog, serial dialog, and almost all script references can be defined in place, e.g.
+    - `show dialog dialogName;` (bare identifier)
+    - `show dialog dialogName { PLAYER "Hi!" };` (identifier and definition)
+    - `show dialog { PLAYER "Hi!" };` (anonymous definition)
+    - Note that a semicolon is still required in the latter two cases because the "script literal" is part of an action phrase, which still needs to end in a semicolon.
+
+## Style Guide
+
+- My personal naming convention for identifiers is `camel_case` but there is no grammatical requirement for any particular paradigm.
+- Keeping identifiers as barewords helps legibility, so is currently preferred.
+    - Barewords may no longer contain hyphen (`-`), a word breaking character, because it made renaming identifiers en masse difficult. (No language server!) Most such cases were replaced with `_` but not all. All remaining cases are wrapped in double quotes at least, which will make it easier to rename them than before.
+- Using language keywords like `player` is preferred to the long form (`entity "%PLAYER%"`).
+
+## Jargon
+
+### Token
+
+A unit of text the parser considers to be a single word or word-ish unit.
+
+- Tokens have [[primitive_types|types]] at the grammar level.
+- `entity "Bob" x` = three tokens, all three strings (types [[primitive_types#Bareword|bareword]], [[primitive_types#Quoted String|quoted string]], [[primitive_types#Bareword|bareword]])
+- `#00FF00` = one token, type [[primitive_types#Color|color]]
+
+### Argument
+
+- Also called **arg**.
+- A value handed to a fn (much like a normal function arg), or the secondary word(s) after a command verb.
+
+### Parameter
+
+- Also called **param**.
+- A unit of data inside an action phrase.
+	- Some params may determine which action is chosen, but most are values given to the final bytecode instruction and will appear in the JSON intermediary step.
+- Also a property-value pair for dialog and serial dialog settings.
+
+### Block
+
+- Generally what falls inside a pair of matching curly braces (`{}`). Might also include the tokens right before, e.g. the script name in a script definition (`script_name {}`).
+
+### Literal
+
+- A value of a literal type (e.g. `100` is a number literal). Contrast this with a reference like a variable name, which might refer to a number value and could be used in many of the same places as a number, but is not a number _literal_.
+
+## Dictionary Syntax
+
+- I'll use `<>` to indicate "insert item here" in a syntax dictionary entry.
+- The insert usually takes the form of `<type>` or  `<purpose: type>`, where the type might be a primitive type (e.g. `number`) or a larger grammatical unit (e.g. `entity identifier`).
+- Type suffixes:
+	- `[]`: that insert is allowed to be expanded in a action param expansion. (Comma separated, wrapped in brackets.)
+		- e.g. `wait <duration[]>;` can become `wait 1;` or `wait [1, 2];`
+	- `?`: zero or one
+	- `*`: zero or more
+	- `+`: one or more
+- Anything in the insert wrapped in quotes is a literal word, not a lookup to another pattern. This is done when the word is optional or has other repeat properties.
+	- e.g. `<"script"?>` means the word `script` is optional in the pattern.
+- All (or almost all) single tokens that are one of the three [[primitive_types|primitive types]] (number, string, boolean) may be replaced by a constant, even if the dictionary entry doesn't say as much. This only goes for inserted values in the phrase, not keywords.
+
+---
+
+[[index|Quick Links]]
