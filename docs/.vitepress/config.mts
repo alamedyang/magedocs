@@ -1,5 +1,9 @@
 import { defineConfig } from 'vitepress'
 
+import { readFileSync } from "fs"
+
+const mgsGrammar = JSON.parse(readFileSync("mgs.tmLanguage.json", 'utf8'))
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "MageGame Docs",
@@ -20,5 +24,21 @@ export default defineConfig({
         ]
       }
     ],
-  }
+  },
+  markdown: {
+	languages: [
+		'json',
+		{
+			...mgsGrammar,
+			displayName: "MageGameScript",
+			aliases: ['mgs'],
+			embeddedLangs: ['json'],
+
+		},
+	],
+	theme: {
+		dark: 'dark-plus',
+		light: 'light-plus',
+	}
+  },
 })
