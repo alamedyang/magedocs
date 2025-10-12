@@ -1,6 +1,6 @@
 # Dialog and Serial Dialog Strings
 
-[[dialogs|Dialog]] and [[serial_dialogs]] [[primitive_types#Strings|strings]] are [[primitive_types#Quoted String|quoted strings]] with extra attributes.
+[[dialogs|Dialog]] and [[serial_dialogs|serial dialog]] [[primitive_types#Strings|strings]] are [[primitive_types#Quoted String|quoted strings]] with extra attributes.
 
 Used for:
 

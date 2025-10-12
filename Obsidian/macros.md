@@ -16,7 +16,7 @@ The Include Macro will copy the whole (parsed) contents of the target file into 
 
 A means of quickly giving random parameters to [[scripts#Script Body Items|script body items]] using [[action_param_expansions|action param expansions]].
 
-**Syntax**: `rand!( <script body items> )`
+**Syntax**: `rand!( <script body items> ) <";"?>`
 
 See [[action_param_expansions#Rand Macro|Action Param Expansions > Rand Macro]].
 
@@ -46,9 +46,9 @@ script rng_exlusive_inclusive {
 This macro prints the given [[serial_dialogs|serial dialog]], but only if `debug_mode` is on.
 
 - **Syntax:**
-	- `debug!(<serial dialog identifier: bareword>)`
+	- `debug!(<serial dialog identifier: bareword>) <";"?>`
 		- Because quoted strings count as dialog messages, this identifier must be a bareword.
-	- `debug!(<serial dialog>)`
+	- `debug!(<serial dialog>) <";"?>`
 		- This may contain parameters and options (but must contain at least 1 message).
 		- No need to put curly braces.
 		- You cannot give this serial dialog a name.
@@ -70,11 +70,15 @@ script debug_long {
 
 Copy Script copies all items from the named [[scripts|script]] and pastes them into place.
 
-**Syntax**: `<script name: string>()`
+Copying is done recursively. Infinite recursion is detected and aborted.
 
-- Copying is done recursively. Infinite recursion is detected and aborted.
-- **Bytecode action**: `COPY_SCRIPT`
-	- Copy Script was originally handled on the JSON encoder side. It's still possible to use `COPY_SCRIPT` as a bytecode action for legacy reasons, but it is entirely handled by the MGS side of things now.
+**Syntax**: `<script name: string>() <";"?>`
+
+The semicolon at the end can only be used in bare Copy Scripts, i.e. when it's used on its own as a single action item. When Copy Script is used as an [[expressions_and_operators#Int Operands|int operand]] (as part of an [[expressions_and_operators#Int Expressions|int expression]]), it must not have a semicolon, e.g. `var_name = tally() + 100;`
+
+**Bytecode action**: `COPY_SCRIPT`
+
+Copy Script was originally handled on the JSON encoder side. It's still possible to use `COPY_SCRIPT` as a bytecode action for legacy reasons, but it is entirely handled by the MGS side of things now.
 
 ### Fn Call Vs Copy Script
 

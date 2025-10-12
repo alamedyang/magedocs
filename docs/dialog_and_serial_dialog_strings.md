@@ -1,6 +1,6 @@
 # Dialog and Serial Dialog Strings
 
-[Dialog](dialogs) and [serial_dialogs](serial_dialogs) [strings](primitive_types#strings) are [quoted strings](primitive_types#quoted-string) with extra attributes.
+[Dialog](dialogs) and [serial dialog](serial_dialogs) [strings](primitive_types#strings) are [quoted strings](primitive_types#quoted-string) with extra attributes.
 
 Used for:
 

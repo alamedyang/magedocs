@@ -48,13 +48,15 @@ _ {
 
 Used inside a [[scripts#Script Body Items|script body]].
 
-**Syntax**: `<fn name: string>(<passed args>)`
+**Syntax**: `<fn name: string>(<passed args>) <";"?>`
 
 - **Passed args**: One or more of the following, comma-separated:
 	- [[expressions_and_operators#Expressions|Int expressions]]
 	- [[primitive_types#Boolean|Booleans]]
 	- [[primitive_types#String|Strings]]
 	- [[primitive_types#Constant|Constants]]
+
+The semicolon at the end can only be used in bare fn calls, i.e. when it's used on its own as a single action item. When a fn call is used as an [[expressions_and_operators#Int Operands|int operand]] (as part of an [[expressions_and_operators#Int Expressions|int expression]]), it must not have a semicolon, e.g. `var_name = fn(40) + 80;`
 
 Bare fn calls only have utility if the fn performs work; the return value of bare fns is discarded in these cases.
 
