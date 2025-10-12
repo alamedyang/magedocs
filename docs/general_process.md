@@ -34,9 +34,9 @@ Prepare map(s). For each map:
 	1. Set [entity properties](entities#entity-properties) e.g.
 		1. `Name`
 		2. `is_player`
-		3. `on_tick` script
-		4. `on_interact` script
-		5. `on_look` script
+		3. [`on_tick`](scripts#on_tick) script
+		4. [`on_interact`](scripts#on_interact) script
+		5. [`on_look`](scripts#on_look) script
 5. [Draw vector shapes](vector_objects), e.g.
 	1. Walk paths
 	2. Doorways

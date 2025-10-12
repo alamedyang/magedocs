@@ -8,15 +8,15 @@ You will then see a second window for assigning frames to your animation. Set th
 
 ## MGE Animation Considerations
 
-For [character entities](entity_types#character-entities), you need not prepare an animation for all cardinal directions — e.g. there is only a fright/shock animation in *Chrono Trigger* for the south direction.
+For [character entities](entity_types#character-entities), you need not prepare an animation for all cardinal directions, e.g. there is only a fright/shock animation in *Chrono Trigger* for the south direction.
 
 The [encoder](encoder) accommodates animation flipping with its [entity management system](entity_management_system), so you don't need sprite tiles for both left-facing and right-facing sprites if you're comfortable with mirroring your left-facing and right-facing sprites.
 
-The Mage Game Engine (MGE) animation system requires that each animation have at least two frames, though, so for animations that aren't actually "animated," you might set two of the same frame back-to-back. #researchthis
+The Mage Game Engine (MGE) animation system requires that each animation have at least two frames, though, so for animations that aren't actually "animated," you might set two of the same frame back-to-back.
 
 ## Animation Types
 
-Three types of animations are built into the MGE for [character entities](entity_types#character-entities), and they are triggered in straightforward and predictable ways. `entity_types.json` defines which animations are of which type, and they can be defined and adjusted within the [encoder](encoder) or manually with a text editor.
+Three types of animations are built into the MGE for [character entities](entity_types#character-entities), and they are triggered in straightforward and predictable ways. [`entity_types.json`](what_youll_need#entity_types.json) defines which animations are of which type, and they can be defined and adjusted within the [encoder](encoder) or manually with a text editor.
 
 ### Idle
 
@@ -24,19 +24,19 @@ This is what the character entity does by default.
 
 Usually the idle consists of long periods of stillness, followed by a brief fidget: a blink, a small movement of the head, a sheep chewing its cud etc. For flying entities, the idle will likely consist of the entity hovering in place.
 
-The idle animation does not include things like turning around to face different things, nor should it include multiple kinds of fidgets that interact with complex timing. If you want an entity to do more complex behaviors when idle, including facing somewhere specific or playing back other kinds of animations once in a while (a sheep that performs a chewing animation twice a second but lowers its head to chomp a fresh mouthful of grass every 15 seconds), consider using an `on_tick` script to handle this instead.
+The idle animation does not include things like turning around to face different things, nor should it include multiple kinds of fidgets that interact with complex timing. If you want an entity to do more complex behaviors when idle, including facing somewhere specific or playing back other kinds of animations once in a while (a sheep that performs a chewing animation twice a second but lowers its head to chomp a fresh mouthful of grass every 15 seconds), consider using an [`on_tick`](scripts#on_tick) script to handle this instead. (If you want more complex idle behavior than this, you may need to use a [handler](handlers).)
 
 Entities look far more alive with an idle animation, even if it's just an occasional blink. Regardless, while the entity need not *appear* to have an idle animation, the MGE still expects one, so you should define one, even if it's just the same two frames back-to-back.
 
 Idle animations are expected to loop seamlessly.
 
 ::: tip Best Practice
-To avoid robotic synchronization between entities, try to stagger their animation timings by setting the `current_frame` property for that entity on their Tiled map or via `SET_ENTITY_CURRENT_FRAME` inside a [script](scripts).
+To avoid robotic synchronization between entities, try to stagger their animation timings by setting the `animation_frame` [property](entities#entity-properties) for that entity on their Tiled map or via [Assign Int Value](actions#assign-int-value) for `animation_frame`.
 :::
 
 ### Walking
 
-This animation plays when entities move within the game. For flying or hovering entities without an explicit walk cycle, you can simply re-use the idle animation.
+This animation plays when entities move within the game. For flying or hovering entities without an explicit walk cycle, you can simply reuse the idle animation.
 
 Walking animations are expected to loop seamlessly.
 

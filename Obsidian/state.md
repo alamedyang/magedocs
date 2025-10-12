@@ -2,21 +2,23 @@
 
 See also: [[entities#Entity Properties|Entity Properties]]
 
-There are only a few variables available for [[scripts|scripts]] to use. All variables are equally accessible to all scripts at all times because they are [[syntax_scopes|project scope]].
+There are only a few variables available for [[scripts|scripts]] to use.
+
+All variables are equally accessible to all scripts at all times because they are [[syntax_scopes|project scope]].
 
 No need to initialize or define variables before using them; they are all pre-allocated in engine and always available.
 
 ::: warning
-This means that typos in variable names can be hard to spot. If you set `birthdayparty` but check `birthday_party`, the encoder will create and store both variables as if they were separate things.
+Since all variables always exist, typos in variable names are hard to spot. If you set `birthdayparty` but check `birthday_party`, the encoder will create and store both variables as if they were separate things.
 
-If you find a variable isn't triggering logic checks in the ways you expect, check your spelling!
+If you find a variable isn't triggering logic checks in the ways you expect, check your spelling.
 :::
 
-All variables are persistent between [[maps#Map Loads|map loads]] because all are all included in the save data.
+All variables are persistent between [[maps#Map Loads|map loads]] because all are all included in the [[#Save Data|save data]].
 
 ## Warp State String
 
-The `warp_state` string is designated for controlling player spawn behavior on a map's `on_load` script. When you leave a room (or otherwise trigger a new map to load), the `warp_state` string should be set to something that indicates the exit/entrance point so the next map can teleport the player entity to the appropriate spawn point.
+The Warp State String (`warp_state`) is designated for controlling player spawn behavior on a map's [[scripts#`on_load`|`on_load`]] script. When you leave a [[doors|room]] (or otherwise trigger a new [[maps#Map Loads|map load]]), the Warp State String should be [[actions#Assign String Value|set]] to something that indicates the exit/entrance point so the next [[maps|map]]'s `on_load` can [[actions#Position Assignment|teleport]] the [[entities#Player|player entity]] to the appropriate [[doors#Spawn Points|spawn point]].
 
 See [[primitive_types#String|Primitive Types > String]]
 
@@ -26,7 +28,7 @@ These are `uint16_t` values, meaning they can be any whole number between `0` an
 
 The default value is `0`.
 
-These may be printed in a [[dialog_and_serial_dialog_strings#Print Variable Value|dialog or serial dialog string]].
+These may be [[dialog_and_serial_dialog_strings#Printing Current Values|printed]] in a [[dialog_and_serial_dialog_strings#Print Variable Value|dialog or serial dialog string]].
 
 See: [[primitive_types#Number Literal|Primitive Types > Number Literal]]
 
@@ -47,7 +49,7 @@ See: [[primitive_types#Boolean|Primitive Types > Boolean]]
 
 ### Setable Engine Flags
 
-Can be used as the LHS of a [[actions#Assign Bool Value|bool assignment action phrase]].
+Can be used as the LHS of a [[actions#Assign Bool Value|bool assignment]].
 
 | MGS keyword       | Description                                                                                                            |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
@@ -73,10 +75,11 @@ Can be used as [[expressions_and_operators#Bool Operands|bool operands]] in a bo
 
 The state that is preserved when a game is saved includes:
 
-- The `warp_state` string
-- All save flag values (booleans)
-- All integer variable values (ints)
-- The player's name (string)
-- `MEM` button offsets (the player can change the `MEM` button mapping)
+- The [[#Warp State String|Warp State String]]
+- All [[#Save Flags|save flag values]] (booleans)
+- All [[#Integer Variables|integer variable values]] (ints)
+- The [[entities#Entity Properties|player's name]] (string)
+- `MEM` button offsets for the [[hex_editor]] (the player can change the `MEM` button mapping)
 - Hex editor clipboard contents (up to 32 bytes)
-- Current map id (NOTE: this is saved, but not currently used upon load; player position is captured and restored manually in the Black Mage Game).
+- Current [[maps|map]] id
+	- (NOTE: this is saved, but not currently used upon load; player position is captured and restored manually in the Black Mage Game at this time.)

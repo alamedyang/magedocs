@@ -16,25 +16,25 @@ This works best if done between [[maps#Map Loads|map loads]] or [[actions#Positi
 
 A [[maps#Map Loads|map load]] will restore the actor to its original state, and is a fast way of cleaning up a cutscene with a lot of actors. Otherwise, you'll have to set up another costume change to restore the actor to its original state.
 
-On the other hand, if you want an entity's costume change to be permanent (e.g. a wanderer leaves town in an early cutscene, but new vendor moves into a shop later in the game), you'll need a [[state#Save Flags|save flag]] and the map's `on_load` to manage this. Best might be to make the actor's default state the one that is needed for the most map loads.
+On the other hand, if you want an entity's costume change to be permanent (e.g. a wanderer leaves town in an early cutscene, but new vendor moves into a shop later in the game), you'll need a [[state#Save Flags|save flag]] and the map's [[scripts#`on_load`|`on_load`]] to manage this. Best might be to make the actor's default state the one that is needed for the most map loads.
 
 ## Using an Actor
 
-To do a costume change, set the actor's properties to the target costume:
+To do a costume change, [[actions#Assign a Value|set]] the actor's [[entities#Entity Properties|properties]] to the target costume:
 1. [[entity_types#Character Entity|entity type]] name — new appearance (costume)
 2. X and Y coordinates — best done via teleporting to a [[vector_objects|vector object]]
-3. `on_interact` script slot — optional; unnecessary for cutscene-only cameos
-4. `on_tick` script slot — optional; unnecessary for cutscene-only cameos
-5. `on_look` script slot — optional; unnecessary for cutscene-only cameos
-6. `name` — will allow the actor to be labeled correctly in the hex editor and in dialog message labels
+3. [[scripts#`on_interact`|`on_interact`]] [[scripts#Script Slots|script slot]] — optional; unnecessary for cutscene-only cameos
+4. [[scripts#`on_tick`|`on_tick`]] script slot — optional; unnecessary for cutscene-only cameos
+5. [[scripts#`on_look`|`on_look`]] script slot — optional; unnecessary for cutscene-only cameos
+6. `name` — will allow the actor to be labeled correctly in the [[hex_editor|hex editor]] and in [[dialogs|dialog]] message labels
 
 When doing choreography involving the actor, use the actor's original name (not the costume's name) in your actions' arguments. This includes dialog messages using the `entity` property. It helps to leave comments to remind yourself that an actor is acting.
 
 To reset the actor, either:
 
-1. Load a map. (The next load will use the actor's default state.)
+1. [[maps#Map Loads|Load a map]]. (The next load will use the actor's default state.)
 2. Set the actor's properties to what they originally were:
-	1. [[entity_types#Character Entity|entity type]] name
+	1. entity type name
 	2. X and Y coordinates (e.g. teleporting to a vector object)
 	3. `on_interact` script slot (if changed)
 	4. `on_tick` script slot (if changed)

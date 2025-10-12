@@ -4,7 +4,7 @@
 
 To make an entity walk through a door, move them to the doorway and then [[hiding_an_entity|hide]] them.
 
-Entities cannot be unloaded once loaded on a map, so they will always exist no matter what . You might make a different version of the map without such hidden entities, but this would require a fresh [[maps#Map Loads|map load]] — which is likely to be inconvenient, especially if multiple entities have to leave at multiple times.
+Entities cannot be unloaded once loaded on a map, so they will always exist no matter what. You might make a different version of the map without such hidden entities, but this would require a fresh [[maps#Map Loads|map load]], which is likely to be inconvenient, especially if multiple entities have to leave at multiple times.
 
 ## Doors (Player)
 
@@ -22,7 +22,7 @@ Use [[debug_tools#Vector View|vector view]] to debug misbehaving door triggers.
 
 ### Doorway Watcher
 
-You can check whether an entity is inside a geometry object with a [[expressions_and_operators#Bool Operands|bool expression]] (look for `intersects`). Daisy chain several [[script_control_flow#If / Else Chain|ifs]] to check each vector doorway trigger inside a doorway watcher's `on_tick` script. This is best done in the map's `on_tick` script, as it cannot be changed by the player using the [[hex_editor|hex editor]], so is well protected.
+You can check whether an entity is inside a geometry object with a [[expressions_and_operators#Bool Operands|bool expression]] (look for `intersects`). Daisy chain several [[script_control_flow#If / Else Chain|ifs]] to check each vector doorway trigger inside a doorway watcher's [[scripts#`on_tick`|`on_tick`]] script. This is best done in the map's `on_tick` script, as it cannot be changed by the player using the [[hex_editor|hex editor]], so is well protected.
 
 TIP: If there are certain doorways that unlock or lock at specific times in the story, you might want your map's `on_tick` script to run logic that determines which watch script to run, and/or include a [[state#Save Flags|save flag]] check to give the script an opportunity to jump to the appropriate one automatically if lock/unlock conditions change after the map is loaded.
 
@@ -35,7 +35,7 @@ When the "entity intersects geometry" condition is met, the doorway watcher scri
 	1. **Another spot on the same map**: Teleport the player to the new spot.
 		- You will likely still need to have "leaving a doorway" behavior of some kind, though it need not be a separate script.
 	2. **A different map (e.g. a house, a dungeon, another zone on the overworld)**: The very last action should be [[actions#Load Map|Load Map]].
-		- This means all "leaving a doorway" behavior must be handled (or at least triggered) by the target map's `on_load` script. See below.
+		- This means all "leaving a doorway" behavior must be handled (or at least triggered) by the target map's [[scripts#`on_load`|`on_load`]] script. See below.
 
 Generally, entering a doorway requires no other padding or special handling unless you want to use fades.
 
@@ -57,7 +57,7 @@ If a new map is loaded:
 
 Fades are a little clunky on the hardware, so if using them for doorways, it might be better to limit them to the most important doorways alone, such as the edges of the map.
 
-If a fade requires two simultaneous behaviors (e.g. camera fade and entity walk), you will need two script slots. Using the player's `on_tick` for this is logical, but not required; feel free to manage the player's behavior with another entity's `on_tick` script, instead.
+If a fade requires two simultaneous behaviors (e.g. camera fade and entity walk), you will need two script slots. Using the player's [[scripts#`on_tick`|`on_tick`]] for this is logical, but not required; feel free to manage the player's behavior with another entity's `on_tick` script, instead.
 
 #### Entering a Doorway Script (with Fades)
 
@@ -70,10 +70,10 @@ If a fade requires two simultaneous behaviors (e.g. camera fade and entity walk)
 
 #### Leaving a Doorway Script (with Fades)
 
-Be sure to verify that the new map's `on_load` will check the [[state#Warp State String|Warp State String]] and branch to the the correct "leaving a doorway" script.
+Be sure to verify that the new map's [[scripts#`on_load`|`on_load`]] will check the [[state#Warp State String|Warp State String]] and branch to the the correct "leaving a doorway" script.
 
-1. Set the player entity's `on_tick` to a script that walks them briefly in a line away from the doorway.
-	- For the last action in this `on_tick` script, goto [[scripts#Null Script|`null_script`]] (or set the `on_tick` to something else) to prevent it from looping.
+1. Set the player entity's [[scripts#`on_tick`|`on_tick`]] to a script that walks them briefly in a line away from the doorway.
+	- For the last action in this `on_tick` script, goto [[scripts#`null_script`|`null_script`]] (or set the `on_tick` to something else) to prevent it from looping.
 2. Fade the screen back in.
 	- Duration should be approximately that of the player entity's walk.
 3. Turn player control back on.
@@ -83,7 +83,7 @@ Be sure to verify that the new map's `on_load` will check the [[state#Warp State
 For doorway/warp behavior, there are two ways to handle player spawn points:
 
 1. **Default spawn points**: Player entities will spawn by default where an `is_player` entity was placed on a [[maps|map]] in Tiled. For maps with a single door, such as an NPC's house, this will be sufficient to control a player's spawning behavior — simply place a player entity at the entrance, facing the appropriate direction.
-2. **Custom spawn points**: To control additional spawn points, you will need to create [[vector_objects|vector objects]] to use as teleport destinations.
+2. **Custom spawn points**: To control additional spawn points, you will need to create [[vector_objects|vector objects]] to use as [[actions#Position Assignment|teleport]] destinations.
 
 To prevent the player from instantly returning to where they came from, the player spawn point should not overlap with the doorway trigger in the new destination.
 

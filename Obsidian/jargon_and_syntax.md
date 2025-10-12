@@ -19,7 +19,7 @@
 
 ## Style Guide
 
-- My personal naming convention for identifiers is `camel_case` but there is no grammatical requirement for any particular paradigm.
+- My personal naming convention for [[identifiers|identifiers]] is `camel_case` but there is no grammatical requirement for any particular paradigm.
 - Keeping identifiers as barewords helps legibility, so is currently preferred.
     - Barewords may no longer contain hyphen (`-`), a word breaking character, because it made renaming identifiers en masse difficult. (No language server!) Most such cases were replaced with `_` but not all. All remaining cases are wrapped in double quotes at least, which will make it easier to rename them than before.
 - Using language keywords like `player` is preferred to the long form (`entity "%PLAYER%"`).
@@ -42,7 +42,7 @@ A unit of text the parser considers to be a single word or word-ish unit.
 ### Parameter
 
 - Also called **param**.
-- A unit of data inside an action phrase.
+- A unit of data inside an [[actions|action phrase]].
 	- Some params may determine which action is chosen, but most are values given to the final bytecode instruction and will appear in the JSON intermediary step.
 - Also a property-value pair for dialog and serial dialog settings.
 
@@ -59,7 +59,7 @@ A unit of text the parser considers to be a single word or word-ish unit.
 - I'll use `<>` to indicate "insert item here" in a syntax dictionary entry.
 - The insert usually takes the form of `<type>` or  `<purpose: type>`, where the type might be a primitive type (e.g. `number`) or a larger grammatical unit (e.g. `entity identifier`).
 - Type suffixes:
-	- `[]`: that insert is allowed to be expanded in a action param expansion. (Comma separated, wrapped in brackets.)
+	- `[]`: that insert is allowed to be expanded in a [[action_param_expansions|action param expansion]]. (Comma separated, wrapped in brackets.)
 		- e.g. `wait <duration[]>;` can become `wait 1;` or `wait [1, 2];`
 	- `?`: zero or one
 	- `*`: zero or more

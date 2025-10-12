@@ -6,12 +6,12 @@ Arrays are built, modified, and destroyed inside [[scripts|scripts]] using [[act
 - Arrays can only contain positive ints (with a max value of 65536), the same as [[state#Integer Variables|integer variables]].
     - Array values can be assigned using [[expressions_and_operators#Int Expressions|int expressions]], e.g. `odd_numbers.push(9 + two);`.
 - Array literals (a list of items inside brackets, e.g. `[1, 2, 3]`) are only allowed when making a new array. Anywhere else, these are interpreted as action param expansions.
-- Arrays are initialized per game session, as opposed to per map load or per game save. Neither arrays nor their values are stored in the save data.
+- Arrays are initialized per game session, as opposed to per [[maps#Map Loads|map load]] or per game save. Neither arrays nor their values are stored in the [[state#Save Data|save data]].
 - Undefined array lookups (such as reading from an out-of-bounds index) will become 0.
 
 ## Array Indices
 
-- Indices may be made from a bare variable name or an int expression.
+- Indices may be made from a bare variable name or an [[expressions_and_operators#Int Expressions|int expression]].
 	- E.g. `next_value = array_name[i + 1];`
 - Negative indices read values from the end.
 	- E.g. `penultimate_value = array_name[-2];`
@@ -56,7 +56,7 @@ Array methods act upon an array by changing it, extracting one or more values fr
 
 - Array methods can be daisy chained.
 	- E.g. `array_name.sort().reverse().map(do_function).pop();`.
-- The return result of the chain depends on the return type of the final method.
+- The [[script_control_flow#Return|return]] result of the chain depends on the return type of the final method.
 - The chain will work even if the methods are split up with white space (i.e. put onto different lines).
 
 ### Returns an Array
@@ -69,14 +69,14 @@ Array methods act upon an array by changing it, extracting one or more values fr
 	-  `.slice()`: Copies the array whole.
     -  `.slice(<index start>)`: Copies starting at the given index.
     -  `.slice(<index start>, <index end>)`: Copies starting at the given start index and ending on the given end index.
-- **Map**: Creates a new array with the same length as the current array by performing the given fn on each of the array items.
+- **Map**: Creates a new array with the same length as the current array by performing the given [[fns|fn]] on each of the array items.
 	- `.map(<fn literal>)`
     - The default args provided to the mapping fn are:
 	    - 1st arg: the value of the current item
 		- 2nd arg: current loop index
 		- 3rd arg: the name of the array itself
 	- Not all 3 args must be used, and they may be named anything in the fn definition (as long as they are constants); the order of the fn args is what determine which of these three values they receive.
-    - The mapping fn cannot use `continue` or `break`. You may `return` early to jump to the next loop, but the loop must play out in its entirety.
+    - The mapping fn cannot use `continue` or `break`. You may [[script_control_flow#Return|`return`]] early to jump to the next loop, but the loop must play out in its entirety.
     - If the mapping fn does not return anything, the value of the new array at that index will be 0.
 
 **Bytecode actions**:
@@ -92,6 +92,7 @@ Array methods act upon an array by changing it, extracting one or more values fr
 
 - **Value at index**: Returns the value of the array at that index.
 	- `[<int expression>]`
+	- **Int expression**: see [[expressions_and_operators#Int Expressions|Int Expression]]
 - **Length**: Returns the length of the array, i.e. the quantity of items it currently contains.
 	- `.length()`
 - **Pop**: Removes the final item in the array and returns it.
@@ -131,6 +132,7 @@ Array methods act upon an array by changing it, extracting one or more values fr
 Can be used as part of an int assignment operation: `<LHS> = <RHS: int expression>;`
 
 - **Syntax**: `<array name: string>[<int expression>]`
+	- **Int expression**: see [[expressions_and_operators#Int Expressions|Int Expression]]
 -  **Bytecode actions**:
 	- `ARRAY_WRITE_INTO_INDEX_FROM_VALUE`
 	- `ARRAY_WRITE_INTO_INDEX_FROM_VARIABLE`

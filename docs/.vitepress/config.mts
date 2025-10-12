@@ -14,6 +14,10 @@ export default defineConfig({
     search: {
 		provider: 'local',
 	},
+	outline: {
+		level: 'deep',
+		label: 'Jump to'
+	},
 	nav: [
 		{ text: 'Docs Home', link: '/' },
 		{ text: 'Play the Game', link: 'https://dc801.github.io/BM-Badge/' },

@@ -8,13 +8,7 @@ The MGE is data driven, meaning you won't need special hardware or a compiler to
 
 You will need a text editor. (NOTE: a word processor like Apple's Pages or Microsoft Word will not suffice!)
 
-What will work best is an IDE with project management features like syntax parsing and Git integration. Our recommendation, especially for beginners, is [Visual Studio Code](https://code.visualstudio.com/) (Mac, Linux, or Windows), which is free and open source. Importantly, we have prepared a VSCode Marketplace plugin for MGS syntax highlighting, which will make it much easier to work with MGS game script files.
-
-`.mgs` syntax highlighting can be manually added to a handful of other text editors, too. (See [[#Syntax Colors|syntax colors]] for up-to-date details and instructions.) The following can manage decent support as of August 2024:
-
-- [Sublime Text](https://sublimetext.com)
-- [JetBrains' IDEs](https://www.jetbrains.com/) (excellent IDE but not inexpensive)
-- [TextMate](https://macromates.com) (Mac only)
+What will work best is an IDE with project management features like syntax parsing and Git integration. Our recommendation, especially for beginners, is [Visual Studio Code](https://code.visualstudio.com/) (Mac, Linux, or Windows), which is free and open source. Importantly, we have prepared a VSCode Marketplace plugin for [[#Syntax Colors|MGS syntax highlighting]], which will make it much easier to work with MGS game script files.
 
 ### Graphics Editor
 
@@ -36,11 +30,11 @@ Newer versions of Tiled use a slightly different file structure that is not comp
 
 ### Web Browser
 
-The [[encoder#Web Encoder|web encoder]] can be run with Node.js (see below) or in a web browser. They will both take the game files from your `scenario_source_files/` folder and export a `game.dat` for the Mage Game Engine to use.
+The [[encoder#Web Encoder|web encoder]] can be run with Node.js (see below) or in a web browser. They will both take the game files from your [[#`scenario_source_files/`|`scenario_source_files/`]] folder and export a `game.dat` for the Mage Game Engine to use.
 
-The web version of the encoder, however, also has an [[entity_management_system|entity management system]] for managing animation assignments, so while you might use the Node encoder most of the time, chances are you'll still want to use the web version regularly.
+The web version of the encoder, however, also has an [[entity_management_system|entity management system]] for managing [[entities|entity]] [[animations|animation]] assignments, so while you might use the Node encoder most of the time, chances are you'll still want to use the web version regularly.
 
-You will likely also want to use the [[#Web Build|web build]] of the MGE to test your game data, as this is much simpler than setting up a Linux environment to run the game natively and much faster than using a microSD card to test the `game.dat` on the real badge after every revision.
+You will likely also want to use the [[#Web Build|web build]] of the MGE to test your game data, as this is much simpler than setting up a [[mge_vm|Linux environment]] to run the game natively and much faster than using a microSD card to test the `game.dat` on the real badge after every revision.
 
 ### Node.js (optional)
 
@@ -69,7 +63,7 @@ This structure was intended to facilitate distribution of `game.dat` files and g
 - `mage_dat.ksy`
 	- For debugging your `game.dat` with [[encoder#Kaitai|Kaitai]].
 - `scenario_source_files/`
-	- See below.
+	- See [[#`scenario_source_files/`|below]].
 
 ### `scenario_source_files/`
 
@@ -105,7 +99,7 @@ Folders:
 
 #### `scenario.json`
 
-This file tells the encoder which JSON files to include for various purposes. After the "mathlang" revision of MageGameScript, it is no longer necessary to keep JSON files for dialogs, serial dialogs, or scripts. Therefore, there is only on thing left needed in here: `dialogSkins`.
+This file tells the encoder which JSON files to include for various purposes. After the "mathlang" revision of MageGameScript, it is no longer necessary to keep JSON files for [[dialogs|dialogs]], [[serial_dialogs|serial dialogs]], or [[scripts|scripts]]. Therefore, there is only on thing left needed in here: `dialogSkins`.
 
 
 ```json
@@ -180,7 +174,7 @@ The order of the object literals in the animation is fixed:
 - South
 - West
 
-Each character entity should at least have an idle, walk, and action animation. (See: [[animations|Animations]])
+Each character entity should at least have an [[animations|idle, walk, and action animation]].
 
 ### `maps.json`
 
@@ -208,7 +202,7 @@ The first map given is the map run when the game is opened.
 
 #### `portraits.json`
 
-This file contains data for portraits, which reference tileset JSON files from the `entities/` folder. Portrait names should match associated [[entity_types#Character Entity|entity_type]] names, if any.
+This file contains data for portraits, which reference tileset JSON files from the `entities/` folder. Portrait names should match associated [[entity_types#Character Entity|entity type]] names, if any.
 
 ```json
 {
@@ -241,7 +235,7 @@ This file contains data for portraits, which reference tileset JSON files from t
 
 `tileid` is how you define which tile in the tileset you want to use. You can simply count the tiles in the tileset left-to-right and top-to-down, beginning from `0`, but it might be easier to select the appropriate tile within Tiled and see what it says the "ID" is.
 
-Game portraits are determined to be in their default position when alignment is `BOTTOM_LEFT` (or `TOP_LEFT`). For normal RPG-style contexts, you'll want your entities facing the center of the screen, which means your graphics should face the right in the tileset file. (These graphics are flipped automatically when used in the `BOTTOM_RIGHT` or `TOP_RIGHT` position.) If the portraits in your tileset image aren't facing the right, you should set `flip_x` to `true`.
+[[dialogs|Dialog]] portraits are determined to be in their default position when alignment is `BOTTOM_LEFT` (or `TOP_LEFT`). For normal RPG-style contexts, you'll want your entities facing the center of the screen, which means your graphics should face the right in the tileset file. (These graphics are flipped automatically when used in the `BOTTOM_RIGHT` or `TOP_RIGHT` position.) If the portraits in your tileset image aren't facing the right, you should set `flip_x` to `true`.
 
 You should at least have a `default` emote, but you can define any others as you like. Emotes are currently identified by their index / `id`.
 
@@ -271,9 +265,9 @@ Save game data persists per `game.dat` file.
 
 A syntax coloring grammar (tmLanguage) for MageGameScript is in development here: [github.com/alamedyang/magegamescript-syntax-highlighting](https://github.com/alamedyang/magegamescript-syntax-highlighting). This makes coding MGS much, much easier.
 
-It has been tested against dozens of themes and is fairly robust. The chosen color scopes mimic real programming languages, so if you are familiar with the colors in your theme, it should feel comfortable.
+It has been tested against dozens of themes and is fairly robust. The chosen color scopes mimic real programming languages, so if you are familiar with the purpose of each color in your favorite theme, it should feel comfortable.
 
-Syntax colors in this documentation were made possible by [shiki](https://v2.vuepress.vuejs.org/reference/plugin/shiki.html), a TextMate grammar plugin built into Vitepress.
+Syntax colors in this documentation were made possible by [shiki](https://github.com/shikijs/shiki), a TextMate grammar parser built into Vitepress.
 
 ### Visual Studio Code
 
@@ -297,7 +291,7 @@ A `tmbundle` version of the above grammar has been quickly prepared (as of mid 2
 
 ![Sublime Text with syntax colors](media/colors-sublime.png)
 
-Sublime Text has its own highlighting grammar syntax, but still supports TextMate grammars.
+Sublime Text has its own highlighting grammar syntax, but supports TextMate grammars.
 
 Acquire the `tmbundle` file and put it into Sublime Text's `Packages` folder in your user settings. After this, you can select MageGameScript under View > Syntax to style the text in your MGS files.
 

@@ -2,10 +2,12 @@
 
 - **Bytecode action**: a single bytecode instruction. These are the basic scripting unit of the Mage Game Engine.
 - **Action phrase**: a phrase of multiple words or sub-patterns that produce one or more bytecode instructions when compiled.
-	- Action phrases are used inside a script block.
+	- Action phrases are used inside a [script block](scripts).
 	- They must end with a semicolon.
 
 For dictionary entry syntax information, see: [Jargon and Syntax](jargon_and_syntax) and [Primitive Types](primitive_types).
+
+This list of action phrases is not exhaustive. Some are included in pages relevant to the data types they manipulate, such as with [commands](commands) and [arrays](arrays).
 
 ## Game Control
 
@@ -29,7 +31,7 @@ Brings the [save data](state#save-data) associated with that slot into RAM.
 
 Clears all the [save data](state#save-data) in the given slot.
 
-This action creates a dialog card reporting that the save was erased. This introduces a player-timed barrier which prevents ROM burnout in the event that a player set an an `on_tick` script to one that contains this action.
+This action displays a [dialog card](dialogs) reporting that the save was erased. This introduces a player-timed barrier which prevents ROM burnout in the event that a player set an an [`on_tick`](scripts#on_tick) script slot to a script that contains this action.
 
 - **Syntax**: `erase slot <number[]>;`
 - **Bytecode action**: `SLOT_ERASE
@@ -40,7 +42,7 @@ This pauses the current [script](scripts) while allowing all other aspects of th
 
 Use this if you want to pad the actions an [entity](entities) is performing so they don't all occur on the same game tick.
 
-For cinematic cutscenes, you will almost certainly need to disable player control before using this action, otherwise the player will be able to walk away in the middle. (Don't forget to turn it on again when finished.)
+For cinematic cutscenes, you will almost certainly need to [disable](#assign-bool-value) [player control](#bool-setables) before using this action, otherwise the player will be able to walk away in the middle. (Don't forget to turn it on again when finished.)
 
 - **Syntax**: `wait <duration[]>;
 - **Bytecode action**: `NON_BLOCKING_DELAY`
@@ -54,7 +56,7 @@ This pauses the entire game, including all other scripts and animations, for the
 
 ### Load Map
 
-For most normal door behavior, you will probably want to set the [Warp State String](state#warp-state-string) before using the this action.
+For most normal door behavior, you will probably want to [set](#assign-string-value) the [Warp State String](state#warp-state-string) before using the this action.
 
 See [Map Loads](maps#map-loads) for information on what state is reset upon map load.
 
@@ -120,16 +122,16 @@ Ends any [serial dialog](serial_dialogs) that is awaiting user input.
 
 ### Run Script
 
-Immediately switches the current script slot to the named [script](scripts), which begins execution immediately.
+Immediately switches the current [script](scripts) [slot](scripts#script-slots) to the named [script](scripts), which begins execution immediately.
 
-If you want to replace the script in the current slot without immediately executing it, you should use a slot assignment action instead.
+If you want to replace the script in the current slot without immediately executing it, you should use [Assign Script Value](#assign-script-value) instead.
 
 - **Syntax**: `goto <"script"?> <script name: string[]>`
 - **Bytecode action**: `RUN_SCRIPT`
 
 ### Pause or Unpause Script Slot
 
-Pauses or unpauses a [script](scripts). This is most useful for temporarily pausing an [entity](entities)'s `on_tick` script during an `on_interact` event.
+Pauses or unpauses a [script](scripts). This is most useful for temporarily pausing an [entity](entities)'s `on_tick` script during an [`on_interact`](scripts#on_interact) event.
 
 - **Syntax**: 
 	- `pause <entity or map identifier[]> <script slot: string[]>;`
@@ -140,11 +142,12 @@ Pauses or unpauses a [script](scripts). This is most useful for temporarily paus
 	- **Script slot**:
 		- For entities: `on_tick`, `on_interact`, `on_look`
 		- For maps: `on_load`, `on_tick`, `on_command`
+		- See [Script Slots](scripts#script-slots)
 - **Bytecode action**: `SET_SCRIPT_PAUSE`
 
 ### Jump to Action Index
 
-Jumps to the nth bytecode instruction in the currently-executing [script](scripts). As these indices are practically impossible to know ahead of time, using this action is not recommended. Instead, use label index jumps.
+Jumps to the nth bytecode instruction in the currently-executing [script](scripts). As these indices are near impossible to know ahead of time, using this action is not recommended. Instead, use [Jump to Label](#jump-to-label).
 
 - **Syntax**: `goto index <number[]>;`
 - **Bytecode action**: `GOTO_ACTION_INDEX`
@@ -201,7 +204,7 @@ This action phrase moves a "movable" to a "coordinate" over time.
 
 ###  Movable (Over Time)
 
-Same as in the action phrase [Position Assignment](#movable-assignment).
+Same as [Movable (Assignment)](#movable-assignment).
 
 ### Coordinate (Over Time)
 
@@ -216,24 +219,24 @@ Coordinates for this action phrase need to have the `origin` or `length` specifi
 
 `forever` is optional.
 
+- If `forever` is used, then the script will loop this action forever and will not execute any further items.
 - `forever` cannot be used with:
 	- Entities as the destination coordinate.
 	- `origin` (i.e. single points) as the destination coordinate.
-- If `forever` is used, then the script will loop this action forever, and will not execute any further items.
 
 ## Choreography
 
-See [Assign Direction Value](#assign-direction-value).
+See [Assign Direction Value](#assign-direction-value) for rotating an entity or pointing it at something.
 
 ### Play Entity Animation
 
-The [entity](entities) will play the given animation the given number of times, then will return to the default animation for the entity's movement status (standing, walking).
+The [entity](entities) will play the given [animation](animations) the given number of times, then will return to the default animation for the entity's current movement status ([standing](animations#idle), [walking](animations#walking)).
 
-No other script items will execute in that script until the animation count is fulfilled.
+No other [script items](scripts#script-body-items) will execute in that script until the animation count is fulfilled.
 
-If an entity is compelled to move around on the map, it will abort this animation playback.
+If an entity is compelled to move around on the [map](maps), it will abort this animation playback.
 
-To change an entity's animation indefinitely, use the [undefined](#assign-int-value) action phrase for the entity's `current_animation` property.
+To change an entity's animation indefinitely, use the [undefined](#assign-int-value) action phrase for the entity's [`current_animation`](entities#entity-properties).
 
 - **Syntax**: `<entity identifier[]> animation -> <animation: number[]> <play count: quantity[]>;`
 	- **Entity identifier**: see [Entity Identifier](identifiers#entity-identifier)
@@ -271,6 +274,8 @@ An [assignment operation](expressions_and_operators#assignment-operation) is a b
 If the RHS and the LHS of any evaluated expansion are both bare identifiers, they will be handled as integer variables. To silence the ambiguity warning, use an "invisible operation" (e.g. `*1` or `+0`) to coerce the RHS to an int expression.
 
 #### Int Setables
+
+(NOTE: Not all [int getables](expressions_and_operators#int-operands) are int setables and vice versa.)
 
 - [Variable identifiers](identifiers) ([integers](state#integer-variables))
 - [Array value at index](arrays#assign-array-value-at-index)
@@ -339,6 +344,8 @@ Note: if the RHS and the LHS of any evaluated expansion are both bare identifier
 
 #### Bool Setables
 
+(NOTE: Not all [bool getables](expressions_and_operators#bool-operands) are bool setables and vice versa.)
+
 - [Boolean literals](primitive_types#boolean) e.g. `true`, `false`
 - [Variable identifiers](identifiers) ([flags](state#save-flags))
 - [Setable engine flags](state#setable-engine-flags):
@@ -369,13 +376,47 @@ Note: if the RHS and the LHS of any evaluated expansion are both bare identifier
 - `SET_ENTITY_GLITCHED`
 - `SET_LIGHTS_STATE`
 
+#### Lights
+
+- This includes all 8 bit lights underneath the screen and the 4 lights on either side of the screen.
+- Gaining control of the lights does not clear the light state; you will need to turn all the lights off yourself.
+- If you turn a light off and on again on the same game tick, the light will appear to flicker.
+
+Lights names:
+
+- `LED_XOR`
+- `LED_ADD`
+- `LED_SUB`
+- `LED_PAGE`
+- `LED_BIT128`
+- `LED_BIT64`
+- `LED_BIT32`
+- `LED_BIT16`
+- `LED_BIT8`
+- `LED_BIT4`
+- `LED_BIT2`
+- `LED_BIT1`
+- `LED_MEM0`
+- `LED_MEM1`
+- `LED_MEM2`
+- `LED_MEM3`
+- `LED_HAX` (capacitive touch button on the PCB)
+- `LED_USB`
+- `LED_SD`
+- `LED_ALL` (will turn on/off all the lights)
+
+
 ### Assign String Value
 
 **Syntax**: `<string setable[]> = <string[]>;`
 
 #### String Setables
 
-- The [warp state string](state#warp-state-string)
+(NOTE: Not all [string checkables](expressions_and_operators#string-checkables) are string setables and vice versa. There are no string getables.)
+
+Some string values use different action phrases. See [undefined](#assign-script-value) and [undefined](#assign-direction-value).
+
+- `warp_state` (the [Warp State String](state#warp-state-string))
 - `serial_connect`: the default serial message printed upon game launch.
 - [Entity string properties](entities#entity-properties):
 	- `<entity identifier[]> name`
@@ -395,7 +436,9 @@ Note: if the RHS and the LHS of any evaluated expansion are both bare identifier
 
 **Syntax**: `<script setable[]> <script slot> = <script name: string[]>;`
 
-#### Script Setables
+#### Script Setable
+
+See [Script Slots](scripts#script-slots)
 
 - **Syntax**:
 	- `map`
@@ -430,39 +473,3 @@ Makes an [entity](entities) face the target. To make relative turns (e.g. 90º C
 	- `SET_ENTITY_DIRECTION_TARGET_GEOMETRY`
 	- `SET_ENTITY_DIRECTION_TARGET_ENTITY`
 	- `SET_ENTITY_DIRECTION`
-
-## Lights Control
-
-- This includes all 8 bit lights underneath the screen and the 4 lights on either side of the screen.
-- Gaining control of the lights does not clear the light state; you will need to turn all the lights off yourself.
-- If you turn a light off and on again on the same game tick, the light will appear to flicker.
-
-#### Light Names
-
-- `LED_XOR`
-- `LED_ADD`
-- `LED_SUB`
-- `LED_PAGE`
-- `LED_BIT128`
-- `LED_BIT64`
-- `LED_BIT32`
-- `LED_BIT16`
-- `LED_BIT8`
-- `LED_BIT4`
-- `LED_BIT2`
-- `LED_BIT1`
-- `LED_MEM0`
-- `LED_MEM1`
-- `LED_MEM2`
-- `LED_MEM3`
-- `LED_HAX` (capacitive touch button on the PCB)
-- `LED_USB`
-- `LED_SD`
-- `LED_ALL` (will turn on/off all the lights)
-
-## Other Actions
-
-#todo put those in this file
-
-- [Array Action Phrases](arrays#array-action-phrases)
-- [commands](commands#command-actions)

@@ -1,8 +1,8 @@
 # Hint Systems
 
-Chapter 1 utilized a hints system. Whenever a player engaged with an [entity](entities) involving a quest, a hint value was [set](state) so the entity designated to be the "hint man" could provide a hint for the player.
+Chapter 1 utilized a hints system. Whenever a player engaged with an [entity](entities) involving a quest, a hint value was [set](state) so the [entity](entities) designated to be the "hint man" could provide a hint for the player.
 
-There were two methods we used to do this, and both are viable. Depending on how many hints (or equivalent behavior) you'll need to manage, you might use either method.
+There were two methods we used to do this, and both are viable. Depending on how many hints (or similar behavior) you'll need to manage, you might use either method.
 
 ## Save Flag Hints
 
@@ -10,7 +10,7 @@ With this method, there is a separate [save flag](state#save-flag) for each hint
 
 **Triggering a hint**: If the player talks to a quest entity and triggers "backstory" dialog or otherwise engages the entity in a way that indicates they are involved in a quest, set all other hint flags to `false` and set the hint flag for the quest line to `true`.
 
-You should have a separate script for setting all hint flags in the game to `false`. Use [Copy Script](actions#copy-script) to "invoke" that script right before setting the target hint to `true`.
+You should have a separate script for setting all hint flags in the game to `false`. Use [Copy Script](macros#copy-script) to "invoke" that script right before setting the target hint to `true`.
 
 **Clearing a hint**: Once the player has completed a quest line, set the hint flag for the quest line to `false`.
 
@@ -48,4 +48,4 @@ Incorporating hint variations will likely require more frequent hint logic check
 
 ### Hintiger Abstraction
 
-Hintigers might count as [magic numbers](https://en.wikipedia.org/wiki/Magic_number_%28programming%29#Unnamed_numerical_constants), which are to be avoided when possible. Solutions include using [constants](constants) to define these values in one place or using [Copy Script](actions#copy-script) (or [fns](fns)) to import actions to change a value rather than needing to know what the value should be changed to. (The [Include Macro](macros#include) is required when using constants or fns in multiple files as they are [file scope](syntax_scopes#file-scope), but is not needed for scripts as they are [project scope](syntax_scopes#project-scope).)
+Hintigers might count as [magic numbers](https://en.wikipedia.org/wiki/Magic_number_%28programming%29#Unnamed_numerical_constants), which are to be avoided when possible. Solutions include using [constants](constants) to define these values in one place or using [Copy Script](macros#copy-script) (or [fns](fns)) to import actions to change a value rather than needing to know what the value should be changed to. (The [Include Macro](macros#include) is required when using constants or fns in multiple files as they are [file scope](syntax_scopes#file-scope), but is not needed for scripts as they are [project scope](syntax_scopes#project-scope).)

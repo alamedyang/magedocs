@@ -37,7 +37,7 @@ If you don't want an interactable prop to be be Y-indexed with other entities wh
 
 A null entity is a [tile entity](#tile-entity) whose tile is entirely transparent. They're useful for implementing scripting behaviors not directly supported by the MGE, such as having an entity procedurally chase a moving (invisible) target.
 
-A common use is to enable interaction behavior for things that aren't themselves entities. To do this, place a null entity on the map wherever you want interaction behavior to happen, then use the null entity's `on_interact` script slot for the interaction behavior.
+A common use is to enable interaction behavior for things that aren't themselves entities. To do this, place a null entity on the map wherever you want interaction behavior to happen, then use the null entity's [`on_interact`](scripts#on_interact) script slot for the interaction behavior.
 
 **Disadvantages**: The null entity can be hacked into another tile (presumably one with pixel data), in which case a new object will seemingly appear out of nowhere.
 
@@ -75,4 +75,4 @@ What's special about character entities is that they can have a number of [anima
 
 In the MGE, character entities will default to their idle animation regardless of the tile that was placed Tiled. (I.e. if you use a "walking animation" tile for the entity on the Tiled map, the entity will appear to be walking in Tiled, but not within the MGE.)
 
-Character entities will face the north by default, but if the tile placed has been [assigned to a NSEW direction and a purpose](entity_management_system), the entity will instead face the direction associated with that tile's assignment.
+Character entities will face the north by default, but if the tile placed has an animation that has been [assigned to a NSEW direction and a purpose](entity_management_system), the entity will instead face the direction associated with that tile's assignment.

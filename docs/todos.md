@@ -18,3 +18,10 @@
 - Does LOOP_CAMERA_ALONG_GEOMETRY work?
 - Can you set serial connect message to a serial dialog literal?
 - do the `on_look` slots use the `command` slot? They have their own space on the entity struct, so....
+- Is it true that MGE animations need to be two frames?
+- the expressions definition change might be a bit off re: operand vs expression, i.e. where does grouping actually fall? Is this worth polishing?
+- Make a badge hardware section and put buttons/lights enums in there
+- Capitalization of macros? Copy Script, Include Macro, etc. Upper or lower or what?
+- serial connect message can define in place?
+- Put command and array actions into actions?
+- Add how to use the MEM buttons

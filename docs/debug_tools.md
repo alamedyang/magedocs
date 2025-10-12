@@ -2,15 +2,15 @@
 
 ## Debug Mode
 
-Debug mode is triggered in-game by pressing `XOR` and `MEM1` (the top button on the left of the screen and the second button on the right) at the same time. On desktop: press `F1` and `F6` instead. This counts as a map reload. When debug mode is activated, the current map is reloaded with `is_debug` entities included.
+Debug mode is triggered in-game by pressing `XOR` and `MEM1` (the top button on the left of the screen and the second button on the right) at the same time. On desktop: press `F1` and `F6` instead. This counts as a [map reload](maps#map-loads). When debug mode is activated, the current map is reloaded with `is_debug` [entities](entities) included.
 
-Turn off debug mode in the same way.
+Turn off debug mode the same way.
 
 ### Debug Entities
 
-Normally, the Mage Game Engine (MGE) omits entities with the `is_debug` value of `true` when loading maps. Such entities effectively do not exist in "production mode," and therefore will not be included in the list of entities in the hex editor, will not appear anywhere on the map, cannot be the target of script, etc.
+Normally, the Mage Game Engine (MGE) omits entities with the `is_debug` value of `true` when loading [maps](maps). Such entities effectively do not exist in "production mode," and therefore will not be included in the list of entities in the [hex editor](hex_editor), will not appear anywhere on the map, cannot be the target of an [action](actions), etc.
 
-The chapter 1 version of the engine *must* use debug entities to trigger debug scripts, as the serial terminal was not implemented yet, and there was not yet an action to check whether debug mode is on.
+The chapter 1 version of the engine *must* use debug entities to trigger debug scripts, as the serial [terminal](terminal) was not implemented yet, and there was not yet an action to check whether [debug mode](state#engine-flags) is on.
 
 ::: tip Best Practice
 When making debug entities, it helps a lot to give them dialog describing what they are doing to change the game state. Better still is putting the debug behavior behind a multiple-choice dialog so that the debug entity can be disengaged without making any changes in case it is ever engaged by accident.
@@ -18,7 +18,7 @@ When making debug entities, it helps a lot to give them dialog describing what t
 
 ### Debug Scripting
 
-When you check for `debug_mode` (see [Checkable Engine Flags](state#checkable-engine-flags)) in a [bool expression](expressions_and_operators#bool-expressions), you can add additional behavior to your game that is easy to enable when play testing but hidden from players by default.
+When you check for [`debug_mode`](state#checkable-engine-flags) in a [bool expression](expressions_and_operators#bool-expressions), you can add additional behavior to your game that is easy to enable when play testing but hidden from players by default.
 
 #### Debug Logging
 
@@ -36,7 +36,7 @@ script {
 
 #### Debug Commands
 
-You can register debug [commands](commands) in a map's `on_load` script, and if you put these registrations behind a check for debug mode, they won't be available to players during normal gameplay.
+You can register debug [commands](commands) in a map's [`on_load`](scripts#on_load) script, and if you put these registrations behind a check for debug mode, they won't be available to players during normal gameplay.
 
 We've found it useful to include [debug logging](#debug-logging) when such a command is registered — both the name and a brief description of what the command does — so you won't have trouble remember which debug commands you've prepared for a given map.
 
@@ -44,7 +44,7 @@ We've found it useful to include [debug logging](#debug-logging) when such a com
 
 #### Cutscene Skippers
 
-When debugging later segments of the game, it's helpful to be able to trigger a script that bypasses otherwise-mandatory cutscenes. Such debug scripts should carefully mirror their real counterparts in terms of [save flags](state#save-flags) set and the like, or you might find yourself having to debug the debuggers.
+When debugging later segments of the game, it's helpful to be able to trigger a script that bypasses otherwise-mandatory [cutscenes](cutscenes). Such debug scripts should carefully mirror their real counterparts in terms of [save flags](state#save-flags) set and the like, or you might find yourself having to debug the debuggers.
 
 #### Cutscene Restorers
 
@@ -68,7 +68,7 @@ NOTE: Currently, vector view cannot be toggled when [hex_control](state#engine-f
 
 ### Vector Objects
 
-These include:
+Vector view displays the edges of all [vector objects](vector_objects) in the map. These include:
 
 - vector paths
 - vector shapes
@@ -84,7 +84,7 @@ The entity's position is considered to be the center of its hitbox as defined ab
 
 ### Interaction Hitboxes
 
-When the player presses the hack button or interact button, a rectangle is cast in front of the player entity. After a successful interaction, the hitbox will be blue, and will be yellow otherwise.
+When the player presses the [hack](hex_editor) button or [interact](scripts#on_interact) button, a rectangle is cast in front of the player entity. After a successful interaction, the hitbox will be blue, and will be yellow otherwise.
 
 ### Collision Vectors
 

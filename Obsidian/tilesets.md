@@ -14,9 +14,9 @@ All **tileset tiles need to be perfect squares** because tiles can be rotated or
 
 ![example spritesheet](media/spritesheet-example.png)
 
-**Spritesheets** are tilesets that contain every iteration of a sprite needed for its animations.
+**Spritesheets** are tilesets that contain every iteration of a sprite needed for its [[animations]].
 
-Spritesheets are handled like tilesets within Tiled and the [[encoder|encoder]]. They are not required to be square, strictly speaking, but non-square spritesheets currently (as of October 2025) crash the game when the tile goes partially offscreen, so best to keep everything square for now.
+Spritesheets are handled like tilesets within Tiled and the [[encoder|encoder]]. They are not required to be square, strictly speaking, but non-square spritesheets crash the game when the tile goes partially offscreen, so keep everything square for now.
 
 ## Other Kinds of Tilesets
 
@@ -32,7 +32,7 @@ Put dialogSkin files in `tilesets/` and entity portraits in `entities/`.
 
 For tilesets and spritesheets, tiles **should not exceed 128x128 in size** or the game may not run on the badge hardware.
 
-If you need to play animations larger than this, such as an animated logo on a menu screen, you can split the tile into several pieces and place them on a map in such a way that they appear to be a single unit. (This may work poorly for entities that need to move around on their own, however.)
+If you need to play [[animations]] larger than this, such as an animated logo on a menu screen, you can split the tile into several pieces and place them on a map in such a way that they appear to be a single unit. (This may work poorly for entities that need to move around on their own, however.)
 
 ### Transparency
 
@@ -45,13 +45,13 @@ To encode alpha, the MGE repurposes the least-significant green bit in the RGB56
 The [[encoder|encoder]] indexes the pallets of each image, and there is therefore a **maximum of 255 colors per tileset image** (excluding transparency, which is always included, making it 256 colors total). The encoder will let you know if one of your tilesets is over the color limit.
 
 ::: tip
-If you're having trouble keeping your pallets under control, consider using the PNG-8 and GIF file formats, as they cannot contain more than 256 colors. Just remember that at least one of these colors must be transparent!
+If you're having trouble keeping your pallets under control, consider using the PNG-8 and GIF file formats, as they cannot contain more than 256 colors. Just remember that at least one of these colors must be transparent.
 :::
 
-If you need extra colors, consider splitting the tileset into multiple files — maps will quite happily use tiles from multiple tilesets with no trouble, provided the tiles are of uniform size.
+If you need extra colors, consider splitting the tileset into multiple files. Maps will quite happily use tiles from multiple tilesets with no trouble, provided the tiles are of uniform size.
 
 ::: tip Best Practice
-On embedded, pixel data is streamed from the ROM chip, but the tileset pallets must be held in RAM. Because RAM is very, very precious, **please combine tilesets if there isn't a compelling reason to keep them in separate files**. Entity sprite sheets are typically kept separate, for instance, but you might combine spritesheets for similar entities, or combine all character entity portraits. (And naturally, tilesets with differing tile sizes must be separate!)
+On embedded, pixel data is streamed from the ROM chip, but the tileset pallets must be held in RAM. Because RAM is very, very precious, **please combine tilesets if there isn't a compelling reason to keep them in separate files**. Entity sprite sheets are typically kept separate, for instance, but you might combine spritesheets for similar entities, or combine all character entity portraits. (And naturally, tilesets with differing tile sizes must be separate.)
 :::
 
 ### Updating Tileset Images on the Fly
@@ -64,7 +64,7 @@ However, changes in image dimensions are *not* automatically perpetuated to the 
 
 ## Creating a Tileset JSON File
 
-The [[encoder|encoder]] cannot use image files outright — there must be an associated JSON file (made with Tiled) that explicitly defines the image file path and various other properties.
+The [[encoder|encoder]] cannot use image files outright. There must be an associated JSON file (made with Tiled) that explicitly defines the image file path and various other properties.
 
 Within Tiled:
 
@@ -83,9 +83,9 @@ Within Tiled:
 All tiles within a [[entity_types#Character Entity|character entity]] tileset must have the `Class` (formerly `Type`) property set to its `entity_type` name. You can find the "Class" property in the Properties view (i.e. panel/pane/frame), which you can make visible (if currently invisible) via "View > View and Toolbars > Properties."
 
 ::: tip
-You can skip this part if you don't need the entity to be a character entity — if you want to leave it as an animation entity, such as a flickering candle or waving grass, it doesn't need to have an `entity_type` name at all.
+You can skip this part if you don't need the entity to be a character entity. If you want to leave it as an animation entity, such as a flickering candle or waving grass, it doesn't need to have an `entity_type` name at all.
 
-See: [[entity_types]]
+See: [[entity_types|Entity Types]]
 :::
 
 ### Tile Collisions

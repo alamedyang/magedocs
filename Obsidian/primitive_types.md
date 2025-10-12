@@ -36,6 +36,7 @@ Regex: `/"(?:[^"\]|\.)*"/`
 
 - Sometimes called "int" in these docs.
 - A `u16`, i.e. any positive whole number up to 65535.
+	- A very few number values are `u8` instead, which is any positive whole number up to 255. These are noted when they occur, but if not indicated, assume it's a `u16`.
 
 ### Duration
 

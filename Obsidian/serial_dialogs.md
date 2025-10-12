@@ -18,7 +18,7 @@ Serial dialogs can be defined at the point of use with serial dialog literals. I
 	- `{ <serial dialog> }` 
 	- `<name: string> { <serial dialog> }`
 
-NOTE: Unlike [[dialogs|dialogs]], serial dialog blocks may only contain one dialog.
+NOTE: Unlike [[dialogs|dialogs]], serial dialog blocks cannot have more than one serial dialog.
 
 ## Serial Dialog
 
@@ -44,8 +44,9 @@ Serial dialog parameters are a serial dialog property and value pair. Multiple s
 **Syntax**:
 
 - `wrap <number>`
-	- [[primitive_types#Number|Number]]: the number of chars to auto wrap the contents of serial dialog messages.
+	- The number of characters or columns to wrap the serial dialog messages.
 	- 80 is default.
+		- NOTE: in the [[web_build|web build]], the console emulator is smaller than this. We wrap to 60 most of the time, but we go as high as 70 or 75 for set pieces involving larger ASCII art.
 
 ### Serial Dialog Message
 
@@ -61,29 +62,28 @@ serial_dialog sample {
 ```
 
 - Wrapped in quotes.
-- Each serial dialog message will get a newline added to the end unless `concat` is used when showing the dialog.
+- Each serial dialog message will get a newline added to the end unless [[actions#Concat Serial Dialog|Concat Serial Dialog]] is used when showing the dialog.
 - To maximize compatibility, best to limit these to ASCII characters.
-- These strings are auto-wrapped and have other abilities and attributes, including variable value insertion, sanitization, and [[dialog_and_serial_dialog_strings#Ansi Escape Sequences|ANSI styles]]. See [[dialog_and_serial_dialog_strings|Dialog and Serial Dialog Strings]].
+- These strings are auto-wrapped and have other abilities and attributes, including [[dialog_and_serial_dialog_strings#Printing Current Values|variable value insertion]], [[dialog_and_serial_dialog_strings#Sanitization|sanitization]], and [[dialog_and_serial_dialog_strings#Ansi Escape Sequences|ANSI styles]]. See [[dialog_and_serial_dialog_strings|Dialog and Serial Dialog Strings]].
 
 ### Serial Dialog Option
 
-- A single serial dialog can only use one of the two types of option (multiple choice or free response).
-	- The MGS parser will interpret all options within the block using the type of the first option.
+- A single serial dialog can only use one of the two types of option (multiple choice or free response). The MGS parser will interpret all options within the block using the type of the first option if the types are mixed.
 - Unlike [[dialogs#Dialog Option|dialog options]], the option quantity for serial dialogs is unlimited.
 
 **Syntax**:
 
-- `<cursor> <label: serial dialog string> = <script: string[]>`
-- `<cursor> <label: serial dialog string> = <script literal>`
-- **Cursor**: one of the following:
-	- `_`: Free response.
-	- `#`: Multiple choice.
+- `<cursor style> <label: serial dialog string> = <script: string[]>`
+- `<cursor style> <label: serial dialog string> = <script literal>`
+- **Cursor style**: one of the following:
+	- `#`: [[#Multiple Choice|Multiple choice]].
+	- `_`: [[#Free Response|Free response]].
 	- **Labels** are [[dialog_and_serial_dialog_strings|styleable]].
 
-### Multiple Choice Option Examples
+### Multiple Choice
 
 - The console will display a numbered list of the option labels. If the player types the number of one of the options, the given script will run in the current script slot.
-- The player cannot proceed until they enter a valid number, at which point the game will jump to the corresponding script. Failure results in a repeat of the same serial dialog again. That means this type of option will *always* result in a script jump.
+- The player cannot proceed until they enter a valid number, at which point the game will jump to the corresponding [[scripts|script]]. Failure results in a repeat of the same serial dialog again. That means this type of option will *always* result in a script jump.
 
 ```mgs{4-5}
 serial_dialog sample {
@@ -106,8 +106,8 @@ Hey, can anyone hear me? Hello?
 
 ### Free Response
 
-- At the prompt, the player types in whatever they like. If what they typed matches the label, the given script will run in the current script slot.
-- If they did not type something valid, the next action (underneath the show or concat serial dialog action) will execute.
+- At the prompt, the player types in whatever they like. If what they typed matches the label, the given script will run in the current [[scripts#Script Slots|script slot]].
+- If they did not type something valid, the next action (underneath the show or concat serial dialog action) will execute. This is the only type of dialog option that will fall through.
 - The user's response is case insensitive. (The label `"CAT"` will match the user input of `cat`.)
 
 ```mgs{6-7}

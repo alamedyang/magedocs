@@ -8,10 +8,10 @@ The `game.dat` engine version must match the Mage Game Engine (MGE) being run. I
 
 ## Game Engine
 
-Perform this step if you must upgrade the game engine itself. This is necessary if testing new engine features or if you are updating your badge from Chapter 1 to Chapter 2. (If you are testing new scenario data on the same engine version, this step is not necessary.)
+Perform this step if you must upgrade the game engine itself. This is necessary if testing new engine features or if you are updating your badge firmware. (If you are testing new scenario data on the same engine version, this step is not necessary.)
 
 ::: warning
-Purple "bootleg" badges do not carry the firmware to update in this way. Instead, you will need to have a JTAG Programmer, and will need to know how to use it. Please contact the DC801 Black Mage Badge game team if you want help updating a purple badge.
+Purple "bootleg" badges and certain "batch 2" badges do not carry the firmware to update in this way. Instead, you will need to have a JTAG Programmer, and will need to know how to use it. Please contact the DC801 Black Mage Badge game team if you want help updating one of these badges.
 :::
 
 To start the game in bootloader mode, hold down the hex digit `1` button while you power on the hardware. If bootloader mode was successfully triggered, the screen will be white and the LEDs will blink in a circular pattern.
@@ -24,11 +24,11 @@ Once the UF2 is copied, the drive will disconnect. If the badge does not restart
 
 - Plug into the badge on the USB-C port. This port is on the front, on the upper right side, near the capacitive button that looks like a hat. Do not use the micro USB port (available on some back plates) as this is for programming the lights.
 - If the copy seems to be taking a long time (more than 2 minutes) or appears to suffer from other kinds of I/O problem, try using a different USB-C cable.
-- Macs with Apple Silicon may display an error message when the drive unmounts, like `The operation can’t be completed because the device disappeared` or `The Finder can’t complete the operation because some data in “bm_badge.uf2” can’t be read or written. Error code -36` You may ignore these.
+- Macs with Apple Silicon may display an error message when the drive unmounts, like `The operation can’t be completed because the device disappeared` or `The Finder can’t complete the operation because some data in “bm_badge.uf2” can’t be read or written. Error code -36` You may ignore these messages.
 
 ## `game.dat`
 
-To install new scenario data on the hardware, prepare a microSD card (FAT32) with a folder called `MAGE` in the root directory. Copy the new `game.dat` into `MAGE/`, then insert the card into the slot on the hardware. (The microSD card slot is on the top of the badge, opposite the USB-C port.)
+To install new scenario data on the hardware, prepare a microSD card (FAT32) with a folder called [[what_youll_need#`MAGE/`|`MAGE`]] in the root directory. Copy the new `game.dat` into `MAGE/`, then insert the card into the slot on the hardware. (The microSD card slot is on the top of the badge, opposite the USB-C port.)
 
 If the hardware determines its `game.dat` is different from the one on the microSD card (or if you hold `MEM3` when turning on the badge), you will see:
 

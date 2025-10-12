@@ -1,6 +1,6 @@
 # Action Param Expansions
 
-For [action phrases](actions), multiple params may be put into a single param "slot" by wrapping it in brackets. Such params are comma-separated.
+For [action phrases](actions), multiple [params](primitive_types) may be put into a single param "slot" by wrapping it in brackets. Such params are comma-separated.
 
 There are two applications for this:
 
@@ -49,8 +49,8 @@ __TEMP_0 = RNG(0, =1);
 
 ## Expansion Rules
 
-- All expansions within the same unit (a single action phrase, or a single `rand!()` block) must contain the same quantity of items.
-- Expansion items need not be the same type.
+- All expansions within the same unit (a single action phrase, or a single [`rand!()`](macros#rand) block) must contain the same quantity of items.
+- Expansion items need not be the same [type](primitive_types).
 	- E.g. `[var_name, flag_name] = [10, true];`
-- The param "chunk" that is allowed to be expanded varies per phrase.
+- The param "chunk" that is allowed to be expanded varies per [phrase](actions).
 	- E.g. for `[camera, entity Bob position] = geometry stick;`, it is the "movable" in the LHS that can be expanded, not the entity name.

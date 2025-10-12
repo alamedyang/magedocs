@@ -2,7 +2,7 @@
 
 The hex editor is a unique feature of the Mage Game Engine (MGE) that allows you to view and edit [entity properties](entities#entity-properties) for [entities](entities) in the live game.
 
-If hex editor control is turned off, the hex editor will not open and values cannot be changed.
+If [hex editor control](state#engine-flags) is turned off, the hex editor will not open and values cannot be changed.
 
 ## Opening the Hex Editor
 

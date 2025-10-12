@@ -1,13 +1,13 @@
 # Entity Management System
 
-The Entity Management System is a tool to assign [[animations|animations]] (created with Tiled) to [[entity_types#Character Entities|character entities]]. This allows entity behavior to change its current animation, e.g. walking vs idle, pointing north/east/south/west.
+The Entity Management System is a tool to assign [[animations|animations]] (created with Tiled) to [[entity_types#Character Entities|character entities]]. This allows entity behavior to change its current animation, e.g. [[animations#Walking|walking]] vs [[animations#Idle|idle]], pointing north/east/south/west.
 
-To use the Entity Management System, launch the [[encoder#Web Encoder|web encoder]] and upload your `scenario_source_files/` folder.
+To use the Entity Management System, launch the [[encoder#Web Encoder|web encoder]] and upload your [[what_youll_need#`scenario_source_files/`|`scenario_source_files/`]] folder.
 
 ::: warning
 Changes you make using these tools are not automatically perpetuated to the encoded `game.dat`, nor are they automatically saved to your filesystem. To make your changes permanent:
 
-1. Click the "Copy" button in the red box to put the new `entity_types.json` content into your clipboard.
+1. Click the "Copy" button in the red box to put the new [[what_youll_need#`entity_types.json`|`entity_types.json`]] content into your clipboard.
 2. Manually paste into your `entity_types.json` file, replacing all previous content.
 3. Run the encoder again.
 :::
@@ -16,9 +16,9 @@ Changes you make using these tools are not automatically perpetuated to the enco
 
 To assign animations to a new [[entity_types#Character Entity|character entity]]:
 
-1. Place a tile from the tileset somewhere in one of your game maps. This ensures the encoder will find it.
+1. Place a tile from the [[tilesets|tileset]] somewhere in one of your game maps. This ensures the [[encoder|encoder]] will find it.
 2. Open the Entity Management System.
-3. In the "Entity Type Editor," type the name of the new `entity_type` (character entity) you wish to create, then click "Create."
+3. In the "Entity Type Editor," type the name of the new `entity_type` ([[entity_types#Character Entity|character entity]]) you wish to create, then click "Create."
 4. Select the tileset you wish to use from the drop-down list.
 5. The animations pane and tileset pane will now appear.
 
@@ -32,7 +32,7 @@ To edit an existing `entity_type` ([[entity_types#Character Entity|character ent
 
 - There is one animation tile slot for each cardinal direction: north, east, south, west.
 - You can click the arrows underneath the tile to horizontally or vertically flip it. Click again to reverse the flip.
-- An entity's first three animations will be interpreted as their idle, walk, and action animations. Each entity should have at least these three.
+- An [[entities|entity]]'s first three [[animations|animations]] will be interpreted as their [[animations#Idle|idle]], [[animations#Walking|walk]], and [[animations#Action|action]] animations. Each entity should have at least these three.
 	- To add another animation, press the "Add Animation" button at the bottom of the animations pane. Note that the Entity Management System will not add more after a certain point, but more may be added by hand, and these *can* be managed with the Entity Management System.
 	- Click the red X at the right of an animation to remove it.
 - Animation names cannot be changed with this tool.

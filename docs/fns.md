@@ -12,7 +12,7 @@ Fns are not functions as there is no call stack. (They are inline functions, if 
 
 In a fn body, constants are first checked against the args registered between the definition and the call. If not found, they are checked against the file's [constant](constants) registry.
 
-You may use fn args inside a deeper fn call, however, the parent fn args are not available to the child call unless handed down again via args.
+You may use fn args inside a deeper fn call, however the parent fn args are not available to the child call unless handed down again via args.
 
 ## Fn Definition
 
@@ -38,7 +38,7 @@ Fns can be defined in place (anonymously) using this syntax inside the [array me
 - **Script body items**: see [Script Body Items](scripts#script-body-items).
 
 ```mgs
-// example in an array expression
+// example as a lambda in an array expression
 _ {
 	array tens = ones.map(($n) { return $n * 10; });
 }
@@ -56,7 +56,7 @@ Used inside a [script body](scripts#script-body-items).
 	- [Strings](primitive_types#string)
 	- [Constants](primitive_types#constant)
 
-Bare fn calls only have utility if the fn performs work; the return value of bare fns is discarded.
+Bare fn calls only have utility if the fn performs work; the return value of bare fns is discarded in these cases.
 
 ```mgs
 // example
@@ -71,7 +71,7 @@ Fn calls can be used as an [int operand](expressions_and_operators#int-operands)
 // example
 _ {
 	player x = sanitize_x(player x);
-	player y = sanitize_y(player y) + 10;
+	player y = sanitize_y(player y + 10) * 2;
 }
 ```
 

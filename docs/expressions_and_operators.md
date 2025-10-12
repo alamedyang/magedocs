@@ -3,12 +3,12 @@
 ## Expressions
 
 - Expressions are built up from operands, operators, and parenthetical groupings in the manner commonly done in modern languages, e.g.`(5 + variable_name) * 7`.
-- Expressions can stand in for a value of that type in almost all places.
+- Expressions can stand in for a [value of that type](primitive_types) in almost all places.
 - Int and bool expressions cannot be combined. Examples:
 	- `!(player x - 10)` is a syntax error.
 	- `var_name + false` will be parsed as `var_name + "false"`, where "false" is an int variable name).
 - String literals and string references cannot be used in expressions apart from in bool comparisons.
-- Operands and operators themselves cannot be expanded in an [action param expansion](action_param_expansions), but the expression as a whole often can.
+- Operands and operators themselves cannot be expanded in [action param expansions](action_param_expansions), but the expression as a whole often can, depending on the [action phrase](actions).
 
 ## Assignment Operation
 
@@ -54,7 +54,7 @@ These behave as expected. Standard operator precedence (order of operations) is 
 
 ### Int Operands
 
-These are "int getables."
+These are "int getables" (as opposed to ["int setables"](actions#int-setables)).
 
 - [Number literals](state#integer-variables)
 - [Variable identifiers](identifiers) ([integers](state#integer-variables))
@@ -79,7 +79,6 @@ These are "int getables."
 - `CHECK_VARIABLE`
 - `CHECK_VARIABLES`
 - `COPY_SCRIPT`
-- [Bytecode actions for array methods that return a value](arrays#returns-a-value-int)
 - `CHECK_ENTITY_X`
 - `CHECK_ENTITY_Y`
 - `CHECK_ENTITY_PRIMARY_ID`
@@ -87,6 +86,7 @@ These are "int getables."
 - `CHECK_ENTITY_PRIMARY_ID_TYPE`
 - `CHECK_ENTITY_CURRENT_ANIMATION`
 - `CHECK_ENTITY_CURRENT_FRAME`
+- [Bytecode actions for array methods that return a value](arrays#returns-a-value-int)
 
 ## Bool Expressions
 
@@ -120,15 +120,15 @@ The only unary operator is `!`, which inverts the attached bool operand.
 	- **Bool expression**: see [Bool Expressions](expressions_and_operators#bool-expressions)
 	- **String checkable**: see [undefined](#string-checkables)
 	- **String literal**: see [String](primitive_types#string)
+	- **Equality operator**:
+		- Equal to: `==`
+		- Not equal to: `!=`
 	- **Comparison operator**:
 		- Less than: `<`
 		- Less than or equal to: `<=`
 		- Greater than: `>`
 		- Greater than or equal to: `>=`
 		- Also, all equality operators
-	- **Equality operator**:
-		- Equal to: `==`
-		- Not equal to: `!=`
 
 ### Bool Binary Expression
 
@@ -140,10 +140,12 @@ The only unary operator is `!`, which inverts the attached bool operand.
 
 ### Bool Operands
 
+These are "bool getables" (as opposed to ["bool setables"](actions#bool-setables)).
+
 - [Boolean literals](primitive_types#boolean) e.g. `true`, `false`
 - [Variable identifiers](identifiers) ([flags](state#save-flags))
 - [Checkable engine flags](state#engine-flags) e.g. `debug_mode`
-- Entity bool properties / status:
+- [Entity bool properties](entities#entity-properties) / status:
     - `<entity identifier> glitched`
     - `<entity identifier> intersects <geometry identifier>`
 	- **Entity identifier**: see [Entity Identifier](identifiers#entity-identifier)
@@ -205,6 +207,8 @@ We found that the joystick clicks were aggressive on the hardware, and would tri
 ### String Checkables
 
 These are string operands that can be "checked," or used in a [boolean expression](expressions_and_operators#bool-expressions). For string operands that can be set, see [Assign String Value](actions#assign-string-value).
+
+These aren't "getables" because their values cannot be stored.
 
 - The [Warp State String](state#warp-state-string) (`warp_state`)
 - Entity string properties:

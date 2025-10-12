@@ -25,7 +25,7 @@ For MGE maps, you'll be using [[#Tile Layers|tile layers]] and [[#Object Layers|
 
 Placing tiles is fairly intuitive, but know that you can press **X** to flip and **Z** to rotate a tile you are about to place. See [Tiled's documentation](https://doc.mapeditor.org/en/stable/manual/editing-tile-layers/) for more information.
 
-In the MGE, the topmost tile layer is drawn on top of entities. All others are drawn underneath. (Entities themselves are Y-indexed when drawn.)
+In the MGE, the topmost tile layer is drawn on top of [[entities|entities]]. All others are drawn underneath. (Entities themselves are Y-indexed when drawn.)
 
 ::: warning Appearance in Tiled vs MGE
 Animations placed on a tile layer will *not* play back within the MGE, regardless of how things may appear within Tiled.
@@ -43,7 +43,7 @@ In addition, because each tile increases the draw time, it's best to remove tile
 
 ## Object Layers
 
-Vector polygons and points are placed on object layers, but tiles can be placed this way, too, if you use the "Insert Tile" button on the vector section of the toolbar (shortcut **T**) — and this is how entities are added to a map.
+[[vector_objects|Vector polygons and points]] are placed on object layers, but tiles can be placed this way, too, if you use the "Insert Tile" button on the vector section of the toolbar (shortcut **T**) — and this is how entities are added to a map.
 
 Vector objects are susceptible to [[vector_objects#Coordinate Overflow|coordinate overflow]], so try to keep objects and all their vertices inside the map coordinate space (unless you actually want to yeet an entity to outer space).
 
@@ -91,24 +91,24 @@ Example `maps.json`:
 
 - `path`
 	- Where the map JSON file is located and what it's called.
-- `on_load`
+- [[scripts#`on_load`|`on_load`]]
 	- The script that plays when the map is first loaded. This script will only run once.
 	- This is best used for checking [[state#Save Flags|save flags]] and restoring state that is meant to be permanently changed.
-- `on_tick`
+- [[scripts#`on_tick`|`on_tick`]]
 	- This script will execute, allow all other scripts to take a turn, and then execute again on the next game tick.
 	- Because the player cannot use the [[hex_editor|hex editor]] to directly alter which script is run in a map's `on_tick` slot like they can an entity's `on_tick` slot, this slot is fairly well protected. This is useful for doors.
-- `on_look`
+- [[scripts#`on_look`|`on_look`]]
 	- This script plays when you run the **`LOOK`** [[commands|command]] in the [[terminal|terminal]] without any arguments.
 	- You can override this script if you register a **`LOOK`** command manually.
 - `directions`
 	- These scripts run when the command **`GO`** is run with the named argument, e.g. `go north`.
-	- These directions will be listed after a maps `on_look` script is executed (e.g. `exits are...`). Unfortunately, this can result in confusion if you want multiple names per exit (e.g. `go north` and `go tunnel`), so here you should only include directions you want explicitly printed, and use manual [[commands|command]] registrations for everything else.
+	- These directions will be listed after a maps [[scripts#`on_look`|`on_look`]] script is executed (e.g. `exits are...`). Unfortunately, this can result in confusion if you want multiple names per exit (e.g. `go north` and `go tunnel`), so here you should only include directions you want explicitly printed, and use manual [[commands|command]] registrations for everything else.
 
 ## Map Loads
 
-The first map listed in `maps.json` is the map the game will load when first turned on.
+The first map listed in [[what_youll_need#`maps.json`|`maps.json`]] is the map the game will load when first turned on.
 
-Maps can be assigned an `on_load` [[scripts|script]], which will run once when a map is loaded.
+Maps can be assigned an [[scripts#`on_load`|`on_load`]] [[scripts|script]], which will run once when a map is loaded.
 
 ### To Reload the Current Map
 
