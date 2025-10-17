@@ -5,215 +5,325 @@
 	- Action phrases are used inside a [[scripts|script block]].
 	- They must end with a semicolon.
 
-For dictionary entry syntax information, see: [[jargon_and_syntax|Jargon and Syntax]] and [[primitive_types|Primitive Types]].
+For dictionary entry syntax information, see: [[jargon_and_syntax|Jargon and Syntax]] and [[primitive_types|Primitive Types]]. Also see [[action_param_expansions|Action Param Expansions]].
 
-This list of action phrases is not exhaustive. Some are included in pages relevant to the data types they manipulate, such as with [[commands|commands]] and [[arrays|arrays]].
+This list of action phrases is not exhaustive. Some are included in pages relevant to the data types they manipulate, such as with [[commands|commands]] and [[arrays|arrays]], or are built into an element of more complex structures, like [[expressions_and_operators|expressions]].
 
-## Game Control
+## Quick Links
 
-### Save slot
+- Game Control
+	- [[#Save Slot]]
+	- [[#Load Slot]]
+	- [[#Erase Slot]]
+	- [[#Non-Blocking Delay]]
+	- [[#Blocking Delay]]
+	- [[#Load Map]]
+- Dialog Management
+	- [[#Show Dialog]]
+	- [[#Close Dialog]]
+	- [[#Show Serial Dialog]]
+	- [[#Concat Serial Dialog]]
+	- [[#Close Serial Dialog]]
+- Script Control
+	- [[#Run Script]]
+	- [[#Pause or Unpause Script]]
+	- [[#Jump to Action Index]]
+	- [[#Jump to Label]]
+	- [[#Copy Script]]
+- Choreography
+	- [[#Position Assignment]]
+	- [[#Position Over Time]]
+	- [[#Play Entity Animation]]
+	- [[#Fade Camera In or Out]]
+	- [[#Shake Camera]]
+- [[#Assign a Value]]
+	- [[#Assign Int Value]]
+	- [[#Change Int Value]]
+	- [[#Assign Bool Value]]
+	- [[#Assign String Value]]
+	- [[#Assign Script Value]]
+	- [[#Assign Direction Value]]
+- [[commands#Command Actions|Command Actions]]
+- [[arrays#Array Action Phrases|Array Actions]]
+- [[expressions_and_operators|Expressions]]
+	- [[expressions_and_operators#Int Expressions|Int Expressions]]
+	- [[expressions_and_operators#Bool Expressions|Bool Expressions]]
 
-Saves the current [[state#Save Data|save data]] into the last-loaded save slot.
+## Save Slot
 
-It is not possible to write save data into an arbitrary slots, nor is it possible to copy data from one save slot into another.
+Saves the current [[state#Save Data|save data]] into the last-loaded save slot. It is not possible to write save data into an arbitrary slots, nor is it possible to copy data from one save slot into another.
 
-- **Syntax**: `save slot;`
-- **Bytecode action**: `SLOT_SAVE`
+```
+save slot;
+```
 
-### Load Slot
+Bytecode action: `SLOT_SAVE`
+
+## Load Slot
 
 Brings the [[state#Save Data|save data]] associated with that slot into RAM.
 
-- **Syntax**: `load slot <number[]>;`
-- **Bytecode action**: `SLOT_LOAD`
+```
+load slot <number[]>;
+```
 
-### Erase Slot
+Bytecode action: `SLOT_LOAD`
+
+## Erase Slot
 
 Clears all the [[state#Save Data|save data]] in the given slot.
 
 This action displays a [[dialogs|dialog card]] reporting that the save was erased. This introduces a player-timed barrier which prevents ROM burnout in the event that a player set an an [[scripts#`on_tick`|`on_tick`]] script slot to a script that contains this action.
 
-- **Syntax**: `erase slot <number[]>;`
-- **Bytecode action**: `SLOT_ERASE
+```
+erase slot <number[]>;
+```
 
-### Non-Blocking Delay
+Bytecode action: `SLOT_ERASE`
 
-This pauses the current [[scripts|script]] while allowing all other aspects of the game to continue unimpeded.
+## Non-Blocking Delay
 
-Use this if you want to pad the actions an [[entities|entity]] is performing so they don't all occur on the same game tick.
+This pauses the current [[scripts|script]] while allowing all other aspects of the game to continue unimpeded. Use this if you want to pad the actions an entity is performing so they don't all occur on the same game tick.
 
 For cinematic cutscenes, you will almost certainly need to [[#Assign Bool Value|disable]] [[#Bool Setables|player control]] before using this action, otherwise the player will be able to walk away in the middle. (Don't forget to turn it on again when finished.)
 
-- **Syntax**: `wait <duration[]>;
-- **Bytecode action**: `NON_BLOCKING_DELAY`
+```
+wait <duration[]>;
+```
 
-### Blocking Delay
+Bytecode action: `NON_BLOCKING_DELAY`
+
+## Blocking Delay
 
 This pauses the entire game, including all other scripts and animations, for the given duration. As this might make the game appear broken, you should probably use a [[#Non-Blocking Delay]] instead.
 
-- **Syntax**: `block <duration[]>;
-- **Bytecode action**: `BLOCKING_DELAY`
+```
+block <duration[]>;
+```
 
-### Load Map
+Bytecode action: `BLOCKING_DELAY`
 
-For most normal door behavior, you will probably want to [[#Assign String Value|set]] the [[state#Warp State String|Warp State String]] before using the this action.
+## Load Map
 
-See [[maps#Map Loads|Map Loads]] for information on what state is reset upon map load.
+For most normal door behavior, you will probably want to [[#Assign String Value|set]] the [[state#Warp State String|Warp State String]] before using the this action. See [[maps#Map Loads|Map Loads]] for what happens when a map is (re)loaded.
 
-- **Syntax**: `load map <map name: string[]>;`
-- **Bytecode action**: `LOAD_MAP`
+```
+load map <string[]>;
+```
 
-## Dialogs Management
+Bytecode action: `LOAD_MAP`
 
-### Show Dialog
+## Show Dialog
 
 Plays the named [[dialogs|dialog]]. While a dialog card is showing, the player can only advance to the next dialog message or choose a [[dialogs#Dialog Option|multiple choice option]] within that dialog (if any); the player cannot hack, interact with another [[entities|entity]], move, etc.
 
-Dialogs may be defined in place with a [[dialogs#Dialog Literal|dialog literal]]. 
+```
+show dialog <string[]>;
+// OR
+show dialog <dialog literal>;
+```
 
-Note that the dialog reference can either be a dialog literal OR an [[action_param_expansions|expandable string]], not both.
+- **Dialog literal**: see [[dialogs#Dialog Literal|Dialog Literal]]
 
-- **Syntax**:
-	- `show dialog <dialog name: string[]>;`
-	- `show dialog <dialog literal>;`
-- **Bytecode action**: `SHOW_DIALOG`
+Bytecode action: `SHOW_DIALOG`
 
-### Close Dialog
+## Close Dialog
 
 Ends any open [[dialogs|dialog]].
 
 Use this action when you want to trigger a dialog that may potentially interrupt a dialog in progress. Otherwise, the two dialogs may collide, which can result in a soft lock.
 
-- **Syntax**: `close dialog;`
-- **Bytecode action**: `CLOSE_DIALOG`
+```
+close dialog;
+```
 
-### Show Serial Dialog
+Bytecode action: `CLOSE_DIALOG`
 
-Outputs the named [[serial_dialogs#Serial Dialog|serial dialog]] to a connected serial console.
+## Show Serial Dialog
+
+Outputs the named [[serial_dialogs#Serial Dialog|serial dialog]] to a connected [[terminal|serial console]].
 
 Using this action, each serial dialog message will get a newline added to the end. (To avoid this, use the concat variant.)
 
-Dialogs may be defined in place with a [[serial_dialogs#Serial Dialog Literal|serial dialog literal]]. 
+```
+show serial_dialog <string[]>;
+// OR
+show serial_dialog <serial dialog literal>;
+```
 
-Note that the serial dialog reference can either be a serial dialog literal OR an [[action_param_expansions|expandable string]], not both.
+- **Serial dialog literal**: see [[serial_dialogs#Serial Dialog Literal|Serial Dialog Literal]]
 
-- **Syntax**:
-	- `show serial_dialog <serial dialog name: string[]>;`
-	- `show serial_dialog <serial dialog literal>;`
-- **Bytecode action**: `SHOW_SERIAL_DIALOG`
+Bytecode action: `SHOW_SERIAL_DIALOG`
 
-### Concat Serial Dialog
+## Concat Serial Dialog
 
 Like [[#Show Serial Dialog]] in every way, except the these serial dialogs will *not* be printed with a newline at the end. This is the only way to build up single-line strings from multiple pieces.
 
-- **Syntax**:
-	- `concat serial_dialog <serial dialog name: string[]>;`
-	- `concat serial_dialog <serial dialog literal>;`
-- **Bytecode action**: `SHOW_SERIAL_DIALOG`
+```
+concat serial_dialog <string[]>;
+// OR
+concat serial_dialog <serial dialog literal>;
+```
 
-### Close Serial Dialog
+- **Serial dialog literal**: see [[serial_dialogs#Serial Dialog Literal|Serial Dialog Literal]]
+
+Bytecode action: `SHOW_SERIAL_DIALOG`
+
+## Close Serial Dialog
 
 Ends any [[serial_dialogs|serial dialog]] that is awaiting user input.
 
-- **Syntax**: `close serial_dialog;`
-- **Bytecode action**: `CLOSE_SERIAL_DIALOG`
+```
+close serial_dialog;
+```
 
-## Script Control
+Bytecode action: `CLOSE_SERIAL_DIALOG`
 
-### Run Script
+## Run Script
 
 Immediately switches the current [[scripts|script]] [[scripts#Script Slots|slot]] to the named [[scripts|script]], which begins execution immediately.
 
 If you want to replace the script in the current slot without immediately executing it, you should use [[#Assign Script Value|Assign Script Value]] instead.
 
-- **Syntax**: `goto <"script"?> <script name: string[]>`
-- **Bytecode action**: `RUN_SCRIPT`
+```
+goto <"script"?> <string[]>;
+```
 
-### Pause or Unpause Script Slot
+Bytecode action: `RUN_SCRIPT`
+
+## Pause or Unpause Script
 
 Pauses or unpauses a [[scripts|script]]. This is most useful for temporarily pausing an [[entities|entity]]'s `on_tick` script during an [[scripts#`on_interact`|`on_interact`]] event.
 
-- **Syntax**: 
-	- `pause <entity or map identifier[]> <script slot: string[]>;`
-	- `unpause <entity or map identifier[]> <script slot: string[]>;`
-	- **Entity or map identifier**:
-		- `map`
-		- **Entity identifier**: see [[identifiers#Entity Identifier|Entity identifier]]
-	- **Script slot**:
-		- For entities: `on_tick`, `on_interact`, `on_look`
-		- For maps: `on_load`, `on_tick`, `on_command`
-		- See [[scripts#Script Slots|Script Slots]]
-- **Bytecode action**: `SET_SCRIPT_PAUSE`
+```
+// pause
+pause <entity or map identifier[]> <script slot[]>;
 
-### Jump to Action Index
+// unpause
+unpause <entity or map identifier[]> <script slot[]>;
+```
+
+- **Entity or map identifier**: two choices:
+	- The keyword `map`
+	- An [[identifiers#Entity Identifier|entity identifier]]
+- [[scripts#Script Slots|**Script slot**]]:
+	- For entities: `on_tick`, `on_interact`, `on_look`
+	- For maps: `on_load`, `on_tick`, `on_command`
+
+Bytecode action: `SET_SCRIPT_PAUSE`
+
+## Jump to Action Index
 
 Jumps to the nth bytecode instruction in the currently-executing [[scripts|script]]. As these indices are near impossible to know ahead of time, using this action is not recommended. Instead, use [[#Jump to Label|Jump to Label]].
 
-- **Syntax**: `goto index <number[]>;`
-- **Bytecode action**: `GOTO_ACTION_INDEX`
+```
+goto index <number[]>;
+```
 
-### Jump to Label
+Bytecode action: `GOTO_ACTION_INDEX`
+
+## Jump to Label
 
 Jumps to the named label in the currently-executing [[scripts|script]].
 
-- **Syntax**: `goto index <number[]>;
-- **Bytecode action**: n/a
-	- The old encoder used `GOTO_ACTION_INDEX` but with a string value instead of a number for the param `action_index`.
+```
+goto label <string[]>;
+```
 
-### Copy Script
+Bytecode action:
+
+- No longer uses a bytecode action; now these are baked before the JSON step.
+- The old encoder ("natlang") used `GOTO_ACTION_INDEX` but with a string value instead of a number for the param `action_index`. (This had some unpleasant consequences.)
+
+## Copy Script
 
 See: [[macros#Copy Script|Macros > Copy Script]]
 
-- **Bytecode action**: `COPY_SCRIPT` 
-
 ## Position Assignment
 
-This action phrase instantly teleports a "movable" to a "coordinate."
+This action phrase instantly teleports a "[[#Movable (Assignment)|movable]]" to a "[[#Coordinate (Assignment)|coordinate]]."
 
-- **Syntax:** `<movable[] = <coordinate[]>;` 
-- **Bytecode actions**:
-	- `TELEPORT_ENTITY_TO_GEOMETRY`
-	- `SET_CAMERA_TO_FOLLOW_ENTITY`
-	- `TELEPORT_CAMERA_TO_GEOMETRY`
+```
+<movable[]> = <coordinate[]>;
+```
+
+- **Movable**: see [[#Movable (Assignment)|Movable (Assignment)]]
+- **Coordinate**: see [[#Coordinate (Assignment)|Coordinate (Assignment)]]
+
+Bytecode actions:
+
+- `TELEPORT_ENTITY_TO_GEOMETRY`
+- `SET_CAMERA_TO_FOLLOW_ENTITY`
+- `TELEPORT_CAMERA_TO_GEOMETRY`
+- (Teleporting an entity to another entity is done with a bytecode sequence, not a specific bytecode action.)
 
 ### Movable (Assignment)
 
-- **Syntax**:
-	- `camera`
-	- `<entity identifier>` (See [[identifiers#Entity Identifier|Entity Identifier]])
+```
+camera
+// OR
+<entity identifier>
+```
+
+- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
 
 ### Coordinate (Assignment)
 
-- **Syntax**:
-	- `<entity identifier> position` (See [[identifiers#Entity Identifier|Entity Identifier]])
-	- `<geometry identifier>` (See [[identifiers#Geometry Identifier|Geometry Identifier)]]
+```
+<entity identifier> position
+// OR
+<geometry identifier>
+```
+
+- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
+- **Geometry identifier**: see [[identifiers#Geometry Identifier|Geometry Identifier]]
 
 ## Position Over Time
 
-This action phrase moves a "movable" to a "coordinate" over time.
+This action phrase moves a "[[#Movable (Over Time)|movable]]" to a "[[#Coordinate (Over Time)|coordinate]]" over time.
 
-- **Syntax:** `<movable[] -> <coordinate[]> over <duration[]> <"forever"?>;`
-- **Bytecode actions**:
-	- `WALK_ENTITY_TO_GEOMETRY`
-	- `WALK_ENTITY_ALONG_GEOMETRY`
-	- `LOOP_ENTITY_ALONG_GEOMETRY`
-	- `PAN_CAMERA_TO_ENTITY`
-	- `PAN_CAMERA_TO_GEOMETRY`
-	- `PAN_CAMERA_ALONG_GEOMETRY`
-	- `LOOP_CAMERA_ALONG_GEOMETRY`
+```
+<movable[] -> <coordinate[]> over <duration[]> <"forever"?>;
+```
+
+- **Movable**: see [[#Movable (Assignment)]]
+- **Coordinate**: see [[#Coordinate (Assignment)]]
+- **Forever**: see [[#Forever]]
+
+Bytecode actions:
+
+- `WALK_ENTITY_TO_GEOMETRY`
+- `WALK_ENTITY_ALONG_GEOMETRY`
+- `LOOP_ENTITY_ALONG_GEOMETRY`
+- `PAN_CAMERA_TO_ENTITY`
+- `PAN_CAMERA_TO_GEOMETRY`
+- `PAN_CAMERA_ALONG_GEOMETRY`
+- `LOOP_CAMERA_ALONG_GEOMETRY`
 
 ###  Movable (Over Time)
 
-Same as [[#Movable (Assignment)|Movable (Assignment)]].
+```
+camera
+// OR
+<entity identifier>
+```
+
+- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
 
 ### Coordinate (Over Time)
 
 Coordinates for this action phrase need to have the `origin` or `length` specified, as walking over time to a polygon's origin is not the same as walking along a polygon's length. See [[vector_objects#Vector Origins|Vector Origins]].
 
-- **Syntax**:
-	- `<entity identifier> position` (See [[identifiers#Entity Identifier|Entity Identifier]])
-	- `entity_path <"origin" OR "length">`
-	- `<geometry identifier> <"origin" OR "length">` (See [[identifiers#Geometry Identifier|Geometry Identifier]])
+```
+<entity identifier> position
+// OR
+entity_path <"origin" OR "length">
+// OR
+<geometry identifier> <"origin" OR "length">
+```
+
+- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
+- **Geometry identifier**: see [[identifiers#Geometry Identifier|Geometry Identifier]]
 
 ### Forever
 
@@ -224,11 +334,7 @@ Coordinates for this action phrase need to have the `origin` or `length` specifi
 	- Entities as the destination coordinate.
 	- `origin` (i.e. single points) as the destination coordinate.
 
-## Choreography
-
-See [[#Assign Direction Value|Assign Direction Value]] for rotating an entity or pointing it at something.
-
-### Play Entity Animation
+## Play Entity Animation
 
 The [[entities|entity]] will play the given [[animations|animation]] the given number of times, then will return to the default animation for the entity's current movement status ([[animations#Idle|standing]], [[animations#Walking|walking]]).
 
@@ -238,47 +344,82 @@ If an entity is compelled to move around on the [[maps|map]], it will abort this
 
 To change an entity's animation indefinitely, use the [[#Assign Int Value]] action phrase for the entity's [[entities#Entity Properties|`current_animation`]].
 
-- **Syntax**: `<entity identifier[]> animation -> <animation: number[]> <play count: quantity[]>;`
-	- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
-	- **Animation**: the nth animation defined in `entity_types.json` for the entity's type.
-- **Bytecode action**: `PLAY_ENTITY_ANIMATION`
+```
+<entity identifier[]> animation -> <animation: number[]> <play count: quantity[]>;
+```
 
-### Fade Camera In or Out
+- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
+- **Animation**: the nth animation defined in [[what_youll_need#`entity_types.json`|`entity_types.json`]] for the entity's [[entity_types#Character Entity|type]].
+
+Bytecode action: `PLAY_ENTITY_ANIMATION`
+
+## Fade Camera In or Out
 
 Transitions the screen from (or to) the specified color. Fades are slow on the real hardware, so use sparingly.
 
-- **Syntax**:
-	- `camera fade in -> <color[]> over <duration[]>;`
-	- `camera fade out -> <color[]> over <duration[]>;
-- **Bytecode actions**:
-	- `SCREEN_FADE_IN`
-	- `SCREEN_FADE_OUT`
+```
+// fade in
+camera fade in -> <color[]> over <duration[]>;
 
-### Shake Camera
+// fade out
+camera fade out -> <color[]> over <duration[]>;
+```
+
+Bytecode actions: `SCREEN_FADE_IN` and `SCREEN_FADE_OUT`
+
+## Shake Camera
 
 Shakes the camera a certain distance (`amplitude`) at a certain speed (`frequency`) and for a certain length of time (`duration`)
 
-- **Syntax**: `camera shake -> <frequency: duration[]> <amplitude: distance[]> over <duration[]>;`
-- **Bytecode action**: `SET_SCREEN_SHAKE`
+```
+camera shake -> <frequency: duration[]> <amplitude: distance[]> over <duration[]>;
+```
+
+Bytecode action: `SET_SCREEN_SHAKE`
 
 ## Assign a Value
 
-An [[expressions_and_operators#Assignment Operation|assignment operation]] is a binary [[expressions_and_operators|expression]] that sets the left-hand side (LHS) to the value of the right-hand side (RHS).
+An [[expressions_and_operators#Assignment Operation|assignment operation]] is a binary [[expressions_and_operators|expression]] that sets the left-hand side (**LHS**) to the value of the right-hand side (**RHS**).
 
-**Syntax**: `<LHS> = <RHS>;`
+```
+<LHS> = <RHS>;
+```
 
-### Assign Int Value
+Action phrases using this pattern:
 
-**Syntax**: `<int setable[]> = <int expression[]>`;
+- [[actions#Assign Int Value|Assign Int Value]]
+- [[actions#Assign Bool Value|Assign Bool Value]]
+- [[actions#Assign String Value|Assign String Value]]
+- [[actions#Assign Script Value|Assign Script Value]]
+- [[commands#Register Command|Register Command]]
+- [[commands#Aliases|Register Alias]]
+- [[arrays#Create|Create New Array]]
+- [[arrays#Assign Array Value at Index|Assign Array Value at Index]]
+- Script assignments within [[dialogs#Dialog Option|Dialog Options]] and [[serial_dialogs#Serial Dialog Option|Serial Dialog Options]]
 
+[[#Position Over Time|Position Over Time]] is similar, but uses a `->` instead of `=` to indicate that the action will take time to execute.
+
+## Assign Int Value
+
+::: warning Ambiguity Warning
 If the RHS and the LHS of any evaluated expansion are both bare identifiers, they will be handled as integer variables. To silence the ambiguity warning, use an "invisible operation" (e.g. `*1` or `+0`) to coerce the RHS to an int expression.
+:::
 
-#### Int Setables
+```
+<int setable[]> = <int expression[]>;
+```
 
-(NOTE: Not all [[expressions_and_operators#Int Operands|int getables]] are int setables and vice versa.)
+- **Int setable**: see [[#Int Setables]]
+- **Int expression**: see [[expressions_and_operators#Int Expressions|Int Expressions]]
+
+### Int Setables
+
+::: tip NOTE
+Not all int setables are [[expressions_and_operators#Int Operands|int getables]] and vice versa.
+:::
 
 - [[identifiers|Variable identifiers]] ([[state#Integer Variables|integers]])
-- [[arrays#Assign Array Value at Index|Array value at index]]
+- [[arrays#Assign Array Value at Index|Array value at index]] (e.g. `array[i]`)
 - [[entities#Entity Properties|Entity int properties]]:
 	- `<entity identifier> x`
 	- `<entity identifier> y`
@@ -289,9 +430,8 @@ If the RHS and the LHS of any evaluated expansion are both bare identifiers, the
     - `<entity identifier> animation_frame`(u8)
     - `<entity identifier> strafe`
 	- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
-	- See [[entities#Entity Properties|Entity Properties]]
 
-**Bytecode actions**:
+Bytecode actions:
 
 - `COPY_VARIABLE`
 - `MUTATE_VARIABLE`
@@ -307,63 +447,86 @@ If the RHS and the LHS of any evaluated expansion are both bare identifiers, the
 - `SET_ENTITY_CURRENT_FRAME`
 - `SET_ENTITY_MOVEMENT_RELATIVE`
 
-### Change Int Value
+## Change Int Value
 
 Similar to [[#Assign Int Value]]. It assigns a value to an [[#Int Setable|int setable]], but it also changes it by the operation in the "op equals" operator.
 
-E.g. `var_name += 5;` is the same as `var_name = var_name + 5;`.
+```mgs
+_ {
+	var_name += 5;
+	// is the same as
+	var_name = var_name + 5;
+}
+```
 
-Note that relative entity turns cannot be made with [[expressions_and_operators#Int Expressions|int expressions]]; these must take [[primitive_types#Number Literal|number literals]]. See [[#Assign Direction Value|Assign Direction Value]] for turning an entity toward something specific on the map.
+Relative entity turns cannot be made with [[expressions_and_operators#Int Expressions|int expressions]]; these must take [[primitive_types#Number Literal|number literals]]. These relative turns (+1, -1) correspond to a 90º rotation. The value is modulo 4, so +1 is the same as +5.
 
-- **Syntax**:
-	- `<entity identifier[]> direction += <number[]>;` 
-	- `<entity identifier[]> direction -= <number[]>;` 
-	- `<int setable[]> <op equals> <int expression[]>;`
-	- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
-	- **Int setable**: see [[#Int Setables]]
-	- **Op equals**:
-		- `+=`: add
-		- `-=`: subtract
-		- `*=`: multiply
-		- `/=`: divide
-		- `%=`: modulo
-		- `?=`: RNG roll exclusive
-	- **Int expression**: see [[expressions_and_operators#Expressions|Expressions]]
+See [[#Assign Direction Value|Assign Direction Value]] for turning an entity toward something specific on the map.
 
-**Bytecode actions**:
+```
+// plus and minus-equals only:
+<entity identifier[]> direction += <number[]>;
+//OR
+<entity identifier[]> direction -= <number[]>;
+
+// any op-equals:
+<int setable[]> <op equals> <int expression[]>;
+```
+
+- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
+- **Int setable**: see [[#Int Setables]]
+- **Op equals**:
+	- `+=`: add
+	- `-=`: subtract
+	- `*=`: multiply
+	- `/=`: divide
+	- `%=`: modulo
+	- `?=`: RNG roll, exclusive (see [[macros#RNG|RNG Macro]])
+- **Int expression**: see [[expressions_and_operators#Expressions|Expressions]]
+
+Bytecode actions:
 
 - `SET_ENTITY_DIRECTION_RELATIVE`
 - `MUTATE_VARIABLE`
 - `MUTATE_VARIABLES`
 
-### Assign Bool Value
+## Assign Bool Value
 
-**Syntax**: `<bool getable[]> = <bool expression[]>;`
+::: warning Ambiguity Warning
+If the RHS and the LHS of any evaluated expansion are both bare identifiers, they will be handled as integer variables. To coerce the RHS to a bool expression, attach `!!` to the identifier in the RHS, or use the `flag` sigil to the LHS and/or the RHS identifier.
+:::
 
-Note: if the RHS and the LHS of any evaluated expansion are both bare identifiers, they will be handled as integer variables. To coerce the RHS to a bool expression, attach `!!` to the identifier in the RHS, or use the `flag` sigil to the LHS and/or the RHS identifier.
+```
+<bool setable[]> = <bool expression[]>;
+```
 
-#### Bool Setables
+- **Bool setable**: see [[#Bool Setables|Bool Setables]]
+- **Bool expression**: see [[expressions_and_operators#Bool Expressions|Bool Expressions]]
 
-(NOTE: Not all [[expressions_and_operators#Bool Operands|bool getables]] are bool setables and vice versa.)
+### Bool Setables
+
+::: tip NOTE
+Not all bool setables are [[expressions_and_operators#Bool Operands|bool getables]] and vice versa.
+:::
 
 - [[primitive_types#Boolean|Boolean literals]] e.g. `true`, `false`
 - [[identifiers|Variable identifiers]] ([[state#Save Flags|flags]])
 - [[state#Setable Engine Flags|Setable engine flags]]:
 	- `player_control`
-	- `lights_control
-	- `hex_editor
-	- `hex_dialog_mode
-	- `hex_control
-	- `hex_clipboard
-	- `serial_control
+	- `lights_control`
+	- `hex_editor`
+	- `hex_dialog_mode`
+	- `hex_control`
+	- `hex_clipboard`
+	- `serial_control`
 - [[entities#Entity Properties|Entity bool properties]]:
     - `<entity identifier> glitched`
 	- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
 - Light states
-	- `light <light name: string[]>`
+	- `light <string[]>`
 	- See [[#Light Names|light names]]
 	
-**Bytecode actions**:
+Bytecode actions:
 
 - `SET_SAVE_FLAG`
 - `SET_PLAYER_CONTROL`
@@ -376,11 +539,15 @@ Note: if the RHS and the LHS of any evaluated expansion are both bare identifier
 - `SET_ENTITY_GLITCHED`
 - `SET_LIGHTS_STATE`
 
-#### Lights
+### Lights
 
-- This includes all 8 bit lights underneath the screen and the 4 lights on either side of the screen.
-- Gaining control of the lights does not clear the light state; you will need to turn all the lights off yourself.
-- If you turn a light off and on again on the same game tick, the light will appear to flicker.
+This includes all 8 bit lights underneath the screen and the 4 lights on either side of the screen.
+
+Gaining control of the lights does not clear the light state; you will need to turn all the lights off yourself.
+
+::: warning
+If you turn a light off and on again on the same game tick, the light will appear to flicker.
+:::
 
 Lights names:
 
@@ -405,53 +572,57 @@ Lights names:
 - `LED_SD`
 - `LED_ALL` (will turn on/off all the lights)
 
+## Assign String Value
 
-### Assign String Value
+```
+<string setable[]> = <string[]>;
+```
 
-**Syntax**: `<string setable[]> = <string[]>;`
+- **String setable**: see [[#String Setables|String Setables]]
 
-#### String Setables
+### String Setables
 
-(NOTE: Not all [[expressions_and_operators#String Checkables|string checkables]] are string setables and vice versa. There are no string getables.)
+::: warning NOTE
+There are no string getables, only [[expressions_and_operators#String Checkables|string checkables]]. (Can check for equality, but cannot extract their value to store elsewhere, not can be used in an [[expressions_and_operators|expression]].)
 
-Some string values use different action phrases. See [[#Assign Script Value]] and [[#Assign Direction Value]].
+Like the other setables, not all string setables are string checkables and vice versa.
+:::
+
+Note some string values use the more specific action phrases [[#Assign Script Value]] or [[#Assign Direction Value]].
 
 - `warp_state` (the [[state#Warp State String|Warp State String]])
-- `serial_connect`: the default serial message printed upon game launch.
+- `serial_connect`: the default serial message printed upon game launch
 - [[entities#Entity Properties|Entity string properties]]:
 	- `<entity identifier[]> name`
 	- `<entity identifier[]> type`
 	- `<entity identifier[]> path`
 	- **Entity identifier**: See [[identifiers#Entity Identifier|entity identifier]]
 
-**Bytecode actions**:
+Bytecode actions:
 
 - `SET_WARP_STATE`
 - `SET_CONNECT_SERIAL_DIALOG`
 - `SET_ENTITY_NAME`
 - `SET_ENTITY_TYPE`
-- `SET_ENTITY_PATH
+- `SET_ENTITY_PATH`
 
-### Assign Script Value
+## Assign Script Value
 
-**Syntax**: `<script setable[]> <script slot> = <script name: string[]>;`
+```
+<script setable[]> <script slot> = <string[]>;
+```
 
-#### Script Setable
+- **Script setable**: see [[#Script Setables]]
+- **[[scripts#Script Slots|Script slot]]**:
+	- For maps:
+		- `on_tick`
+		- `on_look`
+	- For entities:
+		- `on_interact`
+		- `on_tick`
+		- `on_look`
 
-See [[scripts#Script Slots|Script Slots]]
-
-- **Syntax**:
-	- `map`
-	- `<entity identifier>` (See [[identifiers#Entity Identifier|Entity Identifier]])
-- **Map script slots**:
-	- `on_tick`
-	- `on_look`
-- **Entity script slots**:
-	- `on_interact`
-	- `on_tick`
-	- `on_look`
-
-**Bytecode actions**:
+Bytecode actions:
 
 - `SET_MAP_TICK_SCRIPT`
 - `SET_MAP_LOOK_SCRIPT`
@@ -459,17 +630,27 @@ See [[scripts#Script Slots|Script Slots]]
 - `SET_ENTITY_TICK_SCRIPT`
 - `SET_ENTITY_LOOK_SCRIPT`
 
-### Assign Direction Value
+### Script Setables
+
+- The keyword `map`
+- An [[identifiers#Entity Identifier|entity identifier]]
+
+## Assign Direction Value
 
 Makes an [[entities|entity]] face the target. To make relative turns (e.g. 90º CCW) see [[#Change Int Value]].
 
-- **Syntax**: `<entity identifier> direction = <direction target>;`
-	- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
-	- **Direction target**:
-		- `<geometry identifier>` (See [[identifiers#Geometry Identifier|Geometry Identifier]])
-		- `<entity identifier>` (See [[identifiers#Entity Identifier|Entity Identifier]])
-		- `north`, `south`, `east`, or `west`
-- **Bytecode actions**: 
-	- `SET_ENTITY_DIRECTION_TARGET_GEOMETRY`
-	- `SET_ENTITY_DIRECTION_TARGET_ENTITY`
-	- `SET_ENTITY_DIRECTION`
+```
+<entity identifier> direction = <direction target>;
+```
+
+- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
+- **Direction target**:
+	- `<geometry identifier>` (See [[identifiers#Geometry Identifier|Geometry Identifier]])
+	- `<entity identifier>` (See [[identifiers#Entity Identifier|Entity Identifier]])
+	- `north`, `south`, `east`, or `west`
+
+Bytecode actions:
+
+- `SET_ENTITY_DIRECTION_TARGET_GEOMETRY`
+- `SET_ENTITY_DIRECTION_TARGET_ENTITY`
+- `SET_ENTITY_DIRECTION`

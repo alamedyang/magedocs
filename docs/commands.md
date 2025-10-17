@@ -25,31 +25,47 @@
 
 ## Command Actions
 
+Arguments that are multiple words should be wrapped in double quotes.
+
+The fail registration is for when an invalid argument is used with that verb.
+
 ### Register Command
 
-- **Verb**:
-	-  `command <verb: string[]> = <script name: string[]>;`
-	-  `command <verb: string[]> = <script literal>;`
-- **Arg for verb**:
-	-  `command <verb: string[]> + <argument: string[]> = <script name: string[]>;`
-	-  `command <verb: string[]> + <argument: string[]> = <script literal>;`
-	- Arguments that are multiple words should be wrapped in double quotes.
-- **Fail for verb**: For when an invalid argument is used with that verb.
-	-  `command <verb: string[]> fail = <script name[]>;`
-	-  `command <verb: string[]> fail = <script literal>;`
+```
+// VERB
+command <verb: string[]> = <script name: string[]>;
+command <verb: string[]> = <script literal>;
 
-**Bytecode actions**:
+// ARG FOR VERB
+command <verb: string[]> + <argument: string[]> = <script name: string[]>;
+command <verb: string[]> + <argument: string[]> = <script literal>;
+
+// FAIL FOR VERB
+command <verb: string[]> fail = <script name: string[]>;
+command <verb: string[]> fail = <script literal>;
+```
+
+Bytecode actions:
 
 - `REGISTER_SERIAL_DIALOG_COMMAND`
 - `REGISTER_SERIAL_DIALOG_COMMAND_ARGUMENT`
 
 ### Unregister Command
 
-- **Verb**:  delete command <verb: string[]>;
-- **Arg for verb**: `delete command <verb: string[]> + <argument: string[]>;`
-- **Fail for verb**: `delete command <verb: string[]> fail;`
+Removes a command registration for various arg or fail combinations, or for the verb overall.
 
-**Bytecode actions**:
+```
+// VERB
+delete command <verb: string[]>;
+
+// ARG FOR VERB
+delete command <verb: string[]> + <argument: string[]>;
+
+// FAIL FOR VERB
+delete command <verb: string[]> fail;
+```
+
+Bytecode actions:
 
 - `UNREGISTER_SERIAL_DIALOG_COMMAND`
 - `UNREGISTER_SERIAL_DIALOG_COMMAND_ARGUMENT`
@@ -58,24 +74,33 @@
 
 Hides or unhides a verb from the **`HELP`** list.
 
-- **Hide**: `hide command <verb: string[]>;`
-- **Unhide** `unhide command <verb: string[]>;`
+```
+// HIDE
+hide command <verb: string[]>;
 
-**Bytecode actions**:
+// UNHIDE
+unhide command <verb: string[]>;
+```
+
+Bytecode actions:
 
 - `SET_SERIAL_DIALOG_COMMAND_VISIBILITY`
 
 ## Aliases
 
-- An alias is an alternative reference to a command registration.
-	- Usually these are abbreviations, such as registering the alias `i` for the command verb `inventory`.
-- Aliases are not printed in the command list provided by **`HELP`**.
-- **Create alias**:
-	- `alias <string[]> = <command: string[]>;`
-- **Delete alias**:
-	- `delete alias <string[]>;`
+An alias is an alternative reference to a command registration. Usually these are abbreviations, such as registering the alias `i` for the command verb `inventory`.
 
-**Bytecode actions**:
+Aliases are not printed in the command list provided by **`HELP`**.
+
+```
+// CREATE
+alias <string[]> = <command: string[]>;
+
+// DELETE
+delete alias <string[]>;
+```
+
+Bytecode actions:
 
 - `REGISTER_SERIAL_DIALOG_COMMAND_ALIAS`
 - `UNREGISTER_SERIAL_DIALOG_COMMAND_ALIAS`

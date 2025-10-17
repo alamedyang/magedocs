@@ -14,15 +14,11 @@
 
 This is a binary expression that sets the left-hand side (LHS) to the value of the right-hand side (RHS).
 
-**Syntax**: `<LHS> = <RHS>;`
+```
+<LHS> = <RHS>;
+```
 
-- Action phrases using this pattern:
-	- [Assign Int Value](actions#assign-int-value)
-	- [Change Int Value](actions#change-int-value)
-	- [Assign Bool Value](actions#assign-bool-value)
-	- [Assign String Value](actions#assign-string-value)
-	- [Assign Script Value](actions#assign-script-value)
-- [Position Over Time action phrases](actions#position-over-time) are similar, but use a `->` instead of `=` to indicate that the action will take time to execute.
+See: [Actions > Assign a Value](actions#assign-a-value)
 
 ## Operands
 
@@ -30,27 +26,44 @@ This is a binary expression that sets the left-hand side (LHS) to the value of t
 
 You can set and get/check most operands with bytecode instructions. But some can only be checked, and some only set. This means some can only be on the LHS of an assignment operation, and some can only be in the expression on the RHS.
 
+All getables are checkable, but not all checkables are getable.
+
+Certain checkables can only be checked against literal values (not expressions). Ditto certain setables.
+
 ## Int Expressions
 
 An int expression results in a number value. Note that a single int operand is a valid int expression.
 
-- **Syntax**:
-	- `<int operand>`
-	- `<int binary expression>`
-	- `( <int expression> )`
+```
+<int operand>
+// OR
+<int binary expression>
+// OR
+( <int expression> )
+```
 
 ### Int Binary Expression
 
 These behave as expected. Standard operator precedence (order of operations) is used.
 
-- **Syntax**: `<int operand> <int binary operator> <int operand>`
-- **Int operand**: see [undefined](#int-operands)
+```
+<int operand> <int binary operator> <int operand>
+```
+
+- **Int operand**: see [Int Operands](#int-operands)
 - **Int binary operator**:
 	- Add: `+`
 	- Subtract: `-`
 	- Multiply: `*`
 	- Divide: `/`
 	- Modulo: `%`
+
+```mgs
+// example
+_ {
+	target_int = player x + 30;
+}
+```
 
 ### Int Operands
 
@@ -73,7 +86,7 @@ These are "int getables" (as opposed to ["int setables"](actions#int-setables)).
 	- **Entity identifier**: see [Entity Identifier](identifiers#entity-identifier)
 - Another int expression
 
-**Bytecode actions**:
+Bytecode actions:
 
 - `COPY_VARIABLE`
 - `CHECK_VARIABLE`
@@ -92,51 +105,89 @@ These are "int getables" (as opposed to ["int setables"](actions#int-setables)).
 
 A bool expression result in a bool value. A single bool operand is a valid bool expression.
 
-- **Syntax**:
-	- `<bool operand>`
-	- `<bool unary expression>`
-	- `<bool comparison>`
-	- `<bool binary expression>`
-	- `( <bool expression> )`
+```
+<bool operand>
+// OR
+<bool unary expression>
+// OR
+<bool comparison>
+// OR
+<bool binary expression>
+// OR
+( <bool expression> )
+```
 
 ### Bool Unary Expression
 
 The only unary operator is `!`, which inverts the attached bool operand.
 
-**Syntax**: `!<bool operand>`
+```
+!<bool operand>
+```
 
 - `!<bool exp>` is equivalent to `<bool exp> != true` or `<bool exp> == false`.
 - These are evaluated before other operators. To invert a larger expression, group it in parens and invert the grouping.
 - For multi-word bool "getables" like `entity Bob glitched` you can put a `!` before the first word to invert the whole phrase. No need to wrap the phrase in parens.
 
+```mgs
+//example
+_ {
+	target_bool = !flag_name;
+}
+```
+
 ### Bool Comparison
 
-- **Syntax**:
-	- `<int expression> <comparison operator> <int expression>`
-	- `<bool expression> <equality operator> <bool expression>`
-	- `<string checkable> <equality operator> <string literal>`
-	- `<string literal> <equality operator> <string checkable>`
-	- **Int expression**: see [Int Expression](expressions_and_operators#int-expressions)
-	- **Bool expression**: see [Bool Expressions](expressions_and_operators#bool-expressions)
-	- **String checkable**: see [undefined](#string-checkables)
-	- **String literal**: see [String](primitive_types#string)
-	- **Equality operator**:
-		- Equal to: `==`
-		- Not equal to: `!=`
-	- **Comparison operator**:
-		- Less than: `<`
-		- Less than or equal to: `<=`
-		- Greater than: `>`
-		- Greater than or equal to: `>=`
-		- Also, all equality operators
+```
+<int expression> <comparison operator> <int expression>
+// OR
+<bool expression> <equality operator> <bool expression>
+// OR
+<string checkable> <equality operator> <string literal>
+// OR
+<string literal> <equality operator> <string checkable>
+```
+
+- **Int expression**: see [Int Expression](expressions_and_operators#int-expressions)
+- **Bool expression**: see [Bool Expressions](expressions_and_operators#bool-expressions)
+- **String checkable**: see [String Checkables](#string-checkables)
+- **String literal**: see [String](primitive_types#string)
+- **Equality operator**:
+	- Equal to: `==`
+	- Not equal to: `!=`
+- **Comparison operator**:
+	- Less than: `<`
+	- Less than or equal to: `<=`
+	- Greater than: `>`
+	- Greater than or equal to: `>=`
+	- Also, all equality operators
+
+```mgs
+//examples
+_ {
+	target_bool = player x < 100;
+	target_bool = flag_name != true;
+	target_bool = player name == "Bob";
+	target_bool = "Bob" != player name;
+}
+```
 
 ### Bool Binary Expression
 
-- **Syntax**:
-	- `<bool expression> <bool binary operator> <bool expression>`
-	- **Bool binary operator**:
-		- Boolean OR: `||`
-		- Boolean AND: `&&`
+```
+<bool expression> <bool binary operator> <bool expression>
+```
+
+- **Bool binary operator**:
+	- Boolean OR: `||`
+	- Boolean AND: `&&`
+
+```
+// example
+_ {
+	target_bool = debug_mode || player glitched;
+}
+```
 
 ### Bool Operands
 
@@ -154,7 +205,7 @@ These are "bool getables" (as opposed to ["bool setables"](actions#bool-setables
     - `button <button name> pressed` (whether the button recently changed from up to down)
     - NOTE: The button states are reset when a new map is loaded. If listening for a button press in the new map, this action may very will trigger immediately, even if the button was held down through the map load.
 
-**Bytecode actions**:
+Bytecode actions:
 
 - `CHECK_SAVE_FLAG`
 - `CHECK_DEBUG_MODE`
@@ -227,7 +278,7 @@ These aren't "getables" because their values cannot be stored.
 - No string concatenation or slicing
 - String references can only be compared to string literals, not a second string reference (e.g. `player name == self name` is invalid)
 
-**Bytecode actions**:
+Bytecode actions:
 
 - `CHECK_WARP_STATE`
 - `CHECK_ENTITY_NAME`

@@ -86,7 +86,7 @@ export default defineConfig({
 				{ text: 'JSON Literals', link: "/json_literals.md" },
 				{ text: 'Arrays', link: "/arrays.md" },
 				{ text: 'Commands', link: "/commands.md" },
-				{ text: 'Actino Param Expansions', link: "/action_param_expansions.md" },
+				{ text: 'Action Param Expansions', link: "/action_param_expansions.md" },
 				{ text: 'Actions', link: "/actions.md" },
 			]
 		},

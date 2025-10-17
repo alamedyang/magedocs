@@ -4,25 +4,48 @@
     "type": "split",
     "children": [
       {
-        "id": "7c4015f2abda6d13",
+        "id": "7ac8b54bb7eeb06d",
         "type": "tabs",
+        "dimension": 44.2019099590723,
         "children": [
           {
-            "id": "c8a4cac6d231bbf8",
+            "id": "df823e4d8dfba883",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "macros.md",
+                "file": "arrays.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "macros"
+              "title": "arrays"
             }
           },
           {
-            "id": "17a92a8847423aa9",
+            "id": "95f0df2fea9c6a5c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "actions.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "actions"
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "ae7af355ca2928e9",
+        "type": "tabs",
+        "dimension": 55.7980900409277,
+        "children": [
+          {
+            "id": "dbfdb026e43ffcb8",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -36,21 +59,7 @@
             }
           },
           {
-            "id": "0258a5af24c1a200",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "state.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "state"
-            }
-          },
-          {
-            "id": "5d6d0317a2981435",
+            "id": "d4451be8c75b34be",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -61,83 +70,6 @@
               },
               "icon": "lucide-file",
               "title": "expressions_and_operators"
-            }
-          },
-          {
-            "id": "30fd2e77a3d34376",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "actions.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "actions"
-            }
-          },
-          {
-            "id": "5760dafa1092226d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "actions.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "actions"
-            }
-          },
-          {
-            "id": "bb609166f522a9c0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "TODOS.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "TODOS"
-            }
-          }
-        ],
-        "currentTab": 2
-      },
-      {
-        "id": "7ac8b54bb7eeb06d",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "df823e4d8dfba883",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "index.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "index"
-            }
-          },
-          {
-            "id": "f3d8b174018b0763",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "actions.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "actions"
             }
           }
         ],
@@ -173,7 +105,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "#### Script Setable",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -194,12 +126,11 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 305.5
+    "width": 200
   },
   "right": {
     "id": "b88649f0b66c4ce7",
@@ -290,34 +221,34 @@
       "bases:Create new base": false
     }
   },
-  "active": "f3d8b174018b0763",
+  "active": "d4451be8c75b34be",
   "lastOpenFiles": [
+    "macros.md",
+    "actions.md",
     "index.md",
+    "arrays.md",
+    "expressions_and_operators.md",
+    "commands.md",
+    "entities.md",
+    "TODOS.md",
+    "scripts.md",
+    "fns.md",
+    "json_literals.md",
+    "debug_tools.md",
+    "dialog_and_serial_dialog_strings.md",
     "state.md",
     "maps.md",
     "hiding_an_entity.md",
     "doors.md",
-    "debug_tools.md",
     "cutscenes.md",
     "actors.md",
-    "actions.md",
-    "scripts.md",
     "handlers.md",
     "entity_types.md",
-    "entities.md",
-    "TODOS.md",
     "general_process.md",
-    "commands.md",
     "encoder.md",
     "animations.md",
-    "expressions_and_operators.md",
     "updating_the_hardware.md",
     "mge_vm.md",
-    "terminal.md",
-    "hex_editor.md",
-    "hint_systems.md",
-    "tilesets.md",
-    "action_param_expansions.md",
     "media/colors-textmate.png",
     "media/colors-vscode.png",
     "media/colors-sublime.png",

@@ -1,13 +1,16 @@
 # TODO
 
-- `delete command _ fail` is missing in the grammar!
-- could add sigil to `debug!()` serial dialog references, so we can use strings instead of being limited to barewords?
-- Are recursive fn calls detected?
+TODOs for the language and/or documentation
+
+- Are recursive fn calls detected? NO THEY ARE NOT
 - Can fn calls use bool expressions as args? Should they?
+	- Whoops, turns out they only take int expressions??? That isn't right (or is it??)
+	- Strings pass through correctly accidentally
+	- bools can't seem to come through
+	- Would need to first enable consts to take more things than single token primitives. Is this okay? Maybe?
 - If dialogSkins are the only things left in `scenario.json` should it be moved to its own file, and `scenario.json` retired?
 - Change `RNG!()` to `roll!()` (?) (helps keep it straight from `rand!()`
 - Change `include` back to `include!()` so it matches the other "macros"
-- it's annoying to remember which things don't take a `;` (or which bracketed things do, like in show dialog blocks), so we might make them optional in certain common situations so it's easier to err on the side of always putting them. (Making them optional everywhere breaks too much; I tried.)
 - Make it so ints can have optional sigils? (A quick attempt didn't work)
 - Test expansion-ness of push_left and push
 - Do custom ANSI sequences come through?
@@ -22,6 +25,5 @@
 - the expressions definition change might be a bit off re: operand vs expression, i.e. where does grouping actually fall? Is this worth polishing?
 - Make a badge hardware section and put buttons/lights enums in there
 - Capitalization of macros? Copy Script, Include Macro, etc. Upper or lower or what?
-- serial connect message can define in place?
 - Put command and array actions into actions?
 - Add how to use the MEM buttons

@@ -6,27 +6,34 @@ A higher-level MGS structure that expands into a larger, linear sequence. Overt 
 
 The Include Macro will copy the whole (parsed) contents of the target file into place. Used at [[syntax_scopes#Syntax Contexts|root level of the file]].
 
-**Syntax**: `include <file name: quoted string>;`
-
 - The quoted string must end in `.mgs`, just as the file must end in `.mgs`.
 - This is the only way to bring [[syntax_scopes#File Scope|file-scoped]] definitions into a second file.
 - Script definitions and other [[syntax_scopes#Project Scope|project-scoped]] structures will also be brought over, and these will count as duplicate definitions. Therefore, included files should only have MGS-only features, like [[dialog_and_serial_dialog_settings]] and [[fns|fns]].
+
+```
+include <file name: quoted string>;
+```
 
 ## Rand
 
 A means of quickly giving random parameters to [[scripts#Script Body Items|script body items]] using [[action_param_expansions|action param expansions]].
 
-**Syntax**: `rand!( <script body items> ) <";"?>`
-
 See [[action_param_expansions#Rand Macro|Action Param Expansions > Rand Macro]].
+
+```
+rand!( <script body items> ) <";"?>
+```
 
 ## RNG
 
 This macro creates a random number and put it into a temporary variable. Can use it as an [[expressions_and_operators#Int Operands|int operand]] in an [[expressions_and_operators#Int Expressions|int expression]]. To store the random value longer term, use it in the RHS of an [[actions#Assign Int Value|assignment statement]].
 
-- **Syntax:**
-	- `RNG!(<number>)`
-	- `RNG!(<min>, <max>)`
+```
+RNG!(<number>)
+// OR
+RNG!(<min>, <max>)
+```
+
 - **Min**: `<number>`
 	- If no `min` is given, RNG will roll between 0 and `max`.
 - **Max**:
@@ -45,17 +52,24 @@ script rng_exlusive_inclusive {
 
 This macro prints the given [[serial_dialogs|serial dialog]], but only if `debug_mode` is on.
 
-- **Syntax:**
-	- `debug!(<serial dialog identifier: bareword>) <";"?>`
-		- Because quoted strings count as dialog messages, this identifier must be a bareword.
-	- `debug!(<serial dialog>) <";"?>`
-		- This may contain parameters and options (but must contain at least 1 message).
-		- No need to put curly braces.
-		- You cannot give this serial dialog a name.
+```
+debug!(<bareword>) <";"?>
+// OR
+debug!(serial_dialog <string>) <";"?>
+// OR
+debug!(<serial dialog>) <";"?>
+```
+
+- The first pattern contains a single bareword. This will be the name of the serial dialog.
+- The second pattern is for serial dialog names with special characters, i.e. names that must be "escaped" with quotes. The [[identifiers#Sigils|sigil]] `serial_dialog` allows this usage.
+- The third pattern contains an actual serial dialog.
+	- This may contain parameters and options (but must contain at least 1 message).
+	- No need to put curly braces.
+	- You cannot give this serial dialog a name.
 
 ```mgs{3,4,5,9}
 // example
-script debug_long {
+_ {
 	if (debug_mode) {
 		show serial_dialog { "This is a debug message." };
 	}
@@ -72,13 +86,17 @@ Copy Script copies all items from the named [[scripts|script]] and pastes them i
 
 Copying is done recursively. Infinite recursion is detected and aborted.
 
-**Syntax**: `<script name: string>() <";"?>`
-
 The semicolon at the end can only be used in bare Copy Scripts, i.e. when it's used on its own as a single action item. When Copy Script is used as an [[expressions_and_operators#Int Operands|int operand]] (as part of an [[expressions_and_operators#Int Expressions|int expression]]), it must not have a semicolon, e.g. `var_name = tally() + 100;`
 
-**Bytecode action**: `COPY_SCRIPT`
+```
+<script name: string>() <";"?>
+```
 
-Copy Script was originally handled on the JSON encoder side. It's still possible to use `COPY_SCRIPT` as a bytecode action for legacy reasons, but it is entirely handled by the MGS side of things now.
+Bytecode action:
+
+- Formerly `COPY_SCRIPT`
+- No longer uses a bytecode action; now these are baked before the JSON step.
+- It's still possible to use `COPY_SCRIPT` as a bytecode action inside a [[json_literals|JSON literal]] for legacy reasons, but it is entirely handled by the MGS side of things now.
 
 ### Fn Call Vs Copy Script
 
