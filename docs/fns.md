@@ -18,7 +18,9 @@ You may use fn args inside a deeper fn call, however the parent fn args are not 
 
 Defined at [root level of the file](syntax_scopes#syntax-contexts).
 
-**Syntax**: `fn <fn name: string> ( <fn args> ) { <script body items> }`
+```
+fn <fn name: string> ( <fn args> ) { <script body items> }
+```
 
 - **Fn args**: comma-separated [constants](primitive_types#constant).
 - **Script body items**: see [Script Body Items](scripts#script-body-items).
@@ -32,7 +34,9 @@ fn add_two ($n) { return $n + 2; }
 
 Fns can be defined in place (anonymously) using this syntax inside the [array methods](arrays#array-methods) `.map()` and `.for_each()`.
 
-**Syntax**: `( <fn args> ) { <script body items> }`
+```
+( <fn args> ) { <script body items> }
+```
 
 - **Fn args**: comma-separated [constants](primitive_types#constant).
 - **Script body items**: see [Script Body Items](scripts#script-body-items).
@@ -48,7 +52,9 @@ _ {
 
 Used inside a [script body](scripts#script-body-items).
 
-**Syntax**: `<fn name: string>(<passed args>) <";"?>`
+```
+<fn name: string>(<passed args>) <";"?>
+```
 
 - **Passed args**: One or more comma-separated int expressions.
 	- **Int expression**: see [Int Expression](expressions_and_operators#expressions)

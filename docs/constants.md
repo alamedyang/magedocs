@@ -10,10 +10,14 @@
 
 Define at [root level of file](syntax_scopes#syntax-contexts).
 
-- **Syntax**: `<constant> = <value: any primitive>;`
-	- **Value** must be a number, string, or boolean (see [Primitive Types](primitive_types)), and only a single token.
+```
+<constant> = <value: any primitive>;
+```
+
+- **Value** must be a number, string, or boolean (see [Primitive Types](primitive_types)), and only a single token.
 
 ```mgs
+// examples:
 $trombones = 76;
 $steamed_hams = "hamburgers";
 $quick_debug = true;

@@ -12,15 +12,17 @@ There is no means for a script to jump to another script and then pick back up w
 
 Defined at [[syntax_scopes#Syntax Contexts|root level of the file]].
 
-**Syntax**: `<"script"?> <name: string> { <script body items> }`
-
-For examples in this documentation, sometimes `_` is used for a script name, with or without the `script` [[identifiers#Sigils|sigil]]. The `_` is just meant to be an unobtrusive name and has no language significance.
+```
+<"script"?> <name: string> { <script body items> }
+```
 
 ## Script Literal
 
 Scripts can be defined-in-place with script literals in most (though not all) places a script reference is needed.
 
-**Syntax**: `<script name: string?> { <script body item*> }`
+```
+<script name: string?> { <script body item*> }
+```
 
 If the script does not need to be referenced by anything else, it's best to omit the name. This improves readability.
 

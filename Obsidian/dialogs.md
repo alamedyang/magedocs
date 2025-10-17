@@ -12,20 +12,17 @@ Dialogs do nothing on their own. To show them, you must use the [[actions#Show D
 
 Defined at [[syntax_scopes#Syntax Contexts|root level of the file]].
 
-**Syntax**: `dialog <dialog name: string> { <dialog*> }`
-
-```mgs
-// example
-dialog hello {
-  entity Bob "Hello?"
-}
+```
+dialog <dialog name: string> { <dialog*> }
 ```
 
 ## Dialog Literal
 
 Dialogs can be defined at the point of use with dialog literals. If a name is not provided, one will be generated based on the file name and line number.
 
-**Syntax**: `<dialog name: string?> { <dialog*> }`
+```
+<dialog name: string?> { <dialog*> }
+```
 
 The dialog name is optional. If you want to refer to the dialog additional places, you should give it a name. However, as this is rarely necessary, best practice is to omit it.
 
@@ -97,8 +94,6 @@ dialog sampleDialog {
 ```
 
 A dialog parameter is a dialog property and value pair. Multiple dialog parameters can occur back-to-back in a single dialog block or a [[dialog_and_serial_dialog_settings|dialog settings block]].
-
-**Syntax**:
 
 - `entity <string>`
 	- The "given name" of the entity (i.e. the entity's name on the Tiled map). (Wrapping this name in `%`s is unnecessary and will in fact confuse the [encoder](encoder).)
@@ -174,9 +169,11 @@ dialog sampleDialog {
 }
 ```
 
-- **Syntax**:
-	- `> <label: dialog string> = <script literal>`
-	- `> <label: dialog string> = <script: string[]>`
+```
+> <label: dialog string> = <script literal>
+// OR
+> <label: dialog string> = <script: string[]>
+```
 
 - You may have up to 4 dialog options per dialog.
 - Dialog options are displayed underneath the final dialog message. Therefore, final dialog message (before any options) should consist of a single line of no more than 42 characters.

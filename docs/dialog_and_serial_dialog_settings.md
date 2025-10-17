@@ -21,7 +21,9 @@ Using the painter's algorithm:
 
 ## Dialog Settings
 
-**Syntax**: `add dialog settings { <dialog settings target*> }`
+```
+add dialog settings { <dialog settings target*> }
+```
 
 - **Dialog settings target**:
 	- `default { <dialog parameter*> }`
@@ -60,7 +62,9 @@ dialog test {
 
 ## Serial Dialog Settings
 
-**Syntax:** `add serial_dialog settings { <serial dialog parameters> }`
+```
+add serial_dialog settings { <serial dialog parameters> }
+```
 
 - **Serial dialog parameters**: A property and a value pair.
 	- They are never comma-separated.

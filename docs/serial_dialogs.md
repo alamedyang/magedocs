@@ -8,15 +8,19 @@ Serial dialogs contain text meant to be shown via the [serial console terminal](
 
 Defined at [root level of the file](syntax_scopes#syntax-contexts).
 
-**Syntax**: `serial dialog <serial dialog name: string> { <serial dialog> }`
+```
+serial_dialog <serial dialog name: string> { <serial dialog> }
+```
 
 ## Serial Dialog Literal
 
 Serial dialogs can be defined at the point of use with serial dialog literals. If a name is not provided, one will be generated based on the file name and line number.
 
-- **Syntax**:
-	- `{ <serial dialog> }` 
-	- `<name: string> { <serial dialog> }`
+```
+{ <serial dialog> }
+// OR
+<name: string> { <serial dialog> }
+```
 
 NOTE: Unlike [dialogs](dialogs), serial dialog blocks cannot have more than one serial dialog.
 
@@ -40,8 +44,6 @@ serial_dialog sample {
 ```
 
 Serial dialog parameters are a serial dialog property and value pair. Multiple serial dialog parameters can occur back-to-back in a single serial dialog block or a [serial dialog settings block](dialog_and_serial_dialog_settings).
-
-**Syntax**:
 
 - `wrap <number>`
 	- The number of characters or columns to wrap the serial dialog messages.
@@ -71,10 +73,12 @@ serial_dialog sample {
 - A single serial dialog can only use one of the two types of option (multiple choice or free response). The MGS parser will interpret all options within the block using the type of the first option if the types are mixed.
 - Unlike [dialog options](dialogs#dialog-option), the option quantity for serial dialogs is unlimited.
 
-**Syntax**:
+```
+<cursor style> <label: serial dialog string> = <script: string[]>
+// OR
+<cursor style> <label: serial dialog string> = <script literal>
+```
 
-- `<cursor style> <label: serial dialog string> = <script: string[]>`
-- `<cursor style> <label: serial dialog string> = <script literal>`
 - **Cursor style**: one of the following:
 	- `#`: [Multiple choice](#multiple-choice).
 	- `_`: [Free response](#free-response).

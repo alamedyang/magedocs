@@ -28,12 +28,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "actions.md",
+                "file": "jargon_and_syntax.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "actions"
+              "title": "jargon_and_syntax"
             }
           }
         ],
@@ -64,12 +64,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "expressions_and_operators.md",
+                "file": "serial_dialogs.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "expressions_and_operators"
+              "title": "serial_dialogs"
             }
           }
         ],
@@ -223,19 +223,25 @@
   },
   "active": "d4451be8c75b34be",
   "lastOpenFiles": [
-    "macros.md",
+    "json_literals.md",
+    "fns.md",
+    "scripts.md",
+    "jargon_and_syntax.md",
     "actions.md",
+    "serial_dialogs.md",
+    "dialogs.md",
+    "constants.md",
+    "script_control_flow.md",
+    "dialog_and_serial_dialog_settings.md",
+    "dialog_and_serial_dialog_strings.md",
+    "expressions_and_operators.md",
+    "macros.md",
     "index.md",
     "arrays.md",
-    "expressions_and_operators.md",
     "commands.md",
     "entities.md",
     "TODOS.md",
-    "scripts.md",
-    "fns.md",
-    "json_literals.md",
     "debug_tools.md",
-    "dialog_and_serial_dialog_strings.md",
     "state.md",
     "maps.md",
     "hiding_an_entity.md",
@@ -243,12 +249,6 @@
     "cutscenes.md",
     "actors.md",
     "handlers.md",
-    "entity_types.md",
-    "general_process.md",
-    "encoder.md",
-    "animations.md",
-    "updating_the_hardware.md",
-    "mge_vm.md",
     "media/colors-textmate.png",
     "media/colors-vscode.png",
     "media/colors-sublime.png",
