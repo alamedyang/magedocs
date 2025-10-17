@@ -758,7 +758,7 @@
           "name": "variable.language.mgs"
         },
         {
-          "match": "(?<=warp_state|type|name|path)\\s*(=|==|!=)\\s*(\"[^\"]*\"|[_a-zA-Z][_a-zA-Z0-9]*\\b)",
+          "match": "(?<=\\bwarp_state|\\btype|\\bname|\\bpath)\\s*(=|==|!=)\\s*(\"[^\"]*\"|[_a-zA-Z][_a-zA-Z0-9]*\\b)",
           "captures": {
             "1": { "name": "keyword.operator.assignment.mgs" },
             "2": { "name": "string.quoted.mgs" }
@@ -775,11 +775,11 @@
         { "include": "#constant_literal" },
         { "include": "#number_literal" },
         {
-          "match": "(?<=goto|script)\\s+(\"[^\"]*\"|[_a-zA-Z][_a-zA-Z0-9]*\\b)",
+          "match": "(?<=\\bgoto|\\bscript)\\s+(\"[^\"]*\"|[_a-zA-Z][_a-zA-Z0-9]*\\b)",
           "name": "entity.name.function.mgs"
         },
         {
-          "match": "(?<=label)\\s+(\"[^\"]*\"|[_a-zA-Z][_a-zA-Z0-9]*\\b)",
+          "match": "(?<=\\blabel)\\s+(\"[^\"]*\"|[_a-zA-Z][_a-zA-Z0-9]*\\b)",
           "name": "entity.name.label.mgs"
         },
         { "match": "[_a-zA-Z][_a-zA-Z0-9]*", "name": "variable.parameter.mgs" },

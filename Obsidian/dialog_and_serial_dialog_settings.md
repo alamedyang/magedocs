@@ -33,7 +33,7 @@ add dialog settings { <dialog settings target*> }
 	- `label <label name: bareword> { <dialog parameter*> }`
 		- Defines a dialog identifier shortcut or alias to a specific set of settings.
 		- The label *must* be a [[primitive_types#Bareword|bareword]]; cannot be a  [[primitive_types#Quoted String|quoted string]].
-		- Dialog labels only exist in MGS (not the game engine itself), so they do not apply to other entity references (such as the target of an action).
+		- Dialog labels only exist in MGS (not the game engine itself), so they do not apply to other entity references (such as the target of an [[actions|action]]). At those times, use an [[identifiers#Entity Identifier|entity identifier keyword]] instead.
 - **Dialog parameters**: A property and a value pair.
 	- They are never comma-separated.
 	- See: [[dialogs#Dialog Parameter|Dialog Parameter]]
@@ -42,11 +42,11 @@ add dialog settings { <dialog settings target*> }
 
 ```mgs{2}
 add dialog settings {
-  label PLAYER {}
+  label PLAYER { entity "%PLAYER%" }
 }
 ```
 
-This is a common use case for dialog settings, after which you can use `PLAYER` instead of `entity "%PLAYER%"` as a [[dialogs#Dialog Identifier|dialog identifier]] for [[dialogs|dialogs]].
+This is a common use case for dialog settings, after which you can use the label `PLAYER` instead of `entity "%PLAYER%"` as a [[dialogs#Dialog Identifier|dialog identifier]] for [[dialogs|dialogs]].
 
 ```mgs{3,8}
 // with label
@@ -63,9 +63,9 @@ dialog test {
 ## Serial Dialog Settings
 
 ```
-add serial_dialog settings { <serial dialog parameters> }
+add serial_dialog settings { <serial dialog parameter*> }
 ```
 
-- **Serial dialog parameters**: A property and a value pair.
+- **Serial dialog parameter**: A property and a value pair.
 	- They are never comma-separated.
 	- See: [[serial_dialogs#Serial Dialog Parameter|Serial Dialog Parameter]]

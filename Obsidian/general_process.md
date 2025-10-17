@@ -79,7 +79,3 @@ Test the game in one of three ways:
 	2. Insert the microSD card into hardware.
 	3. Flash the game.
 	4. Run the game.
-
----
-
-[[index|Quick Links]]

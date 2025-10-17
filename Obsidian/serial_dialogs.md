@@ -114,7 +114,7 @@ Hey, can anyone hear me? Hello?
 - If they did not type something valid, the next action (underneath the show or concat serial dialog action) will execute. This is the only type of dialog option that will fall through.
 - The user's response is case insensitive. (The label `"CAT"` will match the user input of `cat`.)
 
-```mgs{6-7}
+```mgs{5-6}
 serial_dialog sphinx {
   "When you arrive at the Sphinx,"
   "it speaks in a slow, monotone voice:"

@@ -45,6 +45,6 @@ In the example above, `$total_rounds` has been extracted to a constant so that t
 
 ## Vs Integer Variable
 
-- Constants are [File scope](syntax_scopes#file-scope), but [Integer variables](state#integer-variables) are [project scope](syntax_scopes#project-scope).
+- Constants are [File scope](syntax_scopes#file-scope), but [integer variables](state#integer-variables) are [project scope](syntax_scopes#project-scope).
 - Constants are not meant to maintain their identity in the final game output.
 	- If you find you want to reassign the value of a constant, then it should actually be part of MGE game logic. Make it a game variable instead.

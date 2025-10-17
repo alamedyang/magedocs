@@ -40,13 +40,6 @@ MGS files and their data structures interact with each other according to their 
 - These cannot be referenced before their definition, and cannot be redefined.
 - To use these definitions in multiple files you must use the [Include Macro](macros#include), which will copy the whole (parsed) contents of the target file into place.
 
-## Script Scope
-
-- Anything limited to a single [script](scripts) body, or used in reference to another item in the same script body.
-	- [Label definitions](script_control_flow#label-definitions)
-	- [Control logic](script_control_flow) (if/else, while, etc.)
-- [Copy Script](macros#copy-script) and [fn calls](fns#fn-call) can bring other script-scope items into the current script scope.
-
 ## Session Scope
 
 - Only one thing: [arrays](arrays).
@@ -64,7 +57,3 @@ Some units of grammar are only valid in certain contexts (i.e. inside certain bl
 - [Dialog](dialogs#dialog) (or dialog body)
 - [Serial dialog](serial_dialogs#serial-dialog) (or serial dialog body)
 - [Dialog / serial dialog settings](dialog_and_serial_dialog_settings)
-
----
-
-[Quick Links](index)

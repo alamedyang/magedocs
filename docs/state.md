@@ -2,9 +2,7 @@
 
 See also: [Entity Properties](entities#entity-properties)
 
-There are only a few variables available for [scripts](scripts) to use.
-
-All variables are equally accessible to all scripts at all times because they are [project scope](syntax_scopes).
+There are only a few variables available for [scripts](scripts) to use. All variables are equally accessible to all scripts at all times because they are [project scope](syntax_scopes).
 
 No need to initialize or define variables before using them; they are all pre-allocated in engine and always available.
 

@@ -26,7 +26,6 @@ Content creation guide for the "Mage Game Engine" (MGE) using MageGameScript (MG
 	* [[syntax_scopes#Project Scope|Project Scope]]
 	* [[syntax_scopes#Map Scope|Map Scope]]
 	* [[syntax_scopes#File Scope|File Scope]]
-	* [[syntax_scopes#Script Scope|Script Scope]]
 	* [[syntax_scopes#Session Scope|Session Scope]]
 	* [[syntax_scopes#Syntax Contexts|Syntax Contexts]]
 
