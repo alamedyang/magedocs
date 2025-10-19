@@ -34,6 +34,8 @@ The values of integer variables and the current names of any entity can be inser
 
 The wrapping character (`$` or `%`) will print if used on its own in any given line, but pairs of them will trigger this value replacement behavior. To force them to print literally, escape them with a backslash (e.g. `\$`).
 
+The current value will always be printed, not the value at the time the dialog or serial dialog was "defined," since dialogs and serial dialogs [always exist](syntax_scopes#project-scope).
+
 ### Print Variable Value
 
 Enclose the name of the [variable](state#integer-variables) in dollar signs: `$appleCount$`. When text is wrapped, these inserts always count as 5 characters.

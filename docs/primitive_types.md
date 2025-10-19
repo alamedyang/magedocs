@@ -5,8 +5,9 @@ If a value (e.g. an arg or param) is said to be limited to a primitive value, it
 No type coercion:
 
 - Ints and strings cannot be coerced to bools. (No checking the truthiness of `0`!)
-- Bools and ints cannot be printed as strings. (No `toString()`!)
-- Strings can only be set or checked, and cannot be parsed in any way. (No `parseInt()`!)
+- Bools and ints cannot be converted into strings. (No `.toString()`!)
+	- Exception: the current value of an int may be [printed](dialog_and_serial_dialog_strings#print-variable-value) as part of a [dialog or serial dialog string](dialog_and_serial_dialog_strings).
+- Strings cannot be converted into other primitive types. (No `parseInt()`!)
 
 ## String
 
@@ -66,7 +67,7 @@ Regex: `/"(?:[^"\]|\.)*"/`
 
 ## Constant
 
-Regex: `\$[_a-zA-Z0-9]+/`
+Regex: `/\$[_a-zA-Z0-9]+/`
 
 - A single `$` followed by any number of alphanumeric characters or underscores (`_`).
 - This must be a single token, i.e. `$const_name`, not `$ const_name`.

@@ -22,7 +22,7 @@ In addition, there is currently no way to control animations with scripts unless
 If you place a static (unanimated) tile from a [[tilesets|tileset]] onto an object layer in a Tiled [[maps|map]], it will become a **tile entity**.
 
 ::: tip NOTE
-If the tile's `Class` property is defined within `entity_types.json`, it will instead become a [[#Character Entity|character entity]].
+If the tile's `Class` property is defined within [[what_youll_need#`entity_types.json`|`entity_types.json`]], it will instead become a [[#Character Entity|character entity]].
 :::
 
 - **`primary_id_type`**: `0` (`tileset`)
@@ -48,7 +48,7 @@ You cannot click on transparent pixels in Tiled. To select a null entity, you'll
 If you place a animated tile from a [[tilesets|tileset]] onto an object layer in a Tiled [[maps|map]], it will become an **animation entity**.
 
 ::: tip NOTE
-If the tile's `Class` property is defined within `entity_types.json`, it will instead become a [[#Character Entity|character entity]].
+If the tile's `Class` property is defined within [[what_youll_need#`entity_types.json`|`entity_types.json`]], it will instead become a [[#Character Entity|character entity]].
 :::
 
 - **`PrimaryIdType`**: `1` (`animation`)
@@ -71,7 +71,7 @@ If you place a tile onto an object layer, and the `Class` (formerly `Type`) prop
 
 You need not manipulate `PrimaryId` to alter the appearance of a character entity. Instead, you can use [[actions|actions]] that change the `entity_type` value to one of the ones defined within `entity_types.json`.
 
-What's special about character entities is that they can have a number of [[animations|animations]](animations) [[entity_management_system|assigned]] to them and they will switch animations automatically depending on context (walking or not, facing north/south/east/west, etc.), as well as having other attributes, like a default portrait image. **NPCs will therefore likely be this type.**
+What's special about character entities is that they can have a number of [[animations|animations]] [[entity_management_system|assigned]] to them and they will switch animations automatically depending on context (walking or not, facing north/south/east/west, etc.), as well as having other attributes, like a default portrait image. **NPCs will therefore likely be this type.**
 
 In the MGE, character entities will default to their idle animation regardless of the tile that was placed Tiled. (I.e. if you use a "walking animation" tile for the entity on the Tiled map, the entity will appear to be walking in Tiled, but not within the MGE.)
 

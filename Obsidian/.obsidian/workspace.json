@@ -6,7 +6,6 @@
       {
         "id": "7ac8b54bb7eeb06d",
         "type": "tabs",
-        "dimension": 44.2019099590723,
         "children": [
           {
             "id": "df823e4d8dfba883",
@@ -28,52 +27,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "jargon_and_syntax.md",
+                "file": "primitive_types.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "jargon_and_syntax"
-            }
-          }
-        ],
-        "currentTab": 1
-      },
-      {
-        "id": "ae7af355ca2928e9",
-        "type": "tabs",
-        "dimension": 55.7980900409277,
-        "children": [
-          {
-            "id": "dbfdb026e43ffcb8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "actions.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "actions"
+              "title": "primitive_types"
             }
           },
           {
-            "id": "d4451be8c75b34be",
+            "id": "8df0851ace8f226b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "serial_dialogs.md",
+                "file": "dialog_and_serial_dialog_strings.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "serial_dialogs"
+              "title": "dialog_and_serial_dialog_strings"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -221,34 +198,34 @@
       "bases:Create new base": false
     }
   },
-  "active": "d4451be8c75b34be",
+  "active": "8df0851ace8f226b",
   "lastOpenFiles": [
+    "primitive_types.md",
+    "dialog_and_serial_dialog_strings.md",
+    "entities.md",
+    "entity_types.md",
+    "entity_management_system.md",
+    "TODOS.md",
+    "jargon_and_syntax.md",
+    "actions.md",
+    "serial_dialogs.md",
     "dialog_and_serial_dialog_settings.md",
     "constants.md",
     "state.md",
     "syntax_scopes.md",
     "general_process.md",
-    "actions.md",
     "index.md",
     "introduction_to_mgs.md",
-    "serial_dialogs.md",
     "json_literals.md",
     "fns.md",
     "scripts.md",
-    "jargon_and_syntax.md",
     "dialogs.md",
     "script_control_flow.md",
-    "dialog_and_serial_dialog_strings.md",
     "expressions_and_operators.md",
     "macros.md",
     "arrays.md",
     "commands.md",
-    "entities.md",
-    "TODOS.md",
     "debug_tools.md",
-    "maps.md",
-    "hiding_an_entity.md",
-    "doors.md",
     "media/colors-textmate.png",
     "media/colors-vscode.png",
     "media/colors-sublime.png",

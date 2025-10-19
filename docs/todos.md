@@ -5,9 +5,9 @@ TODOs for the language and/or documentation
 - Are recursive fn calls detected? NO THEY ARE NOT
 - Can fn calls use bool expressions as args? Should they?
 	- Whoops, turns out they only take int expressions??? That isn't right (or is it??)
-	- Strings pass through correctly accidentally
-	- bools can't seem to come through
-	- Would need to first enable consts to take more things than single token primitives. Is this okay? Maybe?
+	- Strings pass through correctly purely accidentally
+	- Bools can't seem to come through
+	- Would need to first enable consts to take more things than single token primitives. Is this okay? Maybe? Why was it limited to a single token again?
 - If dialogSkins are the only things left in `scenario.json` should it be moved to its own file, and `scenario.json` retired?
 - Change `RNG!()` to `roll!()` (?) (helps keep it straight from `rand!()`
 - Change `include` back to `include!()` so it matches the other "macros"
@@ -27,3 +27,5 @@ TODOs for the language and/or documentation
 - Capitalization of macros? Copy Script, Include Macro, etc. Upper or lower or what?
 - Put command and array actions into actions?
 - Add how to use the MEM buttons
+
+Fancy styles reference: https://vitepress.dev/guide/markdown#errors-and-warnings-in-code-blocks

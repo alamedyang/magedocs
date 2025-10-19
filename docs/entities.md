@@ -31,7 +31,7 @@ An entity's current name may be printed in a [dialog or serial dialog string](di
 
 ### Type
 
-For [character entities](entity_types#character-entity), this is the `type`, or the name of the character entity as defined in [`entity_types.json`](what_youll_need#entity_types.json). This should be automatically assigned by Tiled when you place a character entity on the [map](maps). (All tiles on the entity tileset must first have their Type property set to the correct `entity_type` name for this to work.)
+For [character entities](entity_types#character-entity), this is the `type`, or the name of the character entity as defined in [`entity_types.json`](what_youll_need#entity_types.json). This should be automatically assigned by Tiled when you place a character entity on the [map](maps). (All tiles on the entity tileset must first have their `Class` property set to the correct `entity_type` name for this to work.)
 
 - **Tiled**: `Class`, formerly `Type` (string)
 - **MGS**: `type` (string)
