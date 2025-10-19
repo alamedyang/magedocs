@@ -141,9 +141,9 @@ These only modify existing arrays or work on the data inside them. These can onl
 (For **int expression**, see [Int Expression](expressions_and_operators#int-expressions).)
 
 - **Push**: Adds the given value to the end of the array.
-	- `.push(<int expression[]>)`
+	- `.push(<int expression>)`
 - **Push Left**: Adds the given value to the beginning of the array.
-	- `.push_left(<int expression[]>)`
+	- `.push_left(<int expression>)`
 - **For Each**: Performs the given fn on each of the items.
 	- `.for_each(<fn identifier: string>)`: Uses the named fn.
 	- `.for_each(<fn literal>)`: Uses the provided fn.
