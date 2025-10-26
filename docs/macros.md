@@ -29,12 +29,12 @@ rand!( <script body items> ) <";"?>
 This macro creates a random number and put it into a temporary variable. Can use it as an [int operand](expressions_and_operators#int-operands) in an [int expression](expressions_and_operators#int-expressions). To store the random value longer term, use it in the RHS of an [assignment statement](actions#assign-int-value).
 
 ```
-RNG!(<number>)
+RNG!(<max>)
 // OR
 RNG!(<min>, <max>)
 ```
 
-- **Min**: `<number>`
+- **Min**:
 	- If no `min` is given, RNG will roll between 0 and `max`.
 - **Max**:
 	- `=<number>`: inclusive
@@ -42,7 +42,7 @@ RNG!(<min>, <max>)
 
 ```mgs
 // example
-script rng_exlusive_inclusive {
+_ {
 	up_to_four = RNG!(5);  // rolls between 0-4
 	up_to_five = RNG!(=5); // rolls between 0-5
 }

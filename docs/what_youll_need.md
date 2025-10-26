@@ -91,11 +91,13 @@ Folders:
 - `tilesets/`
 	- Tiled [tilesets](tilesets) (JSON) and [spritesheets](tilesets#spritesheets) (PNG/GIF)
 	- For non-entity assets, such as graphics for maps, dialog borders, etc.
-- `scenario.json`
-	- See [`scenario.json`](#scenario.json)
-	- See [`entity_types.json`](#entity_types.json)
-	- See [`maps.json`](#maps.json)
-	- See [`portraits.json`](#portraits.json)
+
+Files:
+
+- See [`scenario.json`](#scenario.json)
+- See [`entity_types.json`](#entity_types.json)
+- See [`maps.json`](#maps.json)
+- See [`portraits.json`](#portraits.json)
 
 #### `scenario.json`
 

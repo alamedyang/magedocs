@@ -27,12 +27,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "what_youll_need.md",
+                "file": "index.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "what_youll_need"
+              "title": "index"
+            }
+          },
+          {
+            "id": "d58ebcfaf24430d4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "constants.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "constants"
             }
           },
           {
@@ -50,7 +64,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -82,7 +96,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "intellij",
+                "query": "WIP features",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -103,8 +117,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -199,17 +212,21 @@
       "bases:Create new base": false
     }
   },
-  "active": "4066b81bca422933",
+  "active": "a0d1f879763de3c1",
   "lastOpenFiles": [
-    "arrays.md",
+    "macros.md",
     "primitive_types.md",
+    "jargon_and_syntax.md",
+    "what_youll_need.md",
+    "index.md",
+    "introduction_to_mgs.md",
+    "arrays.md",
     "action_param_expansions.md",
     "dialog_and_serial_dialog_strings.md",
     "entities.md",
     "entity_types.md",
     "entity_management_system.md",
     "TODOS.md",
-    "jargon_and_syntax.md",
     "actions.md",
     "serial_dialogs.md",
     "dialog_and_serial_dialog_settings.md",
@@ -217,16 +234,12 @@
     "state.md",
     "syntax_scopes.md",
     "general_process.md",
-    "index.md",
-    "introduction_to_mgs.md",
     "json_literals.md",
     "fns.md",
     "scripts.md",
     "dialogs.md",
     "script_control_flow.md",
     "expressions_and_operators.md",
-    "macros.md",
-    "commands.md",
     "media/colors-textmate.png",
     "media/colors-vscode.png",
     "media/colors-sublime.png",

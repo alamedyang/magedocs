@@ -18,7 +18,7 @@ Content creation guide for the "Mage Game Engine" (MGE) using MageGameScript (MG
 	* [[what_youll_need#Syntax Colors|Syntax Colors]]
 3. [[general_process|General Process]]
 4. [[jargon_and_syntax|Documentation Jargon and Syntax]]
-	* [[jargon_and_syntax#General|General]]
+	* [[jargon_and_syntax#General Language Features|General]]
 	* [[jargon_and_syntax#Style Guide|Style Guide]]
 	* [[jargon_and_syntax#Jargon|Jargon]]
 	* [[jargon_and_syntax#Dictionary Syntax|Dictionary Syntax]]

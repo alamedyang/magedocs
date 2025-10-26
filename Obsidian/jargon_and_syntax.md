@@ -1,17 +1,17 @@
 # Documentation Jargon and Syntax
 
-## General
+## General Language Features
 
 - White space agnostic.
 - Comments can be line level (`//` until end of line) or block level (`/*` until `*/`). These can occur anywhere.
 - Three types of bracket pairs are used:
-    - `()`: macro/fn args and condition statements
-    - `[]`: arrays, action param expansions
+    - `()`: [[macros|macro]]/[[fns|fn args]] and [[script_control_flow|condition]] statements
+    - `[]`: [[arrays]], [[action_param_expansions|action param expansions]]
     - `{}`: block bodies
-- Trailing commas are allowed in arrays, expansions, fn args, etc.
-    - They are _not_ allowed in JSON literals.
-- Actions and other phrases that don't end with a closing bracket (`]`, `)`, `}`) are instead ended with a semicolon (`;`). This helps the parser disambiguate incomplete phrases.
-- Dialog, serial dialog, and almost all script references can be defined in place, e.g.
+- Trailing commas are allowed in [[arrays|arrays]], [[action_param_expansions|expansions]], [[fns|fn args]], etc.
+    - They are _not_ allowed in [[json_literals|JSON literals]].
+- [[Actions]] and other phrases that don't end with a closing bracket (`]`, `)`, `}`) are instead ended with a semicolon (`;`). This helps the parser disambiguate incomplete phrases.
+- [[dialogs|Dialog]], [[serial_dialogs|serial dialog]], and almost all [[scripts|script]] references can be defined in place, e.g.
     - `show dialog dialogName;` (bare identifier)
     - `show dialog dialogName { PLAYER "Hi!" };` (identifier and definition)
     - `show dialog { PLAYER "Hi!" };` (anonymous definition)
@@ -19,8 +19,8 @@
 
 ## Style Guide
 
-- My personal naming convention for [[identifiers|identifiers]] is `camel_case` but there is no grammatical requirement for any particular paradigm.
-- Keeping identifiers as barewords helps legibility, so is currently preferred.
+- Our naming convention for [[identifiers|identifiers]] is `camel_case` but there is no grammatical requirement for any particular paradigm.
+- Keeping identifiers as barewords helps legibility, so is preferred.
     - Barewords may no longer contain hyphen (`-`), a word breaking character, because it made renaming identifiers en masse difficult. (No language server!) Most such cases were replaced with `_` but not all. All remaining cases are wrapped in double quotes at least, which will make it easier to rename them than before.
 - Using language keywords like `player` is preferred to the long form (`entity "%PLAYER%"`).
 
@@ -37,18 +37,18 @@ A unit of text the parser considers to be a single word or word-ish unit.
 ### Argument
 
 - Also called **arg**.
-- A value handed to a fn (much like a normal function arg), or the secondary word(s) after a command verb.
+- A value handed to a [[fns|fn]] (much like a normal function arg), or the secondary word(s) after a [[commands|command verb]].
 
 ### Parameter
 
 - Also called **param**.
 - A unit of data inside an [[actions|action phrase]].
 	- Some params may determine which action is chosen, but most are values given to the final bytecode instruction and will appear in the JSON intermediary step.
-- Also a property-value pair for dialog and serial dialog settings.
+- Also a property-value pair for [[dialog_and_serial_dialog_settings|dialog and serial dialog settings]].
 
 ### Block
 
-- Generally what falls inside a pair of matching curly braces (`{}`). Might also include the tokens right before, e.g. the script name in a script definition (`script_name {}`).
+- Generally what falls inside a pair of matching curly braces (`{}`). Might also include the tokens right before, e.g. the script name in a [[scripts#Script Definitions|script definition]] (`script_name {}`).
 
 ### Literal
 

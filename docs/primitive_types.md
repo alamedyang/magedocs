@@ -26,7 +26,7 @@ Regex: `/"(?:[^"\]|\.)*"/`
 
 - Any characters within a pair of double quotes.
 - May contain escaped quotes (`\"`).
-- [Dialog](dialogs) and [serial dialog](serial_dialogs) messages are quoted strings, but they have [Extra attributes](dialog_and_serial_dialog_strings) primarily having to do with styling and auto-wrapping.
+- [Dialog](dialogs) and [serial dialog](serial_dialogs) messages are quoted strings, but they have [extra attributes](dialog_and_serial_dialog_strings) primarily having to do with styling and auto-wrapping.
 
 ## Number
 
