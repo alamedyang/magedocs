@@ -297,18 +297,17 @@ Acquire the `tmbundle` file and put it into Sublime Text's `Packages` folder in 
 
 You will have to update the `mgs.tmBundle` manually by repeating the above process when a new version is released.
 
-### IntelliJ
-
-IntelliJ has a plugin, available by default, to install TextMate bundles. Acquire the `tmbundle` as explained above, and follow IntelliJ's documentation to install it.
+### IntelliJ /  Jet Brains IDEs
 
 The steps that worked (for us) in October 2025:
 
-1. Download the VSIX. (This is secretly a `.zip` file.)
-2. Extract the VSIX to gain access to the `extension` folder.
-3. In IntelliJ, go to Settings > Editor > TextMate Bundles.
-4. Click the `+` and select the `extension` folder. You may have to refresh the directory tree to see it.
-5. Hit `Apply`.
-6. In Settings > Editor > File Types > Recognized File Types,
+1. Enable the TextMate Bundle plugin in Settings > Plugins if it's not enabled already.
+2. Download the VSIX from the latest [releases](https://github.com/alamedyang/magegamescript-syntax-highlighting/releases). (This is secretly a `.zip` file.)
+3. Extract the VSIX to gain access to the `extension` folder.
+4. In IntelliJ, go to Settings > Editor > TextMate Bundles.
+5. Click the `+` and select the `extension` folder. You may have to refresh the directory tree to see it. (It will appear at the bottom of the list, not alphabetically.)
+6. Hit `Apply`.
+7. In Settings > Editor > File Types > Recognized File Types,
 	1. Add an entry for `MageGameScript`. Do not add a filename wildcard entry here.
 	2. Under the entry for `Text` (where you should see `*.log` and `*.txt`) add the wildcard entry `*.mgs`.
 
