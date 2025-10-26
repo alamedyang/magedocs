@@ -301,6 +301,17 @@ You will have to update the `mgs.tmBundle` manually by repeating the above proce
 
 IntelliJ has a plugin, available by default, to install TextMate bundles. Acquire the `tmbundle` as explained above, and follow IntelliJ's documentation to install it.
 
+The steps that worked (for us) in October 2025:
+
+1. Download the VSIX. (This is secretly a `.zip` file.)
+2. Extract the VSIX to gain access to the `extension` folder.
+3. In IntelliJ, go to Settings > Editor > TextMate Bundles.
+4. Click the `+` and select the `extension` folder. You may have to refresh the directory tree to see it.
+5. Hit `Apply`.
+6. In Settings > Editor > File Types > Recognized File Types,
+	1. Add an entry for `MageGameScript`. Do not add a filename wildcard entry here.
+	2. Under the entry for `Text` (where you should see `*.log` and `*.txt`) add the wildcard entry `*.mgs`.
+
 ### Other IDEs
 
 Many other IDEs will accept TextMate grammars, but you will have to find and follow your IDE's specific instructions.
