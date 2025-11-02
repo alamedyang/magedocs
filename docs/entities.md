@@ -33,6 +33,8 @@ An entity's current name may be printed in a [dialog or serial dialog string](di
 
 For [character entities](entity_types#character-entity), this is the `type`, or the name of the character entity as defined in [`entity_types.json`](what_youll_need#entity_types.json). This should be automatically assigned by Tiled when you place a character entity on the [map](maps). (All tiles on the entity tileset must first have their `Class` property set to the correct `entity_type` name for this to work.)
 
+When you are changing an entity's type with scripts, the engine will automatically adjust their coordinate according to the entity's size to make it appear that the entity hasn't moved. If manipulating an entity's coordinates on the same game tick as the entity's type, do so after the entity type is changed, or the engine will make the entity type coordinate adjustment based on the original coordinates, not the coordinates you chose.
+
 - **Tiled**: `Class`, formerly `Type` (string)
 - **MGS**: `type` (string)
 	- [Setable](actions#string-setables)
