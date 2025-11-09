@@ -54,7 +54,7 @@ Bytecode action: `ARRAY_DELETE`
 
 ### Print
 
-Prints the array(s)'s values to the serial console.
+Prints the array(s)'s values to the serial console, but only if the game is in [[debug_tools#Debug Mode|debug mode]].
 
 ```
 print array <string[]>;
@@ -170,3 +170,5 @@ Bytecode actions:
 
 - `ARRAY_WRITE_INTO_INDEX_FROM_VALUE`
 - `ARRAY_WRITE_INTO_INDEX_FROM_VARIABLE`
+- `ARRAY_WRITE_INTO_VARIABLE_INDEX_FROM_VALUE`
+- `ARRAY_WRITE_INTO_VARIABLE_INDEX_FROM_VARIABLE`
