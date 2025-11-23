@@ -42,8 +42,8 @@ Enclose the name of the [variable](state#integer-variables) in dollar signs: `$a
 
 ```mgs
 _ {
-  mutate appleCount = 10;
-  show serial dialog { "I have $appleCount$ apples for sale today!" }
+  appleCount = 10;
+  show serial dialog { "I have $appleCount$ apples for sale today!" };
 }
 ```
 
