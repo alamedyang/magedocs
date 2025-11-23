@@ -36,7 +36,7 @@ The following sequence:
 
 ```mgs{2}
 serial_dialog sample {
-  wrap messages to 60
+  wrap 60
   "Hey, can anyone hear me? Hello?"
   # "Yes, I can hear you." = sample_yes
   # "What did you say?" = sample_no
@@ -56,7 +56,7 @@ Serial dialog messages are text that is to be printed in the serial console.
 
 ```mgs{3}
 serial_dialog sample {
-  wrap messages to 60
+  wrap 60
   "Hey, can anyone hear me? Hello?"
   # "Yes, I can hear you." = sample_yes
   # "What did you say?" = sample_no
@@ -91,7 +91,7 @@ serial_dialog sample {
 
 ```mgs{4-5}
 serial_dialog sample {
-  wrap messages to 60
+  wrap 60
   "Hey, can anyone hear me? Hello?"
   # "Yes, I can hear you." = sample_yes
   # "What did you say?" = sample_no

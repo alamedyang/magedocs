@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "arrays.md",
+                "file": "serial_dialogs.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "arrays"
+              "title": "serial_dialogs"
             }
           },
           {
@@ -212,11 +212,11 @@
       "bases:Create new base": false
     }
   },
-  "active": "d58ebcfaf24430d4",
+  "active": "a0d1f879763de3c1",
   "lastOpenFiles": [
-    "actions.md",
-    "arrays.md",
     "constants.md",
+    "arrays.md",
+    "actions.md",
     "macros.md",
     "primitive_types.md",
     "jargon_and_syntax.md",

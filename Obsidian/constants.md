@@ -25,7 +25,7 @@ $quick_debug = true;
 
 ## Use
 
-You may use a constant in any (or almost any) [[actions|action phrase]] that expects a single [[jargon_and_syntax#Token|token]].
+Constants can replace [[jargon_and_syntax#Token|tokens]] (one token at a time) inside an [[actions|action phrase]] or [[expressions_and_operators|expression]].
 
 ```mgs
 //example
@@ -42,6 +42,8 @@ play_game {
 ```
 
 In the example above, `$total_rounds` has been extracted to a constant so that the "magic number" 7 isn't buried deep in game logic and can be adjusted easily. This is especially important if multiple pieces of logic need to consult the same value.
+
+Constants cannot replace keywords.
 
 ## Vs Integer Variable
 
