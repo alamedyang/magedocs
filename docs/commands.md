@@ -6,7 +6,7 @@
 
 ## Interpretation
 
-- Words are split by whitespace when interpreted. The number of spaces does not matter. `GO      NORTH` is equivalent to `GO NORTH`.
+- Words are split by whitespace when interpreted. The number of spaces does not matter.
 - Case is ignored. `go north` is equivalent to `GO NORTH` and `gO nOrTh`.
 - The second word in a command is ignored if it is "AT" or "TO". `LOOK AT BOB` is equivalent to `LOOK BOB`
 - Non-ASCII characters are not explicitly handled, so the MGE may interpret complex characters as one (or more) entirely different characters.
@@ -14,14 +14,14 @@
 ## Default Commands
 
 - These commands are built into the MGE.
-	- Importantly, none of these default command verbs are reserved, so you may register custom arguments, e.g. `GO DENNIS` for a map without a "DENNIS" exit. Just know that these custom registrations will not appear in the list of exits provided by LOOK.
-- A map's exits and script slots are defined in the map's [`maps.json`](what_youll_need#maps.json) definition.
+	- Importantly, none of these default command verbs are reserved, so you may register custom arguments, e.g. `GO DENNIS` for a map without a "DENNIS" exit. Just know that these custom registrations will not appear in the list of exits provided by `LOOK`.
+	- A map's exits and script slots are defined in the map's [`maps.json`](what_youll_need#maps.json) definition.
 - **`HELP`**: lists all commands that are currently registered, except for commands that have been hidden. Command aliases are not listed.
 - **`LOOK`**: Runs the current map's [`on_look`](scripts#on_look) script, then prints the names of exits associated with that map.
 - **`LOOK` + `<entity's current name>`**: Runs the script in that entity's `on_look` slot.
 	- The current name is the entity's name in RAM at the moment, not the entity's original name when the map was first loaded.
 - **`GO` + `<name of exit>`**: Runs the script associated with that exit name for that map.
-	- Abbreviations of the cardinal directions are built into GO, so `GO N` will try to run `GO NORTH`. This also applies to the diagonals, e.g. `GO SW` for `GO SOUTHWEST`.
+	- Abbreviations of the cardinal directions are built into `GO`, so `GO N` will try to run `GO NORTH`. This also applies to the diagonals, e.g. `GO SW` for `GO SOUTHWEST`.
 
 ## Command Actions
 

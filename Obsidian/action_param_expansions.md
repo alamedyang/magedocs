@@ -1,6 +1,6 @@
 # Action Param Expansions
 
-For [[actions|action phrases]], multiple [[primitive_types|params]] may be put into a single param "slot" by wrapping it in brackets. Such params are comma-separated.
+For [[actions|action phrases]], multiple [[primitive_types|params]] may be put into a single param "slot" by wrapping them in brackets. Such params are comma-separated.
 
 There are two applications for this: [[#Spreading|action param spreading]] and the [[#Rand Macro]].
 
@@ -40,7 +40,7 @@ script before {
 // becomes
 
 script after {
-__TEMP_0 = RNG(0, =1);
+	__TEMP_0 = RNG(0, =1);
 	if (__TEMP_0 == 0) {
 		entity Bob on_tick = null_script;
 		wait 10ms;

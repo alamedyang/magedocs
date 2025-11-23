@@ -16,7 +16,7 @@ TODOs for the language and/or documentation
 - What happens in debug mode if a script targets a debug entity?
 - Is `SET_HEX_EDITOR_STATE` working? I think it is?
 - Can all three of map's slots be paused or what?
-- Does LOOP_CAMERA_ALONG_GEOMETRY work?
+- Does `LOOP_CAMERA_ALONG_GEOMETRY` work?
 - Can you set serial connect message to a serial dialog literal?
 - do the `on_look` slots use the `command` slot? They have their own space on the entity struct, so....
 - Is it true that MGE animations need to be two frames?

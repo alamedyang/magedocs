@@ -49,7 +49,7 @@ The only built-in script in the Mage Game Engine is `null_script`. This script c
 
 An [[actions|action]] can set any normal script slot to `null_script` with any of the normal [[actions#Script Control|script-controlling actions]], and can change itself to `null_script` by using [[actions#Run Script]]  (`goto null_script;`).
 
-For patterns that allow script literals, you may instead put an empty script block `{}` instead.
+For patterns that allow script literals, you may put an empty script block `{}` instead.
 
 ## Script Slots
 

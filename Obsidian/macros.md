@@ -21,7 +21,7 @@ A means of quickly giving random parameters to [[scripts#Script Body Items|scrip
 See [[action_param_expansions#Rand Macro|Action Param Expansions > Rand Macro]].
 
 ```
-rand!( <script body items> ) <";"?>
+rand!( <script body item*> ) <";"?>
 ```
 
 ## RNG

@@ -26,9 +26,13 @@ See: [[actions#Assign a Value|Actions > Assign a Value]]
 
 You can set and get/check most operands with bytecode instructions. But some can only be checked, and some only set. This means some can only be on the LHS of an assignment operation, and some can only be in the expression on the RHS.
 
-All getables are checkable, but not all checkables are getable.
+### Getables vs Checkables
 
-Certain checkables can only be checked against literal values (not expressions). Ditto certain setables.
+Getables can have their values copied out, but checkables can only be used for conditional logic jumps. All getables are checkable, but not all checkables are getable.
+
+### Literals Only
+
+Certain checkables can only be checked against literal values, not expressions. Likewise, certain setables can only be set to literal values.
 
 ## Int Expressions
 
