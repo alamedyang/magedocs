@@ -2,12 +2,13 @@
 
 Arrays are built, modified, and destroyed inside [scripts](scripts) using [actions](actions).
 
-- Arrays may only contain 256 items.
-- Arrays can only contain positive ints (with a max value of 65536), the same as [integer variables](state#integer-variables).
+- Arrays may only contain 127 items.
+- Arrays can only contain positive ints (with a max value of 65535), the same as [integer variables](state#integer-variables).
     - Array values can be assigned using [int expressions](expressions_and_operators#int-expressions), e.g. `odd_numbers.push(9 + two);`.
-- Array literals (a list of items inside brackets, e.g. `[1, 2, 3]`) are only allowed when making a new array. Anywhere else, these are interpreted as action param expansions.
-- Arrays are initialized per game session, as opposed to per [map load](maps#map-loads) or per game save. Neither arrays nor their values are stored in the [save data](state#save-data).
-- Undefined array lookups (such as reading from an out-of-bounds index) will become 0.
+- Array literals (a list of items inside brackets, e.g. `[1, 2, 3]`) are only allowed when making a new array. Everywhere else, these are interpreted as [action param expansions](action_param_expansions).
+- Arrays are initialized per game session, as opposed to per [map load](maps#map-loads) or per game save.
+	- Neither arrays nor their values are stored in the [save data](state#save-data).
+- Undefined array lookups (such as reading from an out-of-bounds index) will become 65535.
 
 
 ```mgs
@@ -21,10 +22,11 @@ _ {
 
 ## Array Indices
 
-- Indices may be made from a bare variable name or an [int expression](expressions_and_operators#int-expressions).
-	- E.g. `next_value = array_name[i + 1];`
+- Any `i8` number.
 - Negative indices read values from the end.
 	- E.g. `penultimate_value = array_name[-2];`
+- Indices may be made from a bare variable name or an [int expression](expressions_and_operators#int-expressions).
+	- E.g. `next_value = array_name[i + 1];`
 
 ## Array Action Phrases
 
@@ -38,7 +40,7 @@ array <name: string> = <initial value>;
 
 - **Initial value**:
 	- 0+ comma-separated int expressions, wrapped in `[]`
-	- [Array method chain that returns an array](#returns-an-array) (as opposed returning a value or nothing).
+	- [Array method chain that returns an array](#returns-an-array) (as opposed to one returning a value or nothing).
 
 Bytecode action: `ARRAY_NEW`
 
@@ -116,9 +118,8 @@ Bytecode actions:
 
 Some of these methods modify existing arrays, but for those that don't, the [returned](script_control_flow#return) value is wasted if it's not [stored in a variable](actions#assign-int-value) or [used in an expression](expressions_and_operators#int-expressions).
 
-- **Value at index**: Returns the value of the array at that index.
-	- `[<int expression>]`
-	- **Int expression**: see [Int Expression](expressions_and_operators#int-expressions)
+- **Value at index**: Returns the value of the array at that [index](#array-indices).
+	- `[<array index>]`
 - **Length**: Returns the length of the array, i.e. the quantity of items it currently contains.
 	- `.length()`
 - **Pop**: Removes the final item in the array and returns it.
@@ -136,9 +137,7 @@ Bytecode actions:
 
 ### Returns Nothing
 
-These only modify existing arrays or work on the data inside them. These can only be used in a bare array expression as an action item and cannot be part of expressions of any kind.
-
-(For **int expression**, see [Int Expression](expressions_and_operators#int-expressions).)
+These only modify existing arrays or work on the data inside them. These can only be used in a bare array expression as an action item and cannot be part of an [int expression](expressions_and_operators#int-expressions).
 
 - **Push**: Adds the given value to the end of the array.
 	- `.push(<int expression>)`
@@ -161,9 +160,10 @@ Bytecode actions:
 Sets the value of an array at a given index to the value on the RHS of the [assignment operation](expressions_and_operators#assignment-operation).
 
 ```
-<array name: string>[<int expression>] = <int expression>;
+<array name: string>[<array index>] = <int expression>;
 ```
 
+- **Array index**: see [Array Indices](#array-indices)
 - **Int expression**: see [Int Expression](expressions_and_operators#int-expressions)
 
 Bytecode actions:

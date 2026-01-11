@@ -63,8 +63,7 @@
               "title": "action_param_expansions"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -212,8 +211,9 @@
       "bases:Create new base": false
     }
   },
-  "active": "d58ebcfaf24430d4",
+  "active": "df823e4d8dfba883",
   "lastOpenFiles": [
+    "TODOS.md",
     "syntax_scopes.md",
     "primitive_types.md",
     "actions.md",
@@ -239,7 +239,6 @@
     "entities.md",
     "entity_types.md",
     "entity_management_system.md",
-    "TODOS.md",
     "media/colors-textmate.png",
     "media/colors-vscode.png",
     "media/colors-sublime.png",
