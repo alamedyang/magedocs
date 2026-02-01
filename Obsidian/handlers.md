@@ -41,6 +41,7 @@ check_if_player_is_goat_low {
     };
     self on_tick = check_if_player_is_goat_high;
   }
+}
 ```
 
 These scripts are engineered so that the identity of the handler is not important. In the real game, the handler is Verthandi, but all we'd need to do to change that is to set Verthandi's `on_tick` script to something else and set a different entity's `on_tick` to `check_if_player_is_goat_high`.

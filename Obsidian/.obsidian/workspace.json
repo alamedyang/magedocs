@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "arrays.md",
+                "file": "dialogs.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "arrays"
+              "title": "dialogs"
             }
           },
           {
@@ -213,6 +213,9 @@
   },
   "active": "df823e4d8dfba883",
   "lastOpenFiles": [
+    "handlers.md",
+    "action_param_expansions.md",
+    "arrays.md",
     "TODOS.md",
     "syntax_scopes.md",
     "primitive_types.md",
@@ -221,16 +224,13 @@
     "animations.md",
     "constants.md",
     "cutscenes.md",
-    "handlers.md",
     "fns.md",
     "expressions_and_operators.md",
     "macros.md",
     "commands.md",
     "script_control_flow.md",
-    "action_param_expansions.md",
     "scripts.md",
     "serial_dialogs.md",
-    "arrays.md",
     "jargon_and_syntax.md",
     "what_youll_need.md",
     "index.md",

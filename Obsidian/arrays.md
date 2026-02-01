@@ -23,7 +23,7 @@ _ {
 ## Array Indices
 
 - Any `i8` number.
-- Negative indices read values from the end.
+- Negative indices read values from the end. If the given negative index is greater than the array size, it will wrap around.
 	- E.g. `penultimate_value = array_name[-2];`
 - Indices may be made from a bare variable name or an [[expressions_and_operators#Int Expressions|int expression]].
 	- E.g. `next_value = array_name[i + 1];`

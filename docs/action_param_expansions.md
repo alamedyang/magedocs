@@ -40,7 +40,7 @@ script before {
 // becomes
 
 script after {
-	__TEMP_0 = RNG(0, =1);
+	__TEMP_0 = RNG!(0, =1);
 	if (__TEMP_0 == 0) {
 		entity Bob on_tick = null_script;
 		wait 10ms;

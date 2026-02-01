@@ -39,7 +39,7 @@ script _ {
 
 A dialog consists of the following items in this order:
 
-1. [[#Dialog Identifier|Dialog identifier]]: 1+
+1. [[#Dialog Identifier|Dialog identifier]]: 1
 2. [[#Dialog Parameter|Dialog parameter]]: 0+
 3. [[#Dialog Message|Dialog messages]]: 1+
 4. [[#Dialog Option|Dialog option]]: 0-4
