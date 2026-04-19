@@ -64,7 +64,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -212,7 +212,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "4733baf0c89737be",
+  "active": "d58ebcfaf24430d4",
   "lastOpenFiles": [
     "dialogs.md",
     "scripts.md",
