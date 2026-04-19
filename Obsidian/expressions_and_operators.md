@@ -278,7 +278,7 @@ These aren't "getables" because their values cannot be stored.
 
 **IMPORTANT**: Strings do not exist (except by reference) in the final game binary!
 
-- There are no string operations apart from [[actions#Assign String Value||assignment]] (e.g. `player name = "Bob"`) and as part of [[#Bool Comparison|boolean comparisons]] (e.g. `player name != "Bob"`).
+- There are no string operations apart from [[actions#Assign String Value|assignment]] (e.g. `player name = "Bob"`) and as part of [[#Bool Comparison|boolean comparisons]] (e.g. `player name != "Bob"`).
 - No string concatenation or slicing
 - String references can only be compared to string literals, not a second string reference (e.g. `player name == self name` is invalid)
 

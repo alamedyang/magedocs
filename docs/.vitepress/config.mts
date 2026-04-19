@@ -37,7 +37,7 @@ export default defineConfig({
 				{ text: 'Introduction to MGS', link: "/introduction_to_mgs.md" },
 				{ text: 'What You\'ll Need', link: "/what_youll_need.md" },
 				{ text: 'General Process', link: "/general_process.md" },
-				{ text: 'Jargon and Syntax', link: "/jargon_and_syntax.md" },
+				{ text: 'Syntax and Document Jargon', link: "/jargon_and_syntax.md" },
 				{ text: 'Syntax Scopes', link: "/syntax_scopes.md" },
 			]
 		},
@@ -60,6 +60,7 @@ export default defineConfig({
 			items: [
 				{ text: 'Primitive Types', link: "/primitive_types.md"},
 				{ text: 'Dialog and Serial Dialog Strings', link: "/dialog_and_serial_dialog_strings.md" },
+				{ text: 'Template Strings', link: "/template_strings.md" },
 				{ text: 'Identifiers', link: "/identifiers.md" },
 				{ text: 'Expressions and Operators', link: "/expressions_and_operators.md" },
 				{ text: 'Macros', link: "/macros.md" },
@@ -71,11 +72,11 @@ export default defineConfig({
 			text: "Root Level Definitions",
 			collapsed: true,
 			items: [
-				{ text: 'Constants', link: "/constants.md" },
-				{ text: 'Dialog and Serial Dialog Settings', link: "/dialog_and_serial_dialog_settings.md" },
+				{ text: 'Scripts', link: "/scripts.md" },
 				{ text: 'Dialogs', link: "/dialogs.md" },
 				{ text: 'Serial Dialogs', link: "/serial_dialogs.md" },
-				{ text: 'Scripts', link: "/scripts.md" },
+				{ text: 'Dialog and Serial Dialog Settings', link: "/dialog_and_serial_dialog_settings.md" },
+				{ text: 'Constants', link: "/constants.md" },
 			]
 		},
 		{

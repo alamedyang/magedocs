@@ -1,6 +1,6 @@
 # Scripts
 
-[Project scope](syntax_scopes#project-scope).
+[Project scope](syntax_scopes#project-scope). (They always exist and are always accessible globally.)
 
 A script is a list of [bytecode actions](actions) which will execute one after the other, top to bottom, when the script is run.
 
@@ -16,12 +16,23 @@ Defined at [root level of the file](syntax_scopes#syntax-contexts).
 <"script"?> <name: string> { <script body items> }
 ```
 
+```mgs
+// example
+script script_name { wait 1s; }
+```
 ## Script Literal
 
 Scripts can be defined-in-place with script literals in most (though not all) places a script reference is needed.
 
 ```
 <script name: string?> { <script body item*> }
+```
+
+```mgs
+// example
+_ {
+	player on_interact = wait_one_sec { wait 1s; }
+}
 ```
 
 If the script does not need to be referenced by anything else, it's best to omit the name. This improves readability.

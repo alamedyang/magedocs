@@ -28,6 +28,14 @@ Regex: `/"(?:[^"\]|\.)*"/`
 - May contain escaped quotes (`\"`).
 - [[dialogs|Dialog]] and [[serial_dialogs|serial dialog]] messages are quoted strings, but they have [[dialog_and_serial_dialog_strings|extra attributes]] primarily having to do with styling and auto-wrapping.
 
+### Template String
+
+See: [[template_strings|Template Strings]]
+
+- Wrapped with backticks.
+- These become quoted strings once "baked."
+- They allow insertion of [[constants|constant]] or [[fns|fn arg]] values at compile time.
+
 ## Number
 
 - "Number" usually refers to a **number literal** specifically.

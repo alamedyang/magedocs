@@ -35,6 +35,7 @@ MGS files and their data structures interact with each other according to their 
     - [Compile-time constants](constants)
     - [Fn definitions](fns#fn-definition)
     - [Dialog and serial dialog settings](dialog_and_serial_dialog_settings)
+    - [Template strings](template_strings)
 - These structures are collected and applied as they are encountered in the file, top to bottom.
     - After the MGS parser is done, these structures will have been fully applied and effectively no longer exist. They are scripting conveniences and shortcuts, and are not "real" as far as the game engine is concerned.
 - These cannot be referenced before their definition, and cannot be redefined.

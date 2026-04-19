@@ -4,7 +4,6 @@
   "patterns": [
     { "include": "#comment_node" },
     { "include": "#include_macro" },
-
     { "include": "#fn_definition" },
     { "include": "#fn_body" },
     {
@@ -72,7 +71,7 @@
           ]
         },
         {
-          "begin": "\\b(entity)\\s+([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\")\\s*({)",
+          "begin": "\\b(entity)\\s+([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"|`[^`]*`)\\s*({)",
           "beginCaptures": {
             "1": { "name": "variable.parameter.mgs" },
             "2": { "name": "support.type.mgs" },
@@ -105,7 +104,7 @@
       ]
     },
     {
-      "begin": "\\b(dialog)\\s+([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\")\\s*({)",
+      "begin": "\\b(dialog)\\s+([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"|`[^`]*`)\\s*({)",
       "beginCaptures": {
         "1": { "name": "storage.type.mgs" },
         "2": { "name": "variable.parameter.mgs" },
@@ -118,7 +117,7 @@
       "patterns": [{ "include": "#dialog_body" }]
     },
     {
-      "begin": "\\b(serial_dialog)\\s+([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\")\\s*({)",
+      "begin": "\\b(serial_dialog)\\s+([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"|`[^`]*`)\\s*({)",
       "beginCaptures": {
         "1": { "name": "storage.type.mgs" },
         "2": { "name": "variable.parameter.mgs" },
@@ -131,7 +130,7 @@
       "patterns": [{ "include": "#serial_body" }]
     },
     {
-      "begin": "(script\\s+)?([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\")\\s*({)",
+      "begin": "(script\\s+)?([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"|`[^`]*`)\\s*({)",
       "beginCaptures": {
         "1": { "name": "storage.type.mgs" },
         "2": { "name": "entity.name.function.mgs" },
@@ -148,6 +147,7 @@
     { "include": "#number_literal" },
     { "include": "#boolean_literal" },
     { "include": "#language_constants" },
+    { "include": "#template_string" },
     { "include": "#string_literal" }
   ],
   "repository": {
@@ -204,7 +204,7 @@
       ]
     },
     "include_macro": {
-      "match": "\\b(include)\\s*(\"[^\"]+\")",
+      "match": "\\b(include)\\s*(\"[^\"]+\"|`[^`]*`)",
       "captures": {
         "1": { "name": "entity.name.function.mgs" },
         "2": { "name": "string.quoted.mgs" }
@@ -214,9 +214,72 @@
       "match": "\\$[_a-zA-Z0-9]+\\b",
       "name": "variable.other.constant.mgs"
     },
+    "template_string": {
+      "begin": "`",
+      "beginCaptures": {
+        "0": { "name": "string.quoted.single.mgs" }
+      },
+      "end": "(?<!\\\\)(?:\\\\{2})*\\K`",
+      "endCaptures": {
+        "0": { "name": "string.quoted.single.mgs" }
+      },
+      "name": "constant.character.escape.mgs",
+      "patterns": [
+        {
+          "match": "\\\\`",
+          "name": "constant.character.escape.mgs"
+        },
+        {
+          "match": "({)(\\$[_a-zA-Z0-9]+)(})",
+          "captures": {
+            "1": { "name": "punctuation.section.parens.begin.mgs" },
+            "2": { "name": "variable.other.constant.mgs" },
+            "3": { "name": "punctuation.section.parens.end.mgs" }
+          }
+        },
+        {
+          "match": ".+?",
+          "name": "string.variable.mgs"
+        }
+      ]
+    },
+    "template_string_identifier": {
+      "begin": "`",
+      "beginCaptures": {
+        "0": { "name": "variable.parameter.mgs" }
+      },
+      "end": "(?<!\\\\)(?:\\\\{2})*\\K`",
+      "endCaptures": {
+        "0": { "name": "variable.parameter.mgs" }
+      },
+      "name": "constant.character.escape.mgs",
+      "patterns": [
+        {
+          "match": "\\\\`",
+          "name": "constant.character.escape.mgs"
+        },
+        {
+          "match": "({)(\\$[_a-zA-Z0-9]+)(})",
+          "captures": {
+            "1": { "name": "punctuation.section.parens.begin.mgs" },
+            "2": { "name": "variable.other.constant.mgs" },
+            "3": { "name": "punctuation.section.parens.end.mgs" }
+          }
+        },
+        {
+          "match": ".+?",
+          "name": "variable.parameter.mgs"
+        }
+      ]
+    },
     "string_literal": {
-      "match": "[_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"",
-      "name": "string.quoted.mgs"
+      "patterns": [
+        {
+          "match": "[_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"",
+          "name": "string.quoted.mgs"
+        },
+        { "include": "#template_string" }
+      ]
     },
     "boolean_literal": {
       "match": "\\b(true|false|off)\\b|\\bon(?!_)\\b",
@@ -227,7 +290,7 @@
       "name": "constant.language.mgs"
     },
     "fn_definition": {
-      "begin": "(fn\\s+)?(\"[^\"]*\"|[_a-zA-Z][_a-zA-Z0-9]*)\\s*(\\()",
+      "begin": "(fn\\s+)?(\"[^\"]*\"|`[^`]*`|[_a-zA-Z][_a-zA-Z0-9]*)\\s*(\\()",
       "beginCaptures": {
         "1": { "name": "storage.type.mgs" },
         "2": { "name": "entity.name.function.mgs" },
@@ -235,7 +298,10 @@
       },
       "end": "\\)",
       "name": "punctuation.section.block.end.mgs",
-      "patterns": [{ "include": "#constant_literal" }]
+      "patterns": [
+        { "include": "#comment_node" },
+        { "include": "#constant_literal" }
+      ]
     },
     "fn_body": {
       "begin": "(\\{)",
@@ -247,7 +313,7 @@
       "patterns": [{ "include": "#script_body" }]
     },
     "fn_call": {
-      "begin": "(\"[^\"]*\"|[_a-zA-Z][_a-zA-Z0-9]*)\\s*(\\()",
+      "begin": "(\"[^\"]*\"|`[^`]*`|[_a-zA-Z][_a-zA-Z0-9]*)\\s*(\\()",
       "beginCaptures": {
         "1": { "name": "entity.name.function.mgs" },
         "2": { "name": "punctuation.section.block.begin.mgs" }
@@ -255,6 +321,7 @@
       "end": "\\)",
       "name": "punctuation.section.block.end.mgs",
       "patterns": [
+        { "include": "#comment_node" },
         {
           "match": "(\")(%(ENTITY_PATH|SELF|PLAYER|MAP)*%)(\")",
           "captures": {
@@ -289,7 +356,7 @@
           }
         },
         {
-          "match": "\\b(border_tileset|portrait)\\s+(\"[^`]*\"|[_a-zA-Z][_a-zA-Z0-9]*)?",
+          "match": "\\b(border_tileset|portrait)\\s+(\"[^\"]*\"|[_a-zA-Z][_a-zA-Z0-9]*)?",
           "captures": {
             "1": { "name": "variable.parameter.mgs" },
             "2": { "name": "string.quoted.mgs" }
@@ -309,7 +376,7 @@
       ]
     },
     "dialog_option_goto": {
-      "match": "(=)\\s*(\"[^\"]*\"|[_a-zA-Z][_a-zA-Z0-9]*)",
+      "match": "(=)\\s*(\"[^\"]*\"|`[^`]*`|[_a-zA-Z][_a-zA-Z0-9]*)",
       "captures": {
         "1": { "name": "keyword.operator.assignment.mgs" },
         "2": { "name": "entity.name.function.mgs" }
@@ -608,7 +675,7 @@
           "patterns": [{ "include": "#dialog_body" }]
         },
         {
-          "begin": "\\b(show)\\s+(dialog)(\\s+([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"))?\\s*({)",
+          "begin": "\\b(show)\\s+(dialog)(\\s+([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"|`[^`]*`))?\\s*({)",
           "beginCaptures": {
             "1": { "name": "storage.type.mgs" },
             "2": { "name": "variable.parameter.mgs" },
@@ -622,7 +689,7 @@
           "patterns": [{ "include": "#dialog_body" }]
         },
         {
-          "begin": "\\b(show|concat)\\s+(serial_dialog)(\\s+([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"))?\\s*({)",
+          "begin": "\\b(show|concat)\\s+(serial_dialog)(\\s+([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"|`[^`]*`))?\\s*({)",
           "beginCaptures": {
             "1": { "name": "storage.type.mgs" },
             "2": { "name": "variable.parameter.mgs" },
@@ -684,7 +751,7 @@
           }
         },
         {
-          "match": "(map\\s+)?(on_(tick|load|look|interact|command))\\s*(!=|==|=)\\s*([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\")",
+          "match": "(map\\s+)?(on_(tick|load|look|interact|command))\\s*(!=|==|=)\\s*([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"|`[^`]*`)",
           "captures": {
             "1": { "name": "variable.parameter.mgs" },
             "2": { "name": "variable.object.property.mgs" },
@@ -705,7 +772,7 @@
           "name": "keyword.control.loop.mgs"
         },
         {
-          "match": "\\b(command)\\s+((\\$[_a-zA-Z0-9]+)|([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"))(\\s+(fail)|\\s*(\\+)\\s*((\\$[_a-zA-Z0-9]+)|([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\")))?\\s*((=)\\s*((\\$[_a-zA-Z0-9]+)|([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\")))?",
+          "match": "\\b(command)\\s+((\\$[_a-zA-Z0-9]+)|([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"|`[^`]*`))(\\s+(fail)|\\s*(\\+)\\s*((\\$[_a-zA-Z0-9]+)|([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"|`[^`]*`)))?\\s*((=)\\s*((\\$[_a-zA-Z0-9]+)|([_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"|`[^`]*`)))?",
           "captures": {
             "1": { "name": "variable.parameter.mgs" },
             "3": { "name": "variable.other.constant.mgs" },
@@ -732,6 +799,29 @@
             "1": { "name": "variable.parameter.mgs" },
             "2": { "name": "string.quoted.mgs" }
           }
+        },
+        {
+          "begin": "\\b(geometry|map|command|alias|dialog|serial_dialog|entity|flag|variable|array)\\s+(`)",
+          "beginCaptures": {
+            "1": { "name": "variable.parameter.mgs" },
+            "2": { "name": "string.quoted.single.mgs" }
+          },
+          "end": "(?<!\\\\)(?:\\\\{2})*\\K`",
+          "endCaptures": {
+            "0": { "name": "string.quoted.single.mgs" }
+          },
+          "name": "constant.character.escape.mgs",
+          "patterns": [
+            {
+              "match": "\\\\`",
+              "name": "constant.character.escape.mgs"
+            },
+            {
+              "match": "{\\$[_a-zA-Z0-9]+}",
+              "name": "variable.other.constant.mgs"
+            },
+            { "match": ".+?", "name": "string.variable.mgs" }
+          ]
         },
         {
           "match": "\\b(index|slot|button|light|dialog|serial_dialog|flag|variable|label)\\b",
@@ -765,6 +855,29 @@
           }
         },
         {
+          "begin": "(?<=\\bwarp_state|\\btype|\\bname|\\bpath)\\s*(=|==|!=)\\s*(`)",
+          "beginCaptures": {
+            "1": { "name": "keyword.operator.assignment.mgs" },
+            "2": { "name": "string.quoted.single.mgs" }
+          },
+          "end": "(?<!\\\\)(?:\\\\{2})*\\K`",
+          "endCaptures": {
+            "0": { "name": "string.quoted.single.mgs" }
+          },
+          "name": "constant.character.escape.mgs",
+          "patterns": [
+            {
+              "match": "\\\\`",
+              "name": "constant.character.escape.mgs"
+            },
+            {
+              "match": "{\\$[_a-zA-Z0-9]+}",
+              "name": "variable.other.constant.mgs"
+            },
+            { "match": ".+?", "name": "string.variable.mgs" }
+          ]
+        },
+        {
           "match": "<=|!=|==|>=|<|>|\\|\\||&&|!|intersects",
           "name": "keyword.operator.logical.mgs"
         },
@@ -775,14 +888,14 @@
         { "include": "#constant_literal" },
         { "include": "#number_literal" },
         {
-          "match": "(?<=\\bgoto|\\bscript)\\s+(\"[^\"]*\"|[_a-zA-Z][_a-zA-Z0-9]*\\b)",
+          "match": "(?<=\\bgoto|\\bscript)\\s+(\"[^\"]*\"|`[^`]*`|[_a-zA-Z][_a-zA-Z0-9]*\\b)",
           "name": "entity.name.function.mgs"
         },
         {
-          "match": "(?<=\\blabel)\\s+(\"[^\"]*\"|[_a-zA-Z][_a-zA-Z0-9]*\\b)",
+          "match": "(?<=\\blabel)\\s+(\"[^\"]*\"|`[^`]*`|[_a-zA-Z][_a-zA-Z0-9]*\\b)",
           "name": "entity.name.label.mgs"
         },
-        { "match": "[_a-zA-Z][_a-zA-Z0-9]*", "name": "variable.parameter.mgs" },
+        { "include": "#template_string_identifier" },
         {
           "match": "[_a-zA-Z][_a-zA-Z0-9]*|\"[^\"]*\"",
           "name": "variable.parameter.mgs"

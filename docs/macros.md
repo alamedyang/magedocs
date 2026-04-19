@@ -8,10 +8,15 @@ The Include Macro will copy the whole (parsed) contents of the target file into 
 
 - The quoted string must end in `.mgs`, just as the file must end in `.mgs`.
 - This is the only way to bring [file-scoped](syntax_scopes#file-scope) definitions into a second file.
-- Script definitions and other [project-scoped](syntax_scopes#project-scope) structures will also be brought over, and these will count as duplicate definitions. Therefore, included files should only have MGS-only features, like [dialog_and_serial_dialog_settings](dialog_and_serial_dialog_settings) and [fns](fns).
+- Script definitions and other [project-scoped](syntax_scopes#project-scope) structures will also be brought over, and these will count as duplicate definitions. Therefore, included files should only have MGS-only features, like [dialog and serial dialog settings](dialog_and_serial_dialog_settings) and [fns](fns).
 
 ```
 include <file name: quoted string>;
+```
+
+```mgs
+// example
+include "filename.mgs";
 ```
 
 ## Rand
@@ -22,6 +27,15 @@ See [Action Param Expansions > Rand Macro](action_param_expansions#rand-macro).
 
 ```
 rand!( <script body item*> ) <";"?>
+```
+
+```mgs
+// example
+_ {
+	rand!(
+		wait [ 10ms, 40ms, 90ms ];
+	)
+}
 ```
 
 ## RNG
@@ -92,6 +106,13 @@ The semicolon at the end can only be used in bare Copy Scripts, i.e. when it's u
 <script name: string>() <";"?>
 ```
 
+```mgs
+// example
+_ {
+  init();
+}
+```
+
 Bytecode action:
 
 - Formerly `COPY_SCRIPT`
@@ -102,7 +123,7 @@ Bytecode action:
 
 See: [Fns](fns#fns)
 
-- Fns are [file scope](syntax_scopes#file-scope), and scripts are [project scope](syntax_scopes#project-scope).
+- Fns are [file scope](syntax_scopes#file-scope) (cannot be redefined or used before definition), and scripts are [project scope](syntax_scopes#project-scope) (always exist and are always accessible globally).
 - The Copy Script macro resembles a fn call in appearance only in order to resemble modern programming languages (because the alternative was frustrating).
 - Fn names and script names may collide because they have separate name spaces.
 - Copy Script and fn calls are both baked in place, but scripts still exist in the final game output. This means copied scripts can be [triggered by players at arbitrary times](hex_editor), even if the script was never meant to run on its own.

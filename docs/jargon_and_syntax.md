@@ -1,4 +1,4 @@
-# Documentation Jargon and Syntax
+# Syntax and Document Jargon
 
 ## General Language Features
 

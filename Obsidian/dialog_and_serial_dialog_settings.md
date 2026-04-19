@@ -3,7 +3,7 @@
  Settings collect common [[dialogs|dialog]] and [[serial_dialogs|serial dialog]] parameters, and apply them to all dialogs and serial dialogs found afterward.
  
 - Add settings at [[syntax_scopes#Syntax Contexts|root level]].
-- [[syntax_scopes#File Scope|File scope]].
+- [File scope](syntax_scopes#file-scope). (Cannot be redefined or used before definition.)
 - Note that none of this syntax involve semicolons or commas.
 
 ## Precedence

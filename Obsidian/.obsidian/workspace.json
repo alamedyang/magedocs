@@ -13,26 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "dialogs.md",
+                "file": "syntax_scopes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "dialogs"
+              "title": "syntax_scopes"
             }
           },
           {
-            "id": "95f0df2fea9c6a5c",
+            "id": "4733baf0c89737be",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "serial_dialogs.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "serial_dialogs"
             }
           },
           {
@@ -55,15 +55,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "action_param_expansions.md",
+                "file": "macros.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "action_param_expansions"
+              "title": "macros"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -95,7 +96,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "WIP features",
+                "query": "warning",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -211,34 +212,34 @@
       "bases:Create new base": false
     }
   },
-  "active": "df823e4d8dfba883",
+  "active": "4733baf0c89737be",
   "lastOpenFiles": [
-    "handlers.md",
-    "action_param_expansions.md",
-    "arrays.md",
-    "TODOS.md",
-    "syntax_scopes.md",
-    "primitive_types.md",
-    "actions.md",
-    "actors.md",
-    "animations.md",
-    "constants.md",
-    "cutscenes.md",
-    "fns.md",
-    "expressions_and_operators.md",
-    "macros.md",
-    "commands.md",
-    "script_control_flow.md",
+    "dialogs.md",
     "scripts.md",
+    "script_control_flow.md",
     "serial_dialogs.md",
+    "constants.md",
+    "fns.md",
+    "general_process.md",
+    "template_strings.md",
+    "json_literals.md",
     "jargon_and_syntax.md",
-    "what_youll_need.md",
-    "index.md",
     "introduction_to_mgs.md",
     "dialog_and_serial_dialog_strings.md",
-    "entities.md",
-    "entity_types.md",
-    "entity_management_system.md",
+    "TODOS.md",
+    "macros.md",
+    "commands.md",
+    "syntax_scopes.md",
+    "dialog_and_serial_dialog_settings.md",
+    "actions.md",
+    "primitive_types.md",
+    "action_param_expansions.md",
+    "encoder.md",
+    "hiding_an_entity.md",
+    "expressions_and_operators.md",
+    "identifiers.md",
+    "handlers.md",
+    "arrays.md",
     "media/colors-textmate.png",
     "media/colors-vscode.png",
     "media/colors-sublime.png",

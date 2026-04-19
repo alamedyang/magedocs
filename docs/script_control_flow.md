@@ -47,7 +47,7 @@ if <simple condition> then goto script <script name: string>;
 if <simple condition> then goto label <bareword>;
 // OR
 if <simple condition> then goto index <number>;
-  ```
+```
 
 - **Simple condition**: a [boolean expression](expressions_and_operators#bool-expressions) with a direct counterpart to a bytecode action. 
 	- I'm not going to write these out, as there's not much point doing it, but if you must find which kinds of comparisons are legal here, it's the parameters in bytecode actions that start with `CHECK_` . Look for bytecode param information in the MGE [encoder](encoder) source code.

@@ -2,9 +2,10 @@
 
 - Constants are compile-time constants (as opposed to runtime constants).
 - Meant to prevent [magic numbers](https://en.wikipedia.org/wiki/Magic_number_%28programming%29#Unnamed_numerical_constants).
-- [[syntax_scopes#File Scope|File scope]]. (Cannot be redefined or used before definition).
+- [[syntax_scopes#File Scope|File scope]]. (Cannot be redefined or used before definition.)
 - Their values are swapped out automatically when encountered in an [[actions|action phrase]].
 - [[fns#Fn Definition|Fn definition]] args also use constants for their registration / replacement behavior.
+- Constant values may be inserted into strings at compile time with [[template_strings|template strings]].
 
 ## Constant Definition
 
@@ -17,7 +18,7 @@ Define at [[syntax_scopes#Syntax Contexts|root level of file]].
 - **Value** must be a number, string, or boolean (see [[primitive_types|Primitive Types]]), and only a single token.
 
 ```mgs
-// examples:
+// examples
 $trombones = 76;
 $steamed_hams = "hamburgers";
 $quick_debug = true;
@@ -36,7 +37,7 @@ play_game {
 	do_turn()
 	round_count += 1;
 	if (round_count >= $total_rounds) {
-		win_cutscene()
+		win_cutscene();
 	}
 }
 ```
@@ -47,6 +48,6 @@ Constants cannot replace keywords.
 
 ## Vs Integer Variable
 
-- Constants are [[syntax_scopes#File Scope|file scope]], but [[state#Integer Variables|integer variables]] are [[syntax_scopes#Project Scope|project scope]].
+- Constants are [[syntax_scopes#File Scope|file scope]] (cannot be redefined or used before definition), but [[state#Integer Variables|integer variables]] are [[syntax_scopes#Project Scope|project scope]]  (always exist and are always accessible globally.).
 - Constants are not meant to maintain their identity in the final game output.
 	- If you find you want to reassign the value of a constant, then it should actually be part of MGE game logic. Make it a game variable instead.

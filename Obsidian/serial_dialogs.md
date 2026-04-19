@@ -1,6 +1,6 @@
 # Serial Dialogs
 
-[[syntax_scopes#Project Scope|Project scope]].
+[[syntax_scopes#Project Scope|Project scope]]. (They always exist and are always accessible globally.)
 
 Serial dialogs contain text meant to be shown via the [[terminal|serial console terminal]]. They are called serial "dialogs" because they are similar to [[dialogs|dialogs]] in many respects, but they are made up of text alone (as opposed to being accompanied by images and labels) and needn't be used for dialog specifically.
 
@@ -12,6 +12,10 @@ Defined at [[syntax_scopes#Syntax Contexts|root level of the file]].
 serial_dialog <serial dialog name: string> { <serial dialog> }
 ```
 
+```mgs
+// example
+serial_dialog print_warning { "Warning!" }
+```
 ## Serial Dialog Literal
 
 Serial dialogs can be defined at the point of use with serial dialog literals. If a name is not provided, one will be generated based on the file name and line number.
@@ -20,6 +24,12 @@ Serial dialogs can be defined at the point of use with serial dialog literals. I
 { <serial dialog> }
 // OR
 <name: string> { <serial dialog> }
+```
+
+```mgs
+_ {
+	show serial_dialog cursor { "<--" };
+}
 ```
 
 NOTE: Unlike [[dialogs|dialogs]], serial dialog blocks cannot have more than one serial dialog.
@@ -65,6 +75,7 @@ serial_dialog sample {
 
 - Wrapped in quotes.
 - Each serial dialog message will get a newline added to the end unless [[actions#Concat Serial Dialog|Concat Serial Dialog]] is used when showing the dialog.
+- Entirely empty lines are ignored. To print a blank newline, add a space before the newline.
 - To maximize compatibility, best to limit these to ASCII characters.
 - These strings are auto-wrapped and have other abilities and attributes, including [[dialog_and_serial_dialog_strings#Printing Current Values|variable value insertion]], [[dialog_and_serial_dialog_strings#Sanitization|sanitization]], and [[dialog_and_serial_dialog_strings#Ansi Escape Sequences|ANSI styles]]. See [[dialog_and_serial_dialog_strings|Dialog and Serial Dialog Strings]].
 

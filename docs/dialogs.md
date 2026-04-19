@@ -1,6 +1,6 @@
 # Dialogs
 
-[Project scope](syntax_scopes#project-scope).
+[Project scope](syntax_scopes#project-scope). (They always exist and are always accessible globally.)
 
 Dialogs are a visual novel or RPG-style dialog system for the screen. These include portrait images, dialog box labels, and dialog messages. The entire display is called a dialog card.
 
@@ -16,6 +16,10 @@ Defined at [root level of the file](syntax_scopes#syntax-contexts).
 dialog <dialog name: string> { <dialog*> }
 ```
 
+```mgs
+// example
+dialog greetings { PLAYER "Hello!" }
+```
 ## Dialog Literal
 
 Dialogs can be defined at the point of use with dialog literals. If a name is not provided, one will be generated based on the file name and line number.
@@ -27,10 +31,8 @@ Dialogs can be defined at the point of use with dialog literals. If a name is no
 The dialog name is optional. If you want to refer to the dialog additional places, you should give it a name. However, as this is rarely necessary, best practice is to omit it.
 
 ```mgs
-// example of a define-in-place dialog
+// example
 script _ {
-  wait 100ms;
-  entity Bob direction = player;
   show dialog hello { entity Bob "Hello?" };
 }
 ```

@@ -1,6 +1,6 @@
 # Fns
 
-[[syntax_scopes#File Scope|File scope]].
+[File scope](syntax_scopes#file-scope). (Cannot be redefined or used before definition.)
 
 Fn calls copy all items from the fn definition, swapping out values from the args in the definition with the args in the fn call, and pastes them into place.
 
@@ -66,7 +66,7 @@ Bare fn calls only have utility if the fn performs work; the return value of bar
 ```mgs
 // example
 _ {
-	pause_entity_walk("Bob")
+	pause_entity_walk("Bob");
 }
 ```
 

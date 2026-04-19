@@ -17,7 +17,7 @@ All categories of identifiers are different namespaces. E.g. a [script](scripts)
 
 ## Vs Strings
 
-Unlike in most other languages, identifiers and strings are not distinguished by [token type](primitive_types); most languages use [quoted strings](primitive_types#quoted-string) for string values, and [barewords](primitive_types#bareword) for identifiers.
+Unlike in most other languages, identifiers and strings are not distinguished by [token type](primitive_types); most languages use [quoted strings](primitive_types#quoted-string) for string values, and [barewords](primitive_types#bareword) for identifiers, but in MGS, quoted strings and barewords are almost always interchangeable.
 
 - Barewords can often be used for string values, e.g. `entity Bob` instead of `entity "Bob"`.
 - Similarly, quoted strings are allowed as single-token identifiers in all cases, e.g. `"variable name" = 100;`

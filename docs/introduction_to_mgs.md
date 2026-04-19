@@ -34,15 +34,14 @@ The `direction` property is an artificial construct; it isn't a value that's bei
 - **Define-in-place scripts**: Like with [Show Dialog](actions#show-dialog) and [Show Serial Dialog](actions#show-serial-dialog), scripts most places can now be [defined in place](scripts#script-literal) instead of used only by reference. This can be done recursively.
 - **[CLI](encoder#cli-encoder) and [web](encoder#web-encoder) versions for MGS parsing**: No special handling required when encoding the game; the WASM additions are invisible when it comes to generating the new [binary data file](encoder#game.dat).
 - **[Syntax colors](what_youll_need#syntax-colors)**: TextMate grammars have been working for some time, and are generally kept up to date. Works with Sublime, VSCode, TextMate, and JetBrains IDEs. The VSCode plugin is available on the VSCode extension marketplace.
+- **[Arrays](arrays)**: Arrays contain 0-127 integer values and can be created or destroyed once the game is running. QOL features include method daisy chains and `.map()` and `.for_each()`, which can refer to [fns](fns) by name or work off a given lambda.
 
 ## WIP Features
 
-
-- **[Arrays](arrays)**: The MGS side is fully supported, including method daisy chains. QOL features include `.map()` and `.for_each()`, which can refer to [fns](fns) by name or work off a given lambda. The engine side is starting to support basic features and is the current dev focus.
 - **Language server**: Still investigating. The tree-sitter pass alone should contain enough information for basic features like symbol renaming and supplemental syntax coloring, as queries can target relevant nodes like entity names. (Map JSON files and the like must also be included in this analysis, however.)
 
 ## Using the Parser
 
 All files within [`scenario_source_files/`](what_youll_need#scenario_source_files) with filenames ending in `.mgs` will be parsed by the MGS parser. All that is required is the tree-sitter engine and the MGS language grammar, both WASM. Both have been attached to the existing [CLI/web encoder](encoder) for the game.
 
-To alter the grammar, you must make changes in `grammar.js`, rebuild the grammar using tree-sitter (targeting WASM), and then rebuild the library using Vite. That final step is required for seeing the changes in the MGE encoder, but not necessary for using the tree-sitter playground or running the language unit tests.
+To alter the grammar, you must make changes in `grammar.js`, rebuild the grammar using tree-sitter (targeting WASM), and then rebuild the library using Vite. That final step is required for seeing the changes in the MGE encoder, but not necessary for using `tree-sitter playground` or running the language unit tests.
