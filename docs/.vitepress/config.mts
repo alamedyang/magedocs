@@ -10,7 +10,7 @@ export default defineConfig({
   base: '/magedocs/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-	logo: 'media/MageGameScript-MAGE.png',
+	logo: '/MageGameScript-MAGE.png',
     search: {
 		provider: 'local',
 	},
