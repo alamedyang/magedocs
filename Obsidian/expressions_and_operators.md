@@ -229,6 +229,7 @@ Any [[#Bool Getables|bool getable]] is also checkable.`
 	- `serial_control`
 - [[entities#Entity Properties|Entity bool properties]]:
     - `<entity identifier> glitched`
+    - `<entity identifier> floating`
 	- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
 - Light states
 	- `light <light name[]>`

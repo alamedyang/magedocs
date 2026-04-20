@@ -188,6 +188,14 @@ This number cannot be negative.
 - **MGS**: `strafe` (number, u8)
 	- [Setable](expressions_and_operators#int-setables)
 
+### Floating
+
+Floating entities are drawn above the topmost tile layer (as well as other entities). Player entities that are floating do not experience collision.
+
+- **Tiled**: `is_floating` (bool)
+- **MGS**: `floating` (bool)
+	- [Setable](expressions_and_operators#bool-setables)
+
 ### Player
 
 This is the entity the player will control within the map. There should be only one such entity per map. (If there is more than one, the [encoder](encoder) will throw an error.)
