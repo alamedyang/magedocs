@@ -28,7 +28,7 @@ An entity's current name may be printed in a [dialog or serial dialog string](di
 
 - **Tiled**: `Name` (string)
 - **MGS**: `name` (string)
-	- [Setable](actions#string-setables)
+	- [Setable](expressions_and_operators#string-setables)
 	- [Checkable](expressions_and_operators#string-checkables)
 
 ### Type
@@ -39,7 +39,7 @@ When you are changing an entity's type with scripts, the engine will automatical
 
 - **Tiled**: `Class`, formerly `Type` (string)
 - **MGS**: `type` (string)
-	- [Setable](actions#string-setables)
+	- [Setable](expressions_and_operators#string-setables)
 	- [Checkable](expressions_and_operators#string-checkables)
 
 ### Tile Type
@@ -49,13 +49,13 @@ When you are changing an entity's type with scripts, the engine will automatical
 - **Tiled**: (determined by the identity of the tile placed)
 - **MGS**:
 	- `primary_id_type` (int, u8)
-		- [Setable](actions#int-setables)
+		- [Setable](expressions_and_operators#int-setables)
 		- [Getable](expressions_and_operators#int-operands)
 	- `primary_id` (int)
-		- [Setable](actions#int-setables)
+		- [Setable](expressions_and_operators#int-setables)
 		- [Getable](expressions_and_operators#int-operands)
 	- `secondary_id` (int)
-		- [Setable](actions#int-setables)
+		- [Setable](expressions_and_operators#int-setables)
 		- [Getable](expressions_and_operators#int-operands)
 
 ### Path
@@ -66,7 +66,7 @@ The [geometry identifier](identifiers#geometry-identifier) keyword `entity_path`
 
 - **Tiled**: `Path` (string)
 - **MGS**: `path` (string, [geometry identifier](identifiers#geometry-identifier))
-	- [Setable](actions#string-setables)
+	- [Setable](expressions_and_operators#string-setables)
 	- [Checkable](expressions_and_operators#string-checkables)
 
 ### Position
@@ -81,10 +81,10 @@ The MGS keyword `position` is used in the [action phrases](actions) [Position As
 		- [As destination (instant)](actions#coordinate-assignment)
 		- [As destination (over time)](actions#coordinate-over-time)
 	- `x` (int)
-		- [Setable](actions#int-setables)
+		- [Setable](expressions_and_operators#int-setables)
 		- [Getable](expressions_and_operators#int-operands)
 	- `y` (int)
-		- [Setable](actions#int-setables)
+		- [Setable](expressions_and_operators#int-setables)
 		- [Getable](expressions_and_operators#int-operands)
 
 ### Direction
@@ -100,9 +100,9 @@ Horizontally flipping a front or back-facing character entity will make it appea
 - **Tiled**: (place the tile for the desired direction)
 - **MGS**:
 	- `direction`
-		- [Turn toward entity](actions#assign-direction)
-		- [Turn toward geometry](actions#assign-direction)
-		- [Turn cardinal direction](actions#assign-direction)
+		- [Turn toward entity](expressions_and_operators#assign-direction)
+		- [Turn toward geometry](expressions_and_operators#assign-direction)
+		- [Turn cardinal direction](expressions_and_operators#assign-direction)
 		- [Give relative turn](expressions_and_operators#change-int-value)
 
 ### `on_tick` Script
@@ -117,7 +117,7 @@ If you don't want an entity to have an `on_tick` script, you can leave this prop
 
 - **Tiled**: `on_tick` (string)
 - **MGS**: `on_tick` (string)
-	- [Setable](actions#script-setables)
+	- [Setable](expressions_and_operators#assign-script-value)
 	- [Checkable](expressions_and_operators#string-checkables)
 
 ### `on_interact` Script
@@ -128,7 +128,7 @@ This identifies the script that is run when the player interacts with the entity
 
 - **Tiled**: `on_interact` (string)
 - **MGS**: `on_interact` (string)
-	- [Setable](actions#script-setables)
+	- [Setable](expressions_and_operators#assign-script-value)
 	- [Checkable](expressions_and_operators#string-checkables)
 
 ### `on_look` Script
@@ -139,7 +139,7 @@ This identifies the script that is run when the player interacts with the entity
 
 - **Tiled**: `on_look` (string)
 - **MGS**: `on_look` (string)
-	- [Setable](actions#script-setables)
+	- [Setable](expressions_and_operators#assign-script-value)
 	- [Checkable](expressions_and_operators#string-checkables)
 
 ### Current Animation
@@ -150,7 +150,7 @@ Animations you choose in Tiled via tile selection are ignored.
 
 - **Tiled**: n/a
 - **MGS**: `current_animation` (number, u8)
-	- [Setable](actions#int-setables)
+	- [Setable](expressions_and_operators#int-setables)
 	- [Getable](expressions_and_operators#int-operands)
 
 ### Current Frame
@@ -159,7 +159,7 @@ This lets you start an entity's animation at an arbitrary frame. This is useful 
 
 - **Tiled**: `animation_frame` (number)
 - **MGS**: `animation_frame` (number, u8)
-	- [Setable](actions#int-setables)
+	- [Setable](expressions_and_operators#int-setables)
 	- [Getable](expressions_and_operators#int-operands)
 
 ### Glitched
@@ -168,7 +168,7 @@ This gets written into a render flag on the "direction" byte. If checked, the en
 
 - **Tiled**: `is_glitched` (bool)
 - **MGS**: `glitched` (bool)
-	- [Setable](actions#bool-setables)
+	- [Setable](expressions_and_operators#bool-setables)
 	- [Getable](expressions_and_operators#bool-operands)
 
 ### Debug
@@ -186,7 +186,7 @@ This number cannot be negative.
 
 - **Tiled**: n/a
 - **MGS**: `strafe` (number, u8)
-	- [Setable](actions#int-setables)
+	- [Setable](expressions_and_operators#int-setables)
 
 ### Player
 

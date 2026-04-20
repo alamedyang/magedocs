@@ -13,7 +13,7 @@ There is no means for a script to jump to another script and then pick back up w
 Defined at [root level of the file](syntax_scopes#syntax-contexts).
 
 ```
-<"script"?> <name: string> { <script body items> }
+<"script"?> <name: string> { <script body item*> }
 ```
 
 ```mgs

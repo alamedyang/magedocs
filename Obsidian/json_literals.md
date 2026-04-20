@@ -12,7 +12,6 @@ json[<comma-separated JSON objects>] <";"?>
 - JSON literals must contain legal JSON.
     - No trailing commas.
     - Property names must be wrapped in double quotes.
-- Fun fact: the whole JSON array is not parsed as a single unit. Each interior action is parsed separately to allow for more granular error handling.
 
 ```mgs
 // example
@@ -29,3 +28,7 @@ _ {
 	];
 }
 ```
+
+::: tip Fun Fact
+The whole JSON array is not parsed as a single unit. Each interior action is parsed separately to allow for more granular error handling.
+:::

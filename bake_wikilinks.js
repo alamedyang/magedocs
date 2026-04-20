@@ -37,6 +37,7 @@ const outputPath = './docs/';
 
 fs.mkdirSync(workingPath, { recursive: true })
 fs.mkdirSync(workingPath + 'media/', { recursive: true })
+fs.mkdirSync(workingPath + 'public/', { recursive: true })
 fs.mkdirSync(workingPath + '.vitepress/', { recursive: true })
 
 for (file of fs.readdirSync(
@@ -74,6 +75,22 @@ for (file of fs.readdirSync(
 		0,
 		e=>{
 			if (e) throw new Error ('could not copy media file ' + file.name)
+		}
+	)
+}
+// Copy public files
+for (file of fs.readdirSync(
+	inputPath + 'public/',
+	{ withFileTypes: true }
+)) {
+	const prevLocation = inputPath + 'public/' + file.name;
+	const newLocation = workingPath + 'public/' + file.name;
+	fs.copyFileSync(
+		prevLocation,
+		newLocation,
+		0,
+		e=>{
+			if (e) throw new Error ('could not copy public file ' + file.name)
 		}
 	)
 }

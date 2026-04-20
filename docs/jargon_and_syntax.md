@@ -36,7 +36,7 @@ script triple_dialog {
 
 - Our naming convention for [identifiers](identifiers) is `camel_case` but there is no grammatical requirement or enforcement for this.
 - Keeping identifiers as [barewords](primitive_types#barewords) (alphanumeric with no special characters) helps legibility, so is preferred.
-    - Barewords may no longer contain hyphen (`-`), a word breaking character, because it made renaming identifiers en masse difficult. (No language server!) Most such cases were replaced with `_` but not all. All remaining cases are wrapped in double quotes.
+    - Barewords may no longer contain hyphen (`-`), a word breaking character, because it made renaming identifiers en masse difficult. (No language server!) Most such cases in the Black Mage Game codebase were replaced with `_` but not all. All remaining cases are wrapped in double quotes.
 - Using language keywords like `player` is preferred to the long form (`entity "%PLAYER%"`).
 
 ## Jargon

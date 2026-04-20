@@ -34,16 +34,22 @@ AAAAAAAAAAAABBCC
 DDEEFFGGHIJKLLMM
 ```
 
-- A. Name
-- B. X coordinate
-- C. Y coordinate
-- D. on_interact script
-- E. on_tick script
-- F. primary_id
-- G. secondary_id
-- H. primary_id_type
-- I. Animation id
-- J. Animation frame
+- A. [[entities#name|Name]]
+- B. [[entities#position|X coordinate]]
+- C. [[entities#position|Y coordinate]]
+- D. [[scripts#`on_interact`|`on_interact`]] [[scripts|script]]
+- E. [[scripts#`on_tick`|`on_tick`]] [[scripts|script]]
+- F. [[entities#Tile Type|primary_id]]
+- G. [[entities#Tile Type|secondary_id]]
+- H. [[entities#Tile Type|primary_id_type]]
+- I. [[entities#Current Animation|Animation id]]
+- J. [[entities#Current Frame|Animation frame]]
 - K. Render flags
-- L. Assigned geometry (path)
-- M. on_look script
+	- [[entity_management_system|NSEW direction]] (2 bits)
+	- flip diagonal
+	- is_floating
+	- [[entities#Strafe|Strafe rotation]] (2 bits)
+	- [[entities#Debug|is_debug]]
+	- [[entities#Glitched|is_glitched]]
+- L. [[entities#Path|Assigned geometry (path)]]
+- M. [[scripts#`on_look`|`on_look`]] [[scripts|script]]

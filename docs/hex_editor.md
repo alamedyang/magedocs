@@ -34,16 +34,22 @@ AAAAAAAAAAAABBCC
 DDEEFFGGHIJKLLMM
 ```
 
-- A. Name
-- B. X coordinate
-- C. Y coordinate
-- D. on_interact script
-- E. on_tick script
-- F. primary_id
-- G. secondary_id
-- H. primary_id_type
-- I. Animation id
-- J. Animation frame
+- A. [Name](entities#name)
+- B. [X coordinate](entities#position)
+- C. [Y coordinate](entities#position)
+- D. [`on_interact`](scripts#on_interact) [script](scripts)
+- E. [`on_tick`](scripts#on_tick) [script](scripts)
+- F. [primary_id](entities#tile-type)
+- G. [secondary_id](entities#tile-type)
+- H. [primary_id_type](entities#tile-type)
+- I. [Animation id](entities#current-animation)
+- J. [Animation frame](entities#current-frame)
 - K. Render flags
-- L. Assigned geometry (path)
-- M. on_look script
+	- [NSEW direction](entity_management_system) (2 bits)
+	- flip diagonal
+	- is_floating
+	- [Strafe rotation](entities#strafe) (2 bits)
+	- [is_debug](entities#debug)
+	- [is_glitched](entities#glitched)
+- L. [Assigned geometry (path)](entities#path)
+- M. [`on_look`](scripts#on_look) [script](scripts)

@@ -338,6 +338,8 @@ These are a subset of string setables, where the string value being assigned mus
 - The keyword `map`
 - An [[identifiers#Entity Identifier|entity identifier]]
 
+They are used with the name of a script slot. See [[scripts#Script Slots|Scripts > Script Slots]] and [[#Assign Script Value]]
+
 ## Assignment Operation
 
 Sets the value of the LHS to the value of the RHS, which may be an expression or a literal value.
@@ -617,7 +619,8 @@ The "position over time" operation  is similar to the assignment operation, exce
 ```
 
 See:
-	- [[actions#Position Over Time|Actions > Position Over Time]]
-	- [[actions#Play Entity Animation|Actions > Play Entity Animation]]
-	- [[actions#Fade Camera In or Out|Actions > Fade Camera In or Out]]
-	- [[actions#Shake Camera|Actions > Shake Camera]]
+
+- [[actions#Position Over Time|Actions > Position Over Time]]
+- [[actions#Play Entity Animation|Actions > Play Entity Animation]]
+- [[actions#Fade Camera In or Out|Actions > Fade Camera In or Out]]
+- [[actions#Shake Camera|Actions > Shake Camera]]

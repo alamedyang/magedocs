@@ -49,25 +49,25 @@ See: [[primitive_types#Boolean|Primitive Types > Boolean]]
 
 Can be used as the LHS of a [[expressions_and_operators#Assign Bool Value|bool assignment]].
 
-| MGS keyword       | Description                                                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `player_control`  | When `true`, the player can move, interact with entities, and use the hex editor (if enabled).                         |
-| `lights_control`  | When `true`, the lights around the screen can be controlled manually.                                                  |
-| `hex_editor`      | Opens the hex editor when set to `true`.                                                                               |
-| `hex_dialog_mode` | When `true`, the number of rows in the hex editor is reduced to make room for dialog boxes. Not currently implemented. |
-| `hex_control`     | When `true`, enables the hex editor for player use.                                                                    |
-| `hex_clipboard`   | When `true`, the player can use the hex editor clipboard.                                                              |
-| `serial_control`  | When `true`, the player can use the serial console.                                                                    |
+| MGS keyword       | Description                                                                                                                                                                                                                                                                                                               |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `player_control`  | When `true`, the player can move, interact with entities, and use the hex editor (if enabled). While `true`, the entity's [[entity_management_system\|assigned animations]] behave correctly when the player moves, but not when compelled to move by choreography actions, so set this flag to `false` during cutscenes. |
+| `lights_control`  | When `true`, the lights around the screen can be controlled manually.                                                                                                                                                                                                                                                     |
+| `hex_editor`      | Opens the hex editor when set to `true`.                                                                                                                                                                                                                                                                                  |
+| `hex_dialog_mode` | When `true`, the number of rows in the hex editor is reduced to make room for dialog boxes. Not currently implemented.                                                                                                                                                                                                    |
+| `hex_control`     | When `true`, enables the hex editor for player use. [[debug_tools#Vector View\|Vector view]] cannot be enabled or disabled when `false`.                                                                                                                                                                                  |
+| `hex_clipboard`   | When `true`, the player can use the hex editor clipboard.                                                                                                                                                                                                                                                                 |
+| `serial_control`  | When `true`, the player can use the serial console.                                                                                                                                                                                                                                                                       |
 
 ### [[expressions_and_operators#Checkable|Checkable]] Engine Flags
 
 Can be used as [[expressions_and_operators#Bool Operands|bool operands]] in a [[expressions_and_operators#Bool Expressions|bool expression]].
 
-| MGS keyword          | Description                                                 |
-| -------------------- | ----------------------------------------------------------- |
-| `debug_mode`         | See [[debug_tools#Debug Mode\|Debug Mode]].                 |
-| `dialog open`        | Checks whether a [[dialogs\|dialog]] is open.               |
-| `serial_dialog open` | Checks whether a [[serial_dialogs\|serial dialog]] is open. |
+| MGS keyword          | Description                                                                       |
+| -------------------- | --------------------------------------------------------------------------------- |
+| `debug_mode`         | Checks whether the map was loaded with [[debug_tools#Debug Mode\|Debug Mode]] on. |
+| `dialog open`        | Checks whether a [[dialogs\|dialog]] is open.                                     |
+| `serial_dialog open` | Checks whether a [[serial_dialogs\|serial dialog]] is open.                       |
 
 ## Save Data
 
