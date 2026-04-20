@@ -45,11 +45,6 @@ command <verb: string[]> fail = <script name: string[]>;
 command <verb: string[]> fail = <script literal>;
 ```
 
-Bytecode actions:
-
-- `REGISTER_SERIAL_DIALOG_COMMAND`
-- `REGISTER_SERIAL_DIALOG_COMMAND_ARGUMENT`
-
 ### Unregister Command
 
 Removes a command registration for various arg or fail combinations, or for the verb overall.
@@ -65,11 +60,6 @@ delete command <verb: string[]> + <argument: string[]>;
 delete command <verb: string[]> fail;
 ```
 
-Bytecode actions:
-
-- `UNREGISTER_SERIAL_DIALOG_COMMAND`
-- `UNREGISTER_SERIAL_DIALOG_COMMAND_ARGUMENT`
-
 ### Hide or Unhide Command
 
 Hides or unhides a verb from the **`HELP`** list.
@@ -81,10 +71,6 @@ hide command <verb: string[]>;
 // UNHIDE
 unhide command <verb: string[]>;
 ```
-
-Bytecode actions:
-
-- `SET_SERIAL_DIALOG_COMMAND_VISIBILITY`
 
 ## Aliases
 
@@ -99,8 +85,3 @@ alias <string[]> = <command: string[]>;
 // DELETE
 delete alias <string[]>;
 ```
-
-Bytecode actions:
-
-- `REGISTER_SERIAL_DIALOG_COMMAND_ALIAS`
-- `UNREGISTER_SERIAL_DIALOG_COMMAND_ALIAS`

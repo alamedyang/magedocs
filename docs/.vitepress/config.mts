@@ -37,7 +37,7 @@ export default defineConfig({
 				{ text: 'Introduction to MGS', link: "/introduction_to_mgs.md" },
 				{ text: 'What You\'ll Need', link: "/what_youll_need.md" },
 				{ text: 'General Process', link: "/general_process.md" },
-				{ text: 'Syntax and Document Jargon', link: "/jargon_and_syntax.md" },
+				{ text: 'Syntax and Jargon', link: "/jargon_and_syntax.md" },
 				{ text: 'Syntax Scopes', link: "/syntax_scopes.md" },
 			]
 		},

@@ -14,7 +14,9 @@ All entity state (apart from the player's name) is reset when a [[maps#Map Loads
 
 Some of these properties are available to entities in Tiled by default.
 
-Many of these may be modified during gameplay with [[scripts|script]] [[actions|actions]] or by the player via the [[hex_editor|hex editor]]. To add a property to an entity in Tiled, click the plus at the bottom of the Properties view and set the property type (bool, object, string, etc.).
+Many of these may be modified during gameplay with [[scripts|script]] [[actions|actions]] or by the player via the [[hex_editor|hex editor]]. To see the hex editor data layout, see [[hex_editor#Values|Hex Editor > Values]].
+
+To add a property to an entity in Tiled, click the plus at the bottom of the Properties view and set the property type (bool, object, string, etc.).
 
 The MGS property type refers to what the RHS should be when the property is the LHS in an [[expressions_and_operators#Assignment Operation|assignment operation]].
 
@@ -98,10 +100,10 @@ Horizontally flipping a front or back-facing character entity will make it appea
 - **Tiled**: (place the tile for the desired direction)
 - **MGS**:
 	- `direction`
-		- [[actions#Assign Direction Value|Turn toward entity]]
-		- [[actions#Assign Direction Value|Turn toward geometry]]
-		- [[actions#Assign Direction Value|Turn cardinal direction]]
-		- [[actions#Change Int Value|Give relative turn]]
+		- [[actions#Assign Direction|Turn toward entity]]
+		- [[actions#Assign Direction|Turn toward geometry]]
+		- [[actions#Assign Direction|Turn cardinal direction]]
+		- [[expressions_and_operators#Change Int Value|Give relative turn]]
 
 ### `on_tick` Script
 
@@ -171,7 +173,7 @@ This gets written into a render flag on the "direction" byte. If checked, the en
 
 ### Debug
 
-This indicates whether the entity is hidden when [[debug_tools#Debug Mode|Debug Mode]] is off. (While this can be toggled in the [[hex_editor|hex editor]] within the MGE, in practice it will not actually affect anything in-game, as the map is reloaded afresh when debug mode is toggled.)
+This indicates whether the entity is hidden when [[debug_tools#Debug Mode|Debug Mode]] is off. While this value can be set in the [[hex_editor|hex editor]] within the MGE, in practice it will not actually affect anything in-game, as the map is reloaded afresh when debug mode is triggered and map loads reset all entity data.
 
 - **Tiled**: `is_debug` (bool)
 - **MGS**: n/a
@@ -202,5 +204,4 @@ Without an `is_player` entity:
 4. [[debug_tools#Vector View|Vector view]] can still be toggled (`XOR` + `MEM0`, or `F1` + `F5` on desktop).
 5. [[maps#Map Loads|Map loads]] work, but the camera will remain wherever it was last positioned. (It will not be reset to what is described in #1.)
 6. [[dialogs|Dialogs]] referencing the player entity will use a random portrait and the name `MISSING: 253`.
-7. [[actions|Actions]] targeting the player entity will generally do nothing.
-	- If you want to change the player's name via an action (e.g. in your game's main menu), this means you must have an `is_player` entity somewhere on the map.
+7. [[actions|Actions]] targeting the player entity (i.e. `%PLAYER%` references) will generally do nothing.

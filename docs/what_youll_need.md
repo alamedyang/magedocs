@@ -6,7 +6,7 @@ The MGE is data driven, meaning you won't need special hardware or a compiler to
 
 ### Text Editor
 
-You will need a text editor. (NOTE: a word processor like Apple's Pages or Microsoft Word will not suffice!)
+You will need a text editor. (NOTE: a word processor like Apple's Pages or Microsoft Word will not work!)
 
 What will work best is an IDE with project management features like syntax parsing and Git integration. Our recommendation, especially for beginners, is [Visual Studio Code](https://code.visualstudio.com/) (Mac, Linux, or Windows), which is free and open source. Importantly, we have prepared a VSCode Marketplace plugin for [MGS syntax highlighting](#syntax-colors), which will make it much easier to work with MGS game script files.
 
@@ -30,7 +30,7 @@ Newer versions of Tiled use a slightly different file structure that is not comp
 
 ### Web Browser
 
-The [web encoder](encoder#web-encoder) can be run with Node.js (see below) or in a web browser. They will both take the game files from your [`scenario_source_files/`](#scenario_source_files) folder and export a `game.dat` for the Mage Game Engine to use.
+The [encoder](encoder) can be run with Node.js (see below) or in a web browser. They will both take the game files from your [`scenario_source_files/`](#scenario_source_files) folder and export a `game.dat` for the Mage Game Engine to use.
 
 The web version of the encoder, however, also has an [entity management system](entity_management_system) for managing [entity](entities) [animation](animations) assignments, so while you might use the Node encoder most of the time, chances are you'll still want to use the web version regularly.
 
@@ -38,7 +38,7 @@ You will likely also want to use the [web build](#web-build) of the MGE to test 
 
 ### Node.js (optional)
 
-If you find yourself constantly making small changes to your content and regenerating your `game.dat` very frequently, it may be worthwhile to install [Node.js](https://nodejs.org) so you can use the [CLI version of the encoder](encoder#cli-encoder) instead.
+If you find yourself constantly making small changes to your content and regenerating your `game.dat` very frequently, it may be worthwhile to install [Node.js](https://nodejs.org) so you can use the [CLI version of the encoder](encoder#cli-encoder) instead. This version is much faster in part because it caches processed image data.
 
 We recommend using Node's long-term support (i.e. even numbered) versions.
 
@@ -55,9 +55,9 @@ This structure was intended to facilitate distribution of `game.dat` files and g
 - `game.dat`
 	- Encoded game data.
 	- Your `game.dat` must be here for the [desktop build](#desktop-build) to see it.
-		- The [CLI encoder](encoder#cli-encoder) will update the `game.dat` in place.
+	- The [CLI encoder](encoder#cli-encoder) will update the `game.dat` in place.
 - `replace_dat_file_with_downloaded.sh`
-	- Grabs the latest `game.dat` from your Downloads folder and moves it to your current directory.
+	- Grabs the latest `game.dat` from your Downloads folder and moves it to your current directory. Useful when using the [web encoder](encoder#web-encoder).
 - `regenerate_dat_file.sh`
 	- The [CLI encoder](encoder#cli-encoder). There are two versions depending on which repo you started with; the version from the [MGE VM ](mge_vm)is slightly different. Requires node.js.
 - `mage_dat.ksy`
@@ -87,17 +87,17 @@ Folders:
 	- Map data (not including tilesets)
 - `mgs/`
 	- MageGameScript files (MGS)
-	- These files need not be anywhere specific, but they're best kept together if nothing else.
+	- These files need not be anywhere specific, but they're best kept together.
 - `tilesets/`
 	- Tiled [tilesets](tilesets) (JSON) and [spritesheets](tilesets#spritesheets) (PNG/GIF)
 	- For non-entity assets, such as graphics for maps, dialog borders, etc.
 
 Files:
 
-- See [`scenario.json`](#scenario.json)
-- See [`entity_types.json`](#entity_types.json)
-- See [`maps.json`](#maps.json)
-- See [`portraits.json`](#portraits.json)
+- See [`scenario.json`](#scenario.json) below
+- See [`entity_types.json` below](#entity_types.json)
+- See [`maps.json`](#maps.json) below
+- See [`portraits.json`](#portraits.json) below
 
 #### `scenario.json`
 
@@ -123,9 +123,9 @@ This file tells the encoder which JSON files to include for various purposes. Af
 
 Identifies [character entities](entity_types#character-entity) and assigns them various properties, such as:
 
-- `tileset`: their tileset JSON file path
+- `tileset`: their image JSON file path
 - `portrait`: the name of their portrait image, if not the same as their `entity_type` name (optional)
-- `animations`: their [animation assignments](entity_management_system#assigning-animations) (idle, walk, action, etc. — and north, south, west, east)
+- `animations`: their [animation assignments](entity_management_system#assigning-animations) (north/south/west/east and idle/walk/action, etc.)
 
 As an example (keeping in mind that the animation arrays have been closed so the overall structure is more clear):
 
@@ -165,7 +165,7 @@ Animations are much easier to do using the [web encoder](encoder#web-encoder)'s 
 
 When animations are created within Tiled, they are assigned to a tile on the tileset. So for the above definitions, `tileid` refers to which tile the animation has been assigned to.
 
-To find the `tileid`, count left-to-right and top-to-down, but remember to count starting from 0 instead of 1. Alternatively, you can select the correct tile in Tiled and see the tile ID that way.
+To find the `tileid`, count left-to-right and top-to-down, starting from 0. Alternatively, you can select the tile in Tiled and see the tile ID that way.
 
 `flip_x` will flip the sprites horizontally (and `flip_y` will flip vertically), but will otherwise make no changes to the animation on that tile.
 
@@ -180,7 +180,7 @@ Each character entity should at least have an [idle, walk, and action animation]
 
 ### `maps.json`
 
-[Map properties](maps#map-properties) defined in a map's Tiled JSON file (as was done in chapter 1) are still honored (for now!), but it's recommended to move such properties to this file for easier access.
+[Map properties](maps#map-properties) may be defined in a map's Tiled JSON file (legacy), but it's recommended to move such properties to this file for easier access.
 
 The first map given is the map run when the game is opened.
 
@@ -241,31 +241,31 @@ This file contains data for portraits, which reference tileset JSON files from t
 
 You should at least have a `default` emote, but you can define any others as you like. Emotes are currently identified by their index / `id`.
 
-The Mage Game Engine supports animated emotes. To animate an emote, create an animation for that tile the same way you would [make an entity animation](animations)(animations).
+The Mage Game Engine supports animated emotes. To animate an emote, create an animation for that tile the same way you would [make an entity animation](animations).
 
 ## To Run the Game
 
-### MicroSD Card (optional)
+### Real Badge
 
-To put a new `game.dat` onto the badge, you'll need a microSD card formatted to FAT32. (This is only necessary if you're using the real badge hardware; the [web build](#web-build) is sufficient for most cases.)
+To put a new `game.dat` onto the badge, you'll need a microSD card formatted to FAT32. Put the `game.dat` into a folder named `MAGE` for the badge to see it. (Other files and folders are ignored.)
 
 ### Desktop Build
 
-The tools listed above can be run in any environment, but at the moment (October 2025), you need Linux to run the game natively on your computer.
+At the moment (April 2026), you need Linux to run the game natively on your computer.
 
-A virtual machine will be sufficient for this. For your convenience, we have prepared a [VM image](mge_vm) with project files and tooling in place for you to start a new MGE project, but know that you will likely need to update everything, as the VM was prepared for the chapter 1 engine.
+A virtual machine will be sufficient for this. For your convenience, we have prepared a [VM image](mge_vm) with project files and tooling in place for you to start a new MGE project, but know that you will need to update everything, as the VM was prepared for the chapter 1 engine.
 
 ### Web Build
 
-The web build of the Mage Game Engine (MGE) allows you to drag and drop a `game.dat` into your browser window to play test (or play!) any MGE scenario.
+The web build of the Mage Game Engine (MGE) allows you to drag and drop a `game.dat` into your browser window to play any MGE scenario.
 
-As of October 2025, the latest build for the chapter 2 engine is available here: [https://dc801.github.io/BM-Badge/](https://dc801.github.io/BM-Badge/).
+As of April 2026, the latest build for the chapter 2 engine is available here: [https://dc801.github.io/BM-Badge/](https://dc801.github.io/BM-Badge/). For the current WIP chapter 3 engine, go here: [https://admiralpotato.github.io/secret_black_mage_badge_mirror/](https://admiralpotato.github.io/secret_black_mage_badge_mirror/ "https://admiralpotato.github.io/secret_black_mage_badge_mirror/"). (These docs are meant for the chapter 3 MGS and MGE features.)
 
 Save game data persists per `game.dat` file.
 
 ## Syntax Colors
 
-A syntax coloring grammar (tmLanguage) for MageGameScript is in development here: [github.com/alamedyang/magegamescript-syntax-highlighting](https://github.com/alamedyang/magegamescript-syntax-highlighting). This makes coding MGS much, much easier.
+A syntax coloring grammar (tmLanguage) for MageGameScript is in development here: [github.com/alamedyang/magegamescript-syntax-highlighting](https://github.com/alamedyang/magegamescript-syntax-highlighting) and is highly recommended.
 
 It has been tested against dozens of themes and is fairly robust. The chosen color scopes mimic real programming languages, so if you are familiar with the purpose of each color in your favorite theme, it should feel comfortable.
 
@@ -279,7 +279,7 @@ When you open an MGS file, VSCode might offer a [marketplace extension](https://
 
 ![VSCode plugin for MageGameScriptColors](media/vscode-plugin.png)
 
-If you are using VSCodium or want to avoid the extensions marketplace, you may download the vsix file itself [here](https://github.com/alamedyang/magegamescript-syntax-highlighting/releases) and install it manually, though you will have to check for updates yourself.
+If you are using VSCodium or want to avoid the extensions marketplace, you may download the `vsix` file itself [here](https://github.com/alamedyang/magegamescript-syntax-highlighting/releases) and install it manually, though you will have to check for updates yourself.
 
 After installing the extension, all MGS files will have syntax coloring.
 
@@ -316,3 +316,7 @@ The steps that worked (for us) in October 2025:
 ### Other IDEs
 
 Many other IDEs will accept TextMate grammars, but you will have to find and follow your IDE's specific instructions.
+
+If the IDE requires a JSON, YAML or XML grammar definition, you can find these in the `syntaxes/` folder inside the VSIX archive.
+
+If you need a `tmbundle` specifically, sometimes we've left an experimental one inside one of the VSIX directories somewhere, but contact us to get the latest one.

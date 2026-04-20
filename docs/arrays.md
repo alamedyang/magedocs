@@ -42,8 +42,6 @@ array <name: string> = <initial value>;
 	- 0+ comma-separated int expressions, wrapped in `[]`
 	- [Array method chain that returns an array](#returns-an-array) (as opposed to one returning a value or nothing).
 
-Bytecode action: `ARRAY_NEW`
-
 ### Delete
 
 Deletes named array(s). If the array already doesn't exist, nothing will happen.
@@ -52,8 +50,6 @@ Deletes named array(s). If the array already doesn't exist, nothing will happen.
 delete array <string[]>;
 ```
 
-Bytecode action: `ARRAY_DELETE`
-
 ### Print
 
 Prints the array(s)'s values to the serial console, but only if the game is in [debug mode](debug_tools#debug-mode).
@@ -61,8 +57,6 @@ Prints the array(s)'s values to the serial console, but only if the game is in [
 ```
 print array <string[]>;
 ```
-
-Bytecode action: `ARRAY_LOG`
 
 ## Array Methods
 
@@ -105,18 +99,9 @@ Some of these alter an existing array, but for those that don't, the modified ar
     - The mapping fn cannot use `continue` or `break`. You may [`return`](script_control_flow#return) early to jump to the next loop, but the loop must play out in its entirety.
     - If the mapping fn does not return anything, the value of the new array at that index will be 0.
 
-Bytecode actions:
-
-- `ARRAY_SORT`
-- `ARRAY_REVERSE`
-- `ARRAY_SLICE`
-- `ARRAY_SLICE_BY_VARIABLE`
-- `ARRAY_SLICE_TWICE`
-- `ARRAY_SLICE_TWICE_BY_VARIABLE`
-
 ### Returns a Value (int)
 
-Some of these methods modify existing arrays, but for those that don't, the [returned](script_control_flow#return) value is wasted if it's not [stored in a variable](actions#assign-int-value) or [used in an expression](expressions_and_operators#int-expressions).
+Some of these methods modify existing arrays, but for those that don't, the [returned](script_control_flow#return) value is wasted if it's not [stored in a variable](expressions_and_operators#assign-int-value) or [used in an expression](expressions_and_operators#int-expressions).
 
 - **Value at index**: Returns the value of the array at that [index](#array-indices).
 	- `[<array index>]`
@@ -126,14 +111,6 @@ Some of these methods modify existing arrays, but for those that don't, the [ret
 	- `.pop()`
 - **Pop Left**: Removes the first item in the array and returns it.
 	- `.pop_left()`
-
-Bytecode actions:
-
-- `ARRAY_READ_FROM_INDEX_INTO_VARIABLE`
-- `ARRAY_READ_FROM_VARIABLE_INDEX_INTO_VARIABLE`
-- `ARRAY_LENGTH_INTO_VARIABLE`
-- `ARRAY_POP_INTO_VARIABLE`
-- `ARRAY_POP_LEFT_INTO_VARIABLE`
 
 ### Returns Nothing
 
@@ -148,13 +125,6 @@ These only modify existing arrays or work on the data inside them. These can onl
 	- `.for_each(<fn literal>)`: Uses the provided fn.
 	- Exactly the same as `.map()`, except that it does not return a new array. Return values from the fn, if any, are discarded.
 
-Bytecode actions:
-
-- `ARRAY_PUSH_FROM_VALUE`
-- `ARRAY_PUSH_FROM_VARIABLE`
-- `ARRAY_PUSH_LEFT_FROM_VALUE`
-- `ARRAY_PUSH_LEFT_FROM_VARIABLE`
-
 ## Assign Array Value at Index
 
 Sets the value of an array at a given index to the value on the RHS of the [assignment operation](expressions_and_operators#assignment-operation).
@@ -165,10 +135,3 @@ Sets the value of an array at a given index to the value on the RHS of the [assi
 
 - **Array index**: see [Array Indices](#array-indices)
 - **Int expression**: see [Int Expression](expressions_and_operators#int-expressions)
-
-Bytecode actions:
-
-- `ARRAY_WRITE_INTO_INDEX_FROM_VALUE`
-- `ARRAY_WRITE_INTO_INDEX_FROM_VARIABLE`
-- `ARRAY_WRITE_INTO_VARIABLE_INDEX_FROM_VALUE`
-- `ARRAY_WRITE_INTO_VARIABLE_INDEX_FROM_VARIABLE`

@@ -54,7 +54,7 @@ The handler in this case is the entity "Bob Austin." Because the handler is not 
 
 ### Bender Watches You
 
-Bender's default idle behavior involves two threads of logic: one to [[actions#Assign Direction Value|turn him toward the player]] at all times, and the other to [[actions#Play Entity Animation|play back]] the "I've got my eye on you" [[animations|animation]] [[actions#Non-Blocking Delay|after a certain length of time]]. These two behaviors can happen simultaneously (as he can turn toward the player while performing that animation), so this must be done with two [[scripts#Script Slots|script slots]].
+Bender's default idle behavior involves two threads of logic: one to [[actions#Assign Direction|turn him toward the player]] at all times, and the other to [[actions#Play Entity Animation|play back]] the "I've got my eye on you" [[animations|animation]] [[actions#Non-Blocking Delay|after a certain length of time]]. These two behaviors can happen simultaneously (as he can turn toward the player while performing that animation), so this must be done with two [[scripts#Script Slots|script slots]].
 
 In the Tiled [[maps|map]], Bender and his handler have these scripts set to their `on_tick` slots, so this is their default behavior.
 

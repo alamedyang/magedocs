@@ -12,10 +12,8 @@ Used for:
 ## Wrapping
 
 - Both dialogs and serial dialogs are auto-wrapped according to the their `wrap` settings. This means line breaks are introduced whenever an individual line is too long.
-- Text wrapping newlines will replace contiguous sequences of spaces and/or tabs.
+- Newlines inserted for wrapping will replace contiguous sequences of spaces and/or tabs.
 - Preexisting newlines are left alone.
-- Quotes inside the string must be escaped with backslash (e.g. `\"`).
-- The values of integer variables and entity names may be inserted into dialog and serial dialog strings. See [Variables > Printing Current Values](state#printing-current-values).
 
 ## Sanitization
 
@@ -27,6 +25,9 @@ Dialogs can only print ASCII characters, and serial dialogs *should* only print 
 - Ellipses (`…`) are changed to three periods (`...`).
 - Escaped tabs (`\t`) are changed to real tabs.
 - Escaped newlines (`\n`) are changed to real newlines.
+- Any other escaped character will pass through, i.e. the escape character `\` will be ignored.
+
+As these are of the [quoted string](primitive_types#quoted-string) [primitive type](primitive_types), any quotes inside the string must be escaped with backslash (e.g. `\"`).
 
 ## Printing Current Values
 
@@ -34,7 +35,7 @@ The values of integer variables and the current names of any entity can be inser
 
 The wrapping character (`$` or `%`) will print if used on its own in any given line, but pairs of them will trigger this value replacement behavior. To force them to print literally, escape them with a backslash (e.g. `\$`).
 
-The current value will always be printed, not the value at the time the dialog or serial dialog was "defined," since dialogs and serial dialogs [always exist](syntax_scopes#project-scope).
+The **current value** will always be printed, not the value at the time the dialog or serial dialog was "defined," since dialogs and serial dialogs [always exist](syntax_scopes#project-scope).
 
 ### Print Variable Value
 
@@ -43,7 +44,7 @@ Enclose the name of the [variable](state#integer-variables) in dollar signs: `$a
 ```mgs
 _ {
   appleCount = 10;
-  show serial dialog { "I have $appleCount$ apples for sale today!" };
+  show serial_dialog { "I have $appleCount$ apples for sale today!" };
 }
 ```
 
@@ -65,7 +66,7 @@ Wrap an [entity](entities)'s given name (the name assigned to it in Tiled) in pe
 
 ## Ansi Escape Sequences
 
-Serial dialog quoted strings may also use ANSI styling via tags that resemble HTML styling. These tags are replaced by the associated ANSI escape sequence.
+Serial dialog quoted strings may also use ANSI styling via tags that resemble HTML/XML styling. These tags are replaced by the associated ANSI escape sequence.
 
 The user's color theme affects how styles appear in their serial console, and not all styles are implemented in all themes (or consoles). We therefore recommend using styles for optional flavor only, and not to impart gameplay-critical information.
 
@@ -99,7 +100,7 @@ The user's color theme affects how styles appear in their serial console, and no
 	- This isn't a style as such, but it is still available to use.
 	- Note that this character may be printed depending on the destination terminal.
 
-You could add custom ansi escape sequences if you wanted. As these strings are Javascript flavor, the escape character is `\u001B`.
+You could add custom ansi escape sequences if you wanted. As these strings are JavaScript flavored, the escape sequence is `\u001B`.
 
 ### Example
 

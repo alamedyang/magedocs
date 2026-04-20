@@ -25,5 +25,6 @@ TODOs for the language and/or documentation
 - Capitalization of macros? Copy Script, Include Macro, etc. Upper or lower or what?
 - Put command and array actions into actions?
 - Add how to use the MEM buttons
+- Why are emotes stored by name but referenced by index?
 
 Fancy styles reference: https://vitepress.dev/guide/markdown#errors-and-warnings-in-code-blocks

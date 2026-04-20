@@ -27,7 +27,7 @@ script after {
 
 If inside a `rand!()` macro, the actions inside the rand block are arranged so that a single parameter is chosen at random when the game is run.
 
- f there are multiple expansions inside the same `rand!()` block, then the same nth value is chosen for that random roll.
+If there are multiple expansions inside the same `rand!()` block, then the same nth value is chosen for that random roll.
 
 ```mgs
 script before {

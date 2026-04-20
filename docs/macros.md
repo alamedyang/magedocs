@@ -40,7 +40,7 @@ _ {
 
 ## RNG
 
-This macro creates a random number and put it into a temporary variable. Can use it as an [int operand](expressions_and_operators#int-operands) in an [int expression](expressions_and_operators#int-expressions). To store the random value longer term, use it in the RHS of an [assignment statement](actions#assign-int-value).
+This macro creates a random number and put it into a temporary variable. Can use it as an [int operand](expressions_and_operators#int-operands) in an [int expression](expressions_and_operators#int-expressions). To store the random value longer term, use it in the RHS of an [assignment statement](expressions_and_operators#assign-int-value).
 
 ```
 RNG!(<max>)

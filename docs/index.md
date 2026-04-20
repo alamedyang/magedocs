@@ -2,7 +2,23 @@
 
 Content creation guide for the "Mage Game Engine" (MGE) using MageGameScript (MGS), a custom domain-specific language.
 
-![syntax color sample with the Dark+ theme](media/syntax-colors-demo.png)
+```mgs
+on_load_woprhouse {
+  if (!wopr_backdoor_found) {
+    player_control = off;
+    wopr_backdoor_found = true;
+    if (warp_state != warped) {
+      player position -> geometry "walk_from_north" length over 600ms;
+    }
+    wait 400ms;
+    show dialog {
+      PLAYER
+      "Whoa! It looks like I found some kind of back door."
+    };
+    player_control = on;
+  }
+}
+```
 
 ## Overview
 
@@ -97,19 +113,34 @@ Content creation guide for the "Mage Game Engine" (MGE) using MageGameScript (MG
 		+ [Geometry Identifier](identifiers#geometry-identifier)
 4. [Expressions and Operators](expressions_and_operators)
 	* [Expressions](expressions_and_operators#expressions)
-	* [Assignment Operation](expressions_and_operators#assignment-operation)
+		+ [Mixing Types](expressions_and_operators#mixing-types)
 	* [Operands](expressions_and_operators#operands)
-		+ [Getables vs Setables](expressions_and_operators#getables-vs-setables)
+		+ [Types](expressions_and_operators#types)
+			- [Getable](expressions_and_operators#getable)
+			- [Checkable](expressions_and_operators#checkable)
+			- [Setable](expressions_and_operators#setable)
+			- [Example: `debug_mode`](expressions_and_operators#example-debug_mode)
+		+ [Int Operands](expressions_and_operators#int-operands)
+		+ [Bool Operands](expressions_and_operators#bool-operands)
+		+ [String Operands](expressions_and_operators#string-operands)
+	* [Assignment Operation](expressions_and_operators#assignment-operation)
+		+ [Assign Int Value](actions#assign-int-value)
+		+ [Assign Bool Value](actions#assign-bool-value)
+		+ [Assign String Value](actions#assign-string-value)
+		+ [Assign Script Value](actions#assign-script-value)
+		+ [Assign Direction](actions#assign-direction)
+	* [Change By Value Operation](expressions_and_operators#change-by-value-operation)
+		+ [Change Int Value](actions#change-int-value)
+		+ [Relative Turns](actions#relative-turns)
 	* [Int Expressions](expressions_and_operators#int-expressions)
 		+ [Int Binary Expression](expressions_and_operators#int-binary-expression)
-		+ [Int Operands](expressions_and_operators#int-operands)
 	* [Bool Expressions](expressions_and_operators#bool-expressions)
 		+ [Bool Unary Expression](expressions_and_operators#bool-unary-expression)
-		+ [Bool Comparison](expressions_and_operators#bool-comparison)
 		+ [Bool Binary Expression](expressions_and_operators#bool-binary-expression)
-		+ [Bool Operands](expressions_and_operators#bool-operands)
-		+ [Button Names](expressions_and_operators#button-names)
-		+ [String Checkables](expressions_and_operators#string-checkables)
+			- [Boolean Logic](expressions_and_operators#boolean-logic)
+			- [Int Comparisons](expressions_and_operators#int-comparisons)
+			- [Bool Equality Check](expressions_and_operators#bool-equality-check)
+			- [String Equality Check](expressions_and_operators#string-equality-check)
 5. [Macros](macros)
 	* [Include](macros#include)
 	* [Rand](macros#rand)
@@ -215,14 +246,6 @@ Content creation guide for the "Mage Game Engine" (MGE) using MageGameScript (MG
 		+ [Play Entity Animation](actions#play-entity-animation)
 		+ [Fade Camera In or Out](actions#fade-camera-in-or-out)
 		+ [Shake Camera](actions#shake-camera)
-	* [Assign a Value](actions#assign-a-value)
-		+ [Assign Int Value](actions#assign-int-value)
-		+ [Change Int Value](actions#change-int-value)
-		+ [Assign Bool Value](actions#assign-bool-value)
-		+ [Assign String Value](actions#assign-string-value)
-		+ [Assign Script Value](actions#assign-script-value)
-		+ [Assign Direction Value](actions#assign-direction-value)
-	* [Other Actions](actions#other-actions)
 
 ## Techniques
 

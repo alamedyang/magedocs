@@ -16,7 +16,7 @@ All variables are persistent between [map loads](maps#map-loads) because all are
 
 ## Warp State String
 
-The Warp State String (`warp_state`) is designated for controlling player spawn behavior on a map's [`on_load`](scripts#on_load) script. When you leave a [room](doors) (or otherwise trigger a new [map load](maps#map-loads)), the Warp State String should be [set](actions#assign-string-value) to something that indicates the exit/entrance point so the next [map](maps)'s `on_load` can [teleport](actions#position-assignment) the [player entity](entities#player) to the appropriate [spawn point](doors#spawn-points).
+The Warp State String (`warp_state`) is designated for controlling player spawn behavior on a map's [`on_load`](scripts#on_load) script. When you leave a [room](doors) (or otherwise trigger a new [map load](maps#map-loads)), the Warp State String should be [set](expressions_and_operators#assign-string-value) to something that indicates the exit/entrance point so the next [map](maps)'s `on_load` can [teleport](actions#position-assignment) the [player entity](entities#player) to the appropriate [spawn point](doors#spawn-points).
 
 See [Primitive Types > String](primitive_types#string)
 
@@ -45,9 +45,9 @@ See: [Primitive Types > Boolean](primitive_types#boolean)
 
 ## Engine Flags
 
-### Setable Engine Flags
+### [Setable](expressions_and_operators#setable) Engine Flags
 
-Can be used as the LHS of a [bool assignment](actions#assign-bool-value).
+Can be used as the LHS of a [bool assignment](expressions_and_operators#assign-bool-value).
 
 | MGS keyword       | Description                                                                                                            |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
@@ -59,9 +59,9 @@ Can be used as the LHS of a [bool assignment](actions#assign-bool-value).
 | `hex_clipboard`   | When `true`, the player can use the hex editor clipboard.                                                              |
 | `serial_control`  | When `true`, the player can use the serial console.                                                                    |
 
-### Checkable Engine Flags
+### [Checkable](expressions_and_operators#checkable) Engine Flags
 
-Can be used as [bool operands](expressions_and_operators#bool-operands) in a bool expression.
+Can be used as [bool operands](expressions_and_operators#bool-operands) in a [bool expression](expressions_and_operators#bool-expressions).
 
 | MGS keyword          | Description                                                 |
 | -------------------- | ----------------------------------------------------------- |

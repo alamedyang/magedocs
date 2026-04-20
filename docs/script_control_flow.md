@@ -107,3 +107,28 @@ Labels are a means of setting destinations for [jump actions](actions#jump-to-la
 ```
 <bareword>:
 ```
+
+Example:
+
+```mgs
+_ {
+	show serial_dialog { "Let's count to four!" };
+	show serial_dialog { "One..." };
+	show serial_dialog { "Two..." };
+	goto label skip;
+	show serial_dialog { "Three..." };
+	skip:
+	show serial_dialog { "Four! Wait, hang on..." };
+}
+```
+
+The above becomes:
+
+```
+Let's count to four!
+One...
+Two...
+Four! Wait, hang on...
+
+>_
+```

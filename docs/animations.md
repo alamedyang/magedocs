@@ -31,7 +31,7 @@ Entities look far more alive with an idle animation, even if it's just an occasi
 Idle animations are expected to loop seamlessly.
 
 ::: tip Best Practice
-To avoid robotic synchronization between entities, try to stagger their animation timings by setting the `animation_frame` [property](entities#entity-properties) for that entity on their Tiled map or via [Assign Int Value](actions#assign-int-value) for `animation_frame`.
+To avoid robotic synchronization between entities, try to stagger their animation timings by setting the `animation_frame` [property](entities#entity-properties) for that entity on their Tiled map or via [Assign Int Value](expressions_and_operators#assign-int-value) for `animation_frame`.
 :::
 
 ### Walking

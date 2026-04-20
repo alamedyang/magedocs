@@ -24,3 +24,26 @@ There are several methods:
 The `XOR`, `ADD`, and `SUB` buttons on the left side of the screen change the operator mode for the bit buttons below the screen. E.g. to add 4 to the value, set the mode to `ADD` and press the `4` bit button.
 
 While inside the hex editor you can also increment and decrement the selected value by 1 using the triangle and X buttons.
+
+## Values
+
+Each entity has two rows of data. Every multi-byte number is little endian. The player entity's entry will be red.
+
+```
+AAAAAAAAAAAABBCC
+DDEEFFGGHIJKLLMM
+```
+
+- A. Name
+- B. X coordinate
+- C. Y coordinate
+- D. on_interact script
+- E. on_tick script
+- F. primary_id
+- G. secondary_id
+- H. primary_id_type
+- I. Animation id
+- J. Animation frame
+- K. Render flags
+- L. Assigned geometry (path)
+- M. on_look script

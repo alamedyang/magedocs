@@ -1,77 +1,122 @@
 # Expressions and Operators
 
+Expressions are built up from operands, operators, and parenthetical groupings in the manner commonly done in modern languages.
+
 ## Expressions
 
-- Expressions are built up from operands, operators, and parenthetical groupings in the manner commonly done in modern languages, e.g.`(5 + variable_name) * 7`.
-- Expressions can stand in for a [[primitive_types|value of that type]] in almost all places.
-- Int and bool expressions cannot be combined. Examples:
-	- `!(player x - 10)` is a syntax error.
-	- `var_name + false` will be parsed as `var_name + "false"`, where "false" is an int variable name).
-- String literals and string references cannot be used in expressions apart from in bool comparisons.
-- Operands and operators themselves cannot be expanded in [[action_param_expansions|action param expansions]], but the expression as a whole often can, depending on the [[actions|action phrase]].
+Expressions can stand in for a [[primitive_types|value of the same type]] in almost all places.
 
-## Assignment Operation
+```mgs
+_ {
+	entity Bob x = (5 + variable_name) * player x;
 
-This is a binary expression that sets the left-hand side (LHS) to the value of the right-hand side (RHS).
-
+	// Without expressions, fwiw:
+	TEMP1 = 5;
+	TEMP1 += variable_name;
+	TEMP2 = player x;
+	TEMP1 *= TEMP2;
+	entity Bob x = TEMP1;
+}
 ```
-<LHS> = <RHS>;
+
+### Mixing Types
+
+Int and bool expressions/operands cannot be combined. Examples:
+
+```mgs
+_ {
+	hex_control = !(player x - 10);
+	// Syntax error
+
+	new_var = var_name + false;
+	// Not invalid, but not what you wanted
+}
 ```
 
-See: [[actions#Assign a Value|Actions > Assign a Value]]
+In the second example above, the string "false" is interpreted as an int variable identifier and not a [[primitive_types#Boolean|boolean]], because booleans are not allowed in int expressions.
+
+Operands and operators themselves cannot be expanded in [[action_param_expansions|action param expansions]], but the expression as a whole often can, depending on the [[actions|action phrase]].
+
+```mgs
+_ {
+	entity Bob x = [0, var_name + 10];
+	// OK
+
+	entity Bob x = 10 [-, +] 8;
+	// Syntax error
+
+	entity Bob x = [10, 40] - var_name;
+	// Syntax error
+}
+```
 
 ## Operands
 
-### Getables vs Setables
+Operands are what operators act upon. (In `2 + varName`, the operands are `2` and `varName` and the operator is `+`.)
 
-You can set and get/check most operands with bytecode instructions. But some can only be checked, and some only set. This means some can only be on the LHS of an assignment operation, and some can only be in the expression on the RHS.
+### Types
 
-### Getables vs Checkables
+Because expressions are an artificial abstraction, not every unit of data can be used in every part of an expression, including assignment operations. (This presents challenges when it comes to documentation!)
 
-Getables can have their values copied out, but checkables can only be used for conditional logic jumps. All getables are checkable, but not all checkables are getable.
+To explain why some operands can be used some places and not others, it is useful to understand the three main categories of data involved:
 
-### Literals Only
+#### Getable
 
-Certain checkables can only be checked against literal values, not expressions. Likewise, certain setables can only be set to literal values.
+**Getable operands** can copied into another value, which makes it easier to use them in more abstract ways. Most numerical entity properties can be moved into [[state#Integer Variables|integer variables]].
 
-## Int Expressions
+All [[state#Engine Flags|engine flags]] ([[primitive_types#Boolean|bools]]) are getable whenever they are checkable, as temporary bool values can be set based on whether the value check passed or not — trivial when there are only two possible states.
 
-An int expression results in a number value. Note that a single int operand is a valid int expression.
+#### Checkable
 
-```
-<int operand>
-// OR
-<int binary expression>
-// OR
-( <int expression> )
-```
+**Checkable operands** are values that can be compared to something else and used for [[script_control_flow|logic control flow]], i.e. a branch. Each type of check is its own [[actions|bytecode instruction]].
 
-### Int Binary Expression
+Some checkables can only be compared with [[primitive_types|literal values]] and cannot be compared to [[state#Save Flags|boolean variables]] and [[state#Integer Variables|integer variables]]. These are usually the operands that are not **getable** (able to be moved and stored into a new place), like strings.
 
-These behave as expected. Standard operator precedence (order of operations) is used.
+Checkables by their nature are used solely for boolean expressions, which means they can be daisy-chained into larger boolean expressions.
 
-```
-<int operand> <int binary operator> <int operand>
-```
+#### Setable
 
-- **Int operand**: see [[#Int Operands]]
-- **Int binary operator**:
-	- Add: `+`
-	- Subtract: `-`
-	- Multiply: `*`
-	- Divide: `/`
-	- Modulo: `%`
+The value of **setable operands** can be changed. Sometimes they can only be set to literal values and not referenced values, which means complex expressions cannot be used as the value being set.
+
+If an operand is setable but not checkable or getable, then it can only appear on the left hand side of an assignment operation: `<LHS> = <RHS>;`
+
+#### Example: `debug_mode`
+
+`debug_mode` is an engine flag determining whether debug entities are loaded into the map, among other things. It is **not setable**, meaning you cannot set it using an assignment operation. (It's triggered using the buttons on the badge.)
 
 ```mgs
-// example
 _ {
-	target_int = player x + 30;
+	debug_mode = true;
+	// Syntax error
+}
+```
+
+It is, however, **checkable**, meaning there is a [[actions|bytecode instruction]] for checking the state of `debug_mode` and branching accordingly.
+
+```mgs
+_ {
+	if (debug_mode) {}
+}
+```
+
+It is also **getable**, because setting a value based on a boolean checkable is straightforward, as there are only two possible states.
+
+```mgs
+_ {
+	hex_control = debug_mode;
+
+	// effectively does this
+	if (debug_mode) {
+		hex_control = true;
+	} else {
+		hex_control = false;
+	}
 }
 ```
 
 ### Int Operands
 
-These are "int getables" (as opposed to [[actions#Int Setables|"int setables"]]).
+#### Int Getables
 
 - [[state#Integer Variables|Number literals]]
 - [[identifiers|Variable identifiers]] ([[state#Integer Variables|integers]])
@@ -88,116 +133,31 @@ These are "int getables" (as opposed to [[actions#Int Setables|"int setables"]])
     - `<entity identifier> current_animation`
     - `<entity identifier> animation_frame`
 	- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
-- Another int expression
 
-Bytecode actions:
+#### Int Checkables
 
-- `COPY_VARIABLE`
-- `CHECK_VARIABLE`
-- `CHECK_VARIABLES`
-- `COPY_SCRIPT`
-- `CHECK_ENTITY_X`
-- `CHECK_ENTITY_Y`
-- `CHECK_ENTITY_PRIMARY_ID`
-- `CHECK_ENTITY_SECONDARY_ID`
-- `CHECK_ENTITY_PRIMARY_ID_TYPE`
-- `CHECK_ENTITY_CURRENT_ANIMATION`
-- `CHECK_ENTITY_CURRENT_FRAME`
-- [[arrays#Returns a Value (int)|Bytecode actions for array methods that return a value]]
+Any [[#Int Getables|int getable]] is also checkable.
 
-## Bool Expressions
+#### Int Setables
 
-A bool expression result in a bool value. A single bool operand is a valid bool expression.
-
-```
-<bool operand>
-// OR
-<bool unary expression>
-// OR
-<bool comparison>
-// OR
-<bool binary expression>
-// OR
-( <bool expression> )
-```
-
-### Bool Unary Expression
-
-The only unary operator is `!`, which inverts the attached bool operand.
-
-```
-!<bool operand>
-```
-
-- `!<bool exp>` is equivalent to `<bool exp> != true` or `<bool exp> == false`.
-- These are evaluated before other operators. To invert a larger expression, group it in parens and invert the grouping.
-- For multi-word bool "getables" like `entity Bob glitched` you can put a `!` before the first word to invert the whole phrase. No need to wrap the phrase in parens.
-
-```mgs
-//example
-_ {
-	target_bool = !flag_name;
-}
-```
-
-### Bool Comparison
-
-```
-<int expression> <comparison operator> <int expression>
-// OR
-<bool expression> <equality operator> <bool expression>
-// OR
-<string checkable> <equality operator> <string literal>
-// OR
-<string literal> <equality operator> <string checkable>
-```
-
-- **Int expression**: see [[expressions_and_operators#Int Expressions|Int Expression]]
-- **Bool expression**: see [[expressions_and_operators#Bool Expressions|Bool Expressions]]
-- **String checkable**: see [[#String Checkables]]
-- **String literal**: see [[primitive_types#String|String]]
-- **Equality operator**:
-	- Equal to: `==`
-	- Not equal to: `!=`
-- **Comparison operator**:
-	- Less than: `<`
-	- Less than or equal to: `<=`
-	- Greater than: `>`
-	- Greater than or equal to: `>=`
-	- Also, all equality operators
-
-```mgs
-//examples
-_ {
-	target_bool = player x < 100;
-	target_bool = flag_name != true;
-	target_bool = player name == "Bob";
-	target_bool = "Bob" != player name;
-}
-```
-
-### Bool Binary Expression
-
-```
-<bool expression> <bool binary operator> <bool expression>
-```
-
-- **Bool binary operator**:
-	- Boolean OR: `||`
-	- Boolean AND: `&&`
-
-```
-// example
-_ {
-	target_bool = debug_mode || player glitched;
-}
-```
+- [[identifiers|Variable identifiers]] ([[state#Integer Variables|integers]])
+- [[arrays#Assign Array Value at Index|Array value at index]] (e.g. `array[i]`)
+- [[entities#Entity Properties|Entity int properties]]:
+	- `<entity identifier> x`
+	- `<entity identifier> y`
+    - `<entity identifier> primary_id_type` (u8)
+    - `<entity identifier> primary_id`
+    - `<entity identifier> secondary_id`
+    - `<entity identifier> current_animation`(u8)
+    - `<entity identifier> animation_frame`(u8)
+    - `<entity identifier> strafe`
+	- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
 
 ### Bool Operands
 
-These are "bool getables" (as opposed to [[actions#Bool Setables|"bool setables"]]).
+#### Bool Getables
 
-- [[primitive_types#Boolean|Boolean literals]] e.g. `true`, `false`
+- [[primitive_types#Boolean|Bool literals]] (`true`, `false` etc.)
 - [[identifiers|Variable identifiers]] ([[state#Save Flags|flags]])
 - [[state#Engine Flags|Checkable engine flags]] e.g. `debug_mode`
 - [[entities#Entity Properties|Entity bool properties]] / status:
@@ -207,24 +167,12 @@ These are "bool getables" (as opposed to [[actions#Bool Setables|"bool setables"
 - Button status:
     - `button <button name> down` or `up` (the button's current state)
     - `button <button name> pressed` (whether the button recently changed from up to down)
-    - NOTE: The button states are reset when a new map is loaded. If listening for a button press in the new map, this action may very will trigger immediately, even if the button was held down through the map load.
 
-Bytecode actions:
-
-- `CHECK_SAVE_FLAG`
-- `CHECK_DEBUG_MODE`
-- `CHECK_DIALOG_OPEN`
-- `CHECK_SERIAL_DIALOG_OPEN`
-- `CHECK_ENTITY_GLITCHED`
-- `CHECK_IF_ENTITY_IS_IN_GEOMETRY`
-- `CHECK_FOR_BUTTON_PRESS`
-- `CHECK_FOR_BUTTON_STATE`
-
-### Button Names
-
-::: warning INFO
-We found that the joystick clicks were aggressive on the hardware, and would trigger at what felt like arbitrary times. While the engine is capable of detecting these clicks, we recommend not using them.
+::: warning NOTE
+The button states are reset when a new map is loaded. If listening for a button press in the new map, this action may very will trigger immediately, even if the button was held down through the map load.
 :::
+
+##### Button Names
 
 - `MEM0`
 - `MEM1`
@@ -259,11 +207,108 @@ We found that the joystick clicks were aggressive on the hardware, and would tri
 - `HAX` (capacitive touch button on the PCB)
 - `ANY`
 
-### String Checkables
+::: warning INFO
+We found that the joystick clicks were aggressive on the hardware, and would trigger at what felt like arbitrary times. While the engine is capable of detecting these clicks, we recommend not using them.
+:::
 
-These are string operands that can be "checked," or used in a [[expressions_and_operators#Bool Expressions|boolean expression]]. For string operands that can be set, see [[actions#Assign String Value|Assign String Value]].
+#### Bool Checkables
 
-These aren't "getables" because their values cannot be stored.
+Any [[#Bool Getables|bool getable]] is also checkable.`
+
+#### Bool Setables
+
+- [[primitive_types#Boolean|Boolean literals]] e.g. `true`, `false`
+- [[identifiers|Variable identifiers]] ([[state#Save Flags|flags]])
+- [[state#Setable Engine Flags|Setable engine flags]]:
+	- `player_control`
+	- `lights_control`
+	- `hex_editor`
+	- `hex_dialog_mode`
+	- `hex_control`
+	- `hex_clipboard`
+	- `serial_control`
+- [[entities#Entity Properties|Entity bool properties]]:
+    - `<entity identifier> glitched`
+	- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
+- Light states
+	- `light <light name[]>`
+	- For **light name**, see below:
+
+##### Lights
+
+This includes all 8 bit lights underneath the screen and the 4 lights on either side of the screen. Gaining control of the lights does not clear the light state; you will need to turn all the lights off yourself.
+
+- `LED_XOR`
+- `LED_ADD`
+- `LED_SUB`
+- `LED_PAGE`
+- `LED_BIT128`
+- `LED_BIT64`
+- `LED_BIT32`
+- `LED_BIT16`
+- `LED_BIT8`
+- `LED_BIT4`
+- `LED_BIT2`
+- `LED_BIT1`
+- `LED_MEM0`
+- `LED_MEM1`
+- `LED_MEM2`
+- `LED_MEM3`
+- `LED_HAX` (capacitive touch button on the PCB)
+- `LED_USB`
+- `LED_SD`
+- `LED_ALL` (will turn on/off all the lights)
+
+::: warning
+If you turn a light off and on again on the same game tick, the light will appear to flicker.
+:::
+
+### String Operands
+
+Strings can only be used in bool expressions as part of [[#String Equality Check|equality checks]].
+
+```mgs
+_ {
+	hex_control = (player name == "Bob");
+	if (player name != "Bob") {}
+}
+```
+
+Strings can only be used in [[#Assign String Value|string assignment operations]] by literal value.
+
+```mgs
+_ {
+	player name = "Bob";
+}
+```
+
+Strings cannot be assigned or compared by reference. The first example below sets the player's name to the string "warp_state." It does not copy the value stored in the [[state#Warp State String|warp state string]] into the player's name, like it implies.
+
+```mgs
+_ {
+	player name = warp_state;
+	// Not invalid, but not what you wanted
+
+	player name = entity Bob name;
+	// Syntax error
+}
+```
+
+There is no string concatenation or slicing, as strings cannot be manipulated in the MGE itself.
+
+```mgs
+_ {
+	if (player name == "Bob") {}
+	if (entity Bob direction != north) {}
+	if (entity Alice path == geometry "the stick") {}
+	if (
+		entity Delmar type == sheep
+		|| entity Delmar type == helga
+	) {}
+}
+```
+
+#### String Checkables
 
 - The [[state#Warp State String|Warp State String]] (`warp_state`)
 - Entity string properties:
@@ -276,19 +321,303 @@ These aren't "getables" because their values cannot be stored.
     - `<entity identifier> direction`
 	- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
 
-**IMPORTANT**: Strings do not exist (except by reference) in the final game binary!
+#### String Setables
 
-- There are no string operations apart from [[actions#Assign String Value|assignment]] (e.g. `player name = "Bob"`) and as part of [[#Bool Comparison|boolean comparisons]] (e.g. `player name != "Bob"`).
-- No string concatenation or slicing
-- String references can only be compared to string literals, not a second string reference (e.g. `player name == self name` is invalid)
+- `warp_state` (the [[state#Warp State String|Warp State String]])
+- `serial_connect`: the default serial message printed upon game launch (string value must correspond to a [[serial_dialogs|serial dialog]] name)
+- [[entities#Entity Properties|Entity string properties]]:
+	- `<entity identifier[]> name`
+	- `<entity identifier[]> type`
+	- `<entity identifier[]> path`
+	- **Entity identifier**: See [[identifiers#Entity Identifier|entity identifier]]
 
-Bytecode actions:
+#### String Setables (Script Values)
 
-- `CHECK_WARP_STATE`
-- `CHECK_ENTITY_NAME`
-- `CHECK_ENTITY_TYPE`
-- `CHECK_ENTITY_PATH`
-- `CHECK_ENTITY_INTERACT_SCRIPT`
-- `CHECK_ENTITY_TICK_SCRIPT`
-- `CHECK_ENTITY_LOOK_SCRIPT`
-- `CHECK_ENTITY_DIRECTION`
+These are a subset of string setables, where the string value being assigned must correspond to a script name. (The script may be [[scripts#Script Literal|defined in place]] instead.)
+
+- The keyword `map`
+- An [[identifiers#Entity Identifier|entity identifier]]
+
+## Assignment Operation
+
+Sets the value of the LHS to the value of the RHS, which may be an expression or a literal value.
+
+```
+<LHS> = <RHS>;
+```
+
+::: warning Ambiguity Warning
+If the RHS and the LHS of any evaluated expansion are both [[primitive_types#Bareword|bare]] [[identifiers|identifiers]], it will be handled as an [[#Assign Int Value|integer assignment]] expression. To silence the ambiguity warning, use an "invisible operation" (e.g. `*1` or `+0`) to coerce the RHS to an int expression.
+
+If you want to coerce the ambiguous expression to a boolean expression instead, either use the [[identifiers#Sigils|sigil]] `flag` with the identifier on either side, or use a double unary operator (`!!`) with the RHS.
+:::
+
+### Assign Int Value
+
+```
+<int setable[]> = <int expression[]>;
+```
+
+- **Int setable**: See [[#Int Setables]]
+- **Int expression**: See [[#Int Expressions]]
+
+### Assign Bool Value
+
+```
+<bool setable[]> = <bool expression[]>;
+```
+
+- **Bool setable**: See [[#Bool Setables]]
+- **Bool expression**: See [[#Bool Expressions]]
+
+### Assign String Value
+
+```
+<string setable[]> = <string[]>;
+```
+
+- **String setable**: See [[#String Setables]]
+
+### Assign Script Value
+
+Similar to string assignment above, except the script can alternatively be [[scripts#Script Literal|defined in place]].
+
+```
+<script setable[]> <script slot> = <string[]>;
+<script setable[]> <script slot> = <script literal>;
+```
+
+- **Script setable**: See [[#String Setables (Script Values)]]
+- **Script literal**: See [[scripts#Script Literal|Script Literal]]
+- **Script slot**: See [[scripts#Script Slots|Script Slots]]
+	- For maps:
+		- `on_tick`
+		- `on_look`
+	- For entities:
+		- `on_interact`
+		- `on_tick`
+		- `on_look
+
+### Assign Direction
+
+Makes an [[entities|entity]] face the target. (Also see [[#Relative Turns]])
+
+```
+<entity identifier> direction = <direction target>;
+```
+
+- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
+- **Direction target**:
+	- `<geometry identifier>` (See [[identifiers#Geometry Identifier|Geometry Identifier]])
+	- `<entity identifier>` (See [[identifiers#Entity Identifier|Entity Identifier]])
+	- `north`, `south`, `east`, or `west`
+
+### Other Assignment Actions
+
+- [[actions#Position Assignment|Actions > Position Assignment]]
+
+## Change By Value Operation
+
+Similar to the [[#Assignment Operation]]. This operation assigns a value to an [[#Int Setable|int setable]] not by overwriting it but modifying it in place.
+
+### Change Int Value
+
+```
+<int setable[]> <op equals> <int expression[]>;
+```
+
+- **Int setable**: see [[#Int Setables]]
+- **Op equals**:
+	- `+=`: add
+	- `-=`: subtract
+	- `*=`: multiply
+	- `/=`: divide
+	- `%=`: modulo
+	- `?=`: RNG roll, exclusive (see [[macros#RNG|RNG Macro]])
+- **Int expression**: see [[expressions_and_operators#Expressions|Expressions]]
+
+### Relative Turns
+
+Relative entity turns (e.g. turn 90º CCW) are instead made with the `+=` or `-=` operators alone. Note that these must use number literals on the RHS and cannot be set with int expressions like other [[expressions_and_operators#Change By Value Operation|op-equals]] expressions.
+
+These relative turns (+1, -1) correspond to a 90º rotation. The value is modulo 4, so +1 is the same as +5.
+
+```
+<entity identifier[]> direction += <number[]>;
+<entity identifier[]> direction -= <number[]>;
+```
+
+- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
+
+```mgs
+_ {
+	// examples
+	var_name += 5;
+	// is the same as
+	var_name = var_name + 5;
+}
+```
+
+## Int Expressions
+
+```
+<int operand>
+// OR
+<int binary expression>
+```
+
+- **Int operand**:
+	- a single [[primitive_types#Number|number literal]]
+	- a [[primitive_types#String|string]] [[identifiers|identifier]] ([[state#Integer Variables|integer variable]])
+	- a [[constants|constant]] with a number or string value
+	- a grouping: an int expression enclosed by matching parentheses
+	- any [[#Int Getables|int getable]]
+
+### Int Binary Expression
+
+These behave in the standard manner.
+
+```
+<int operand> <int binary operator> <int operand>
+```
+
+- **Int binary operators**:
+	- Add: `+`
+	- Subtract: `-`
+	- Multiply: `*`
+	- Divide: `/`
+	- Modulo: `%`
+
+```mgs
+// example
+_ {
+	target_int = player x + 30;
+}
+```
+
+Standard operator precedence (order of operations) is used in the case of chains:
+
+```
+1 + 2 * 3 - 4
+automatically becomes
+(1 + (2 * 3)) - 4
+```
+
+## Bool Expressions
+
+```
+<bool operand>
+// OR
+<bool binary expression>
+```
+
+- **Bool operand**:
+	- a single [[primitive_types#Boolean|bool literal]]
+	- a [[primitive_types#String|string]] [[identifiers|identifier]] ([[state#Save Flags|boolean variable / save flag]])
+	- a [[constants|constant]] with a bool or string value
+	- a grouping: a bool expression enclosed by matching parentheses
+	- any [[#Bool Getables|bool getable]]
+	- a boolean unary expression
+
+### Bool Unary Expression
+
+The only unary operator is `!`, which inverts the attached bool operand.
+
+```
+!<bool operand>
+```
+
+- `!<bool exp>` is equivalent to `<bool exp> != true` or `<bool exp> == false`.
+- These are evaluated before other operators. To invert a larger expression, group it in parens and invert the grouping.
+- For multi-word bool "getables" like `entity Bob glitched` you can put a `!` before the first word to invert the whole phrase. No need to wrap the phrase in parens.
+
+```mgs
+//example
+_ {
+	target_bool = !flag_name;
+}
+```
+
+### Bool Binary Expression
+
+#### Boolean Logic
+
+These can be daisy chained and combined with groupings and other boolean operands to build complex conditions.
+
+```
+<bool expression> <bool binary operator> <bool expression>
+```
+
+- **Bool binary operator**:
+	- Boolean OR: `||`
+	- Boolean AND: `&&`
+
+```
+// example
+_ {
+	target_bool = debug_mode || player glitched;
+}
+```
+
+#### Int Comparisons
+
+```
+<int expression> <comparison operator> <int expression>
+```
+
+- **Int expression**: see [[#Int Expressions]]
+- **Comparison operator**:
+	- Less than: `<`
+	- Less than or equal to: `<=`
+	- Greater than: `>`
+	- Greater than or equal to: `>=`
+	- Equal to: `==`
+	- Not equal to: `!=`
+
+#### Bool Equality Check
+
+```
+<bool expression> <equality operator> <bool expression>
+```
+
+- **Bool expression**: see [[#Bool Expressions]]
+- **Equality operator**:
+	- Equal to: `==`
+	- Not equal to: `!=`
+
+#### String Equality Check
+
+```
+<string checkable> <equality operator> <string literal>
+<string literal> <equality operator> <string checkable>
+```
+
+- **String checkable**: see [[#String Checkables]]
+- **String literal**: see [[primitive_types#String|String]]
+- **Equality operator**:
+	- Equal to: `==`
+	- Not equal to: `!=`
+
+```mgs
+//examples
+_ {
+	target_bool = player x < 100;
+	target_bool = flag_name != true;
+	target_bool = player name == "Bob";
+	target_bool = "Bob" != player name;
+}
+```
+
+## Position Over Time Operation
+
+The "position over time" operation  is similar to the assignment operation, except that it uses a `->` instead of `=` to indicate that the action will take time to execute. Those action phrases usually require extra parameters to their assignment counterparts.
+
+```
+<LHS> -> <RHS>;
+```
+
+See:
+	- [[actions#Position Over Time|Actions > Position Over Time]]
+	- [[actions#Play Entity Animation|Actions > Play Entity Animation]]
+	- [[actions#Fade Camera In or Out|Actions > Fade Camera In or Out]]
+	- [[actions#Shake Camera|Actions > Shake Camera]]

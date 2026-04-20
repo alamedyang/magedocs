@@ -10,7 +10,7 @@ A cutscene is a cinematic or storytelling sequence, often involving:
 	- [[actions#Show Dialog|Show dialog cards]]
 - Entity choreography
 	- [[actions#Play Entity Animation|Play back animations]]
-	- [[actions#Assign Direction Value|Turn entities toward things]] or [[actions#Change Int Value|give them an arbitrary turn]]
+	- [[expressions_and_operators#Assign Direction|Turn entities toward things]] or [[expressions_and_operators#Change Int Value|give them an arbitrary turn]]
 	- [[actions#Position Assignment|Teleport an entity]] to a [[vector_objects|position]] on the [[maps|map]]
 	- [[actions#Position Over Time|Make entities walk along a path]]
 	- [[actors|Disguise an entity as another]]
@@ -27,7 +27,7 @@ A cutscene is a cinematic or storytelling sequence, often involving:
 
 Traditional game credits can be accomplished with a separate credits [[maps|map]] and a [[tilesets|tileset]] for your credits text.
 
-In your credit's [[scripts#`on_load`|`on_load`]], you should probably disable (or at least turn off the hex editor) before anything else happens. See [[actions#Assign Bool Value|Assign Bool Value]].
+In your credit's [[scripts#`on_load`|`on_load`]], you should probably disable (or at least turn off the hex editor) before anything else happens. See [[expressions_and_operators#Assign Bool Value|Assign Bool Value]].
 
 To scroll the credits, lock the camera to a [[vector_objects|vector path]] and pan it along the path (or pan it to a destination object). (Camera panning to vector objects currently unimplemented (?); instead, lock the camera to a [[entity_types#Null Entity|null entity]] and make it do the correct motion.)
 

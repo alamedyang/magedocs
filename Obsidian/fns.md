@@ -19,11 +19,11 @@ You may use fn args inside a deeper fn call, however the parent fn args are not 
 Defined at [[syntax_scopes#Syntax Contexts|root level of the file]].
 
 ```
-fn <fn name: string> ( <fn args> ) { <script body items> }
+fn <fn name: string> ( <fn args> ) { <script body item*> }
 ```
 
 - **Fn args**: comma-separated [[primitive_types#Constant|constants]].
-- **Script body items**: see [[scripts#Script Body Items|Script Body Items]].
+- **Script body item**: see [[scripts#Script Body Items|Script Body Items]].
 
 ```mgs
 // example
@@ -35,11 +35,11 @@ fn add_two ($n) { return $n + 2; }
 Fns can be defined in place (anonymously) using this syntax inside the [[arrays#Array Methods|array methods]] `.map()` and `.for_each()`.
 
 ```
-( <fn args> ) { <script body items> }
+( <fn args> ) { <script body item*> }
 ```
 
 - **Fn args**: comma-separated [[primitive_types#Constant|constants]].
-- **Script body items**: see [[scripts#Script Body Items|Script Body Items]].
+- **Script body item**: see [[scripts#Script Body Items|Script Body Items]].
 
 ```mgs
 // example as a lambda in an array expression
@@ -56,8 +56,7 @@ Used inside a [[scripts#Script Body Items|script body]].
 <fn name: string>(<passed args>) <";"?>
 ```
 
-- **Passed args**: One or more comma-separated int expressions.
-	- **Int expression**: see [[expressions_and_operators#Expressions|Int Expression]]
+- **Passed args**: One or more comma-separated [[expressions_and_operators#Int Expressions|int expressions]].
 
 The semicolon at the end can only be used in bare fn calls, i.e. when it's used on its own as a single action item. When a fn call is used as an [[expressions_and_operators#Int Operands|int operand]] (as part of an [[expressions_and_operators#Int Expressions|int expression]]), it must not have a semicolon, e.g. `var_name = fn(40) + 80;`
 
@@ -70,7 +69,7 @@ _ {
 }
 ```
 
-Fn calls can be used as an [[expressions_and_operators#Int Operands|int operand]] in [[expressions_and_operators#Expressions|expressions]]. This only has utility if the fn returns a value.
+Fn calls can be used as an [[expressions_and_operators#Int Operands|int operand]] in [[expressions_and_operators#Expressions|expressions]]. This only has utility if the fn [[script_control_flow#Return|returns]] a value.
 
 ```mgs
 // example

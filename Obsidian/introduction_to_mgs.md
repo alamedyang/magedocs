@@ -1,10 +1,10 @@
 # Introduction to MGS
 
-MageGameScript (MGS) is a [custom scripting language](https://en.wikipedia.org/wiki/Domain-specific_language) that compiles to Mage Game Engine (MGE) bytecode. JSON is the intermediate step between the MGS parser and the MGE [[encoder|encoder]].
+MageGameScript (MGS) is a [custom scripting language](https://en.wikipedia.org/wiki/Domain-specific_language) that compiles to Mage Game Engine (MGE) [[actions|bytecode]]. JSON is the intermediate step between the MGS parser and the MGE [[encoder|encoder]].
 
 ## Philosophy
 
-MGS v1 ("natlang") was designed to use natural language-like phrases to make actions easier to read and write, but in practice it only made them easier to _read_; keywords and subphrases were easy to confuse with each other, and it was hard to remember which prepositions were strictly necessary. Also, recursive or non-fixed-length structures were not possible due to the way the old parser worked.
+MGS v1 ("natlang") was designed to use natural language-like phrases to make actions easier to read and write, but in practice it only made them easier to _read_; keywords and subphrases were easy to confuse with each other, and it was hard to remember which prepositions were strictly necessary. Recursive or non-fixed-length structures were not possible due to the way the old parser worked.
 
 MGS v2 ("mathlang") instead reduces ambiguity by breaking logical concepts into modular, mathlike structures which can be combined with operators. This makes syntax much more uniform, and allows for more complex and recursive structures.
 
@@ -15,7 +15,7 @@ For an example, there are several actions to rotate an entity toward a specific 
 - `turn entity Bob toward geometry stick;`
 - `rotate entity Bob 1;`
 
-Instead, Mathlang takes the concept of an entity having a "direction" and uses that as the LHS of an [[actions#Assign Direction Value|assignment operation]] (or an [[actions#Change Int Value|op-equals operation]]), with a few types of compatible RHSs:
+Instead, Mathlang takes the concept of an entity having a "direction" and uses that as the LHS of an [[expressions_and_operators#Assign Direction|assignment operation]] (or an [[expressions_and_operators#Change By Value Operation|op-equals operation]]), with a few types of compatible RHSs:
 
 - `entity Bob direction = north;`
 - `entity Bob direction = entity Alice;`
@@ -29,9 +29,9 @@ The `direction` property is an artificial construct; it isn't a value that's bei
 - **Error recovery**: The parser no longer stops on invalid syntax, meaning multiple errors can be printed in one go.
 - **[[expressions_and_operators|Expressions]]**: Math no longer needs to be handled like assembly instructions, one operation at a time. Any value that can be checked may now be included in expressions, including [[state#Engine Flags|engine flags]] like `debug_mode`. Expressions are flattened using a register system to hold temporary values, but in practice not very many of these temporary values are needed.
 - **[[fns|Fns]]**: Macros, templates, inline functions, whatever you want to call them — these are like [[macros#Copy Script|Copy Script]] but will swap out tokens based on what they were passed in their args when called. This can be recursive. This leverages the existing [[constants|constants system]].
-- **[[script_control_flow#Return|Returning a value]]**: Fns and scripts can add a value to a "return register" (a dedicated [[state#Integer Variables|int variable]]) before jumping to the end of their action list. "Callers" can intercept this value and [[actions#Assign Int Value|store]] it or [[expressions_and_operators#Int Expressions|use]] it as they like.
+- **[[script_control_flow#Return|Returning a value]]**: Fns and scripts can add a value to a "return register" (a dedicated [[state#Integer Variables|int variable]]) before jumping to the end of their action list. "Callers" can intercept this value and [[expressions_and_operators#Assign Int Value|store]] it or [[expressions_and_operators#Int Expressions|use]] it as they like.
 - **[[json_literals|JSON literals]]**: [[Actions]] (particularly novel actions) may be written out in JSON inside an MGS file. No need to keep script/dialog/serial_dialog JSON files around.
-- **Define-in-place scripts**: Like with [[actions#Show Dialog|Show Dialog]] and [[actions#Show Serial Dialog|Show Serial Dialog]], scripts most places can now be [[scripts#Script Literal|defined in place]] instead of used only by reference. This can be done recursively.
+- **Define-in-place scripts**: Like with the actions [[actions#Show Dialog|Show Dialog]] and [[actions#Show Serial Dialog|Show Serial Dialog]], scripts most places can now be [[scripts#Script Literal|defined in place]] instead of used only by reference. This can be done recursively.
 - **[[encoder#CLI Encoder|CLI]] and [[encoder#Web Encoder|web]] versions for MGS parsing**: No special handling required when encoding the game; the WASM additions are invisible when it comes to generating the new [[encoder#`game.dat`|binary data file]].
 - **[[what_youll_need#Syntax Colors|Syntax colors]]**: TextMate grammars have been working for some time, and are generally kept up to date. Works with Sublime, VSCode, TextMate, and JetBrains IDEs. The VSCode plugin is available on the VSCode extension marketplace.
 - **[[arrays|Arrays]]**: Arrays contain 0-127 integer values and can be created or destroyed once the game is running. QOL features include method daisy chains and `.map()` and `.for_each()`, which can refer to [[fns|fns]] by name or work off a given lambda.

@@ -2,9 +2,9 @@
 
 [Project scope](syntax_scopes#project-scope). (They always exist and are always accessible globally.)
 
-A script is a list of [bytecode actions](actions) which will execute one after the other, top to bottom, when the script is run.
+A script is a list of [actions](actions) which will execute one after the other, top to bottom, when the script is run.
 
-Scripts execute actions until they run out of actions. Importantly, if a script jumps to another script (either with [Run Script](actions#run-script) or by having another script set the [script slot](#script-slots) to a different script) the current script is *completely abandoned* and the new script is run instead. It is therefore important to check the order in which actions are given, as any action listed after a script jump will be ignored.
+Scripts execute actions until they run out of actions. Importantly, if a script jumps to another script (either with [Run Script](actions#run-script) or by having another script set the [script slot](#script-slots) to a new script) the current script is *completely abandoned* and the new script is run instead. It is therefore important to check the order in which actions are given, as any action listed after a script jump will be ignored.
 
 There is no means for a script to jump to another script and then pick back up where it left off. [Fn calls](fns#fn-call) and [Copy Script](macros#copy-script) look like function calls, but they actually copy and paste their actions into place; the executing script never leaves its own context in those cases.
 
@@ -36,6 +36,12 @@ _ {
 ```
 
 If the script does not need to be referenced by anything else, it's best to omit the name. This improves readability.
+```mgs
+// example
+_ {
+	player on_interact = { wait 1s; }
+}
+```
 
 ## Script Body Items
 
@@ -93,7 +99,7 @@ For [entities](entities) and [maps](maps).
 `on_tick` scripts continuously evaluate every game tick. Once an `on_tick` script reaches the end of its list of [actions](actions), the script will return to the beginning of the currently set script and run again on the next game tick.
 
 ::: danger
-This means that if you [`goto`](actions#run-script) the same script you started from as the `on_tick` script's last action, the script slot will NEVER give up its turn! You probably need to use [Assign Script Value](actions#assign-script-value) instead, which will set the target script for that slot but NOT immediately execute it like [Run Script](actions#run-script) would.
+This means that if you [`goto`](actions#run-script) the same script you started from as the `on_tick` script's last action, the script slot will NEVER give up its turn! You probably need to [assign the script value](expressions_and_operators#assign-script-value) instead, which will set the target script for that slot but NOT immediately execute it like [Run Script](actions#run-script) would.
 :::
 
 To terminate an `on_tick` script, you must use the phrase [`goto null_script;`](actions#run-script), or another script must tell the [slot to switch](actions#assign-script-value) to `null_script`.

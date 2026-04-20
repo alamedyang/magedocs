@@ -18,12 +18,12 @@ Prepare entities. For each entity:
 4. Prepare dialog portraits.
 	1. In Tiled, [make a tileset JSON file](tilesets#creating-a-tileset-json-file) for the talk portrait images.
 		1. Put it in `scenario_source_files/entities/`.
-	2. Prepare `portraits.json`.
-	3. Assign portraits to their entities in `entity_types.json` if the portrait name does not match an [entity_type](entity_types#character-entity) name.
+	2. Prepare [`portraits.json`](what_youll_need#portraits.json).
+	3. Assign portraits to their entities in [`entity_types.json`](what_youll_need#entity_types.json) if the portrait name does not match an [entity_type](entity_types#character-entity) name.
 
 ## Maps
 
-Prepare map(s). For each map:
+Prepare [map(s)](maps). For each map:
 
 1. Acquire or produce [tilesets](tilesets).
 2. In Tiled, [make a tileset JSON file](tilesets#creating-a-tileset-json-file).
@@ -42,7 +42,7 @@ Prepare map(s). For each map:
 	2. Doorways
 	3. "Walking out the door" paths
 	4. Camera targets
-6. Add the map to `maps.json`, and supply properties like its `on_load` and `on_tick` scripts.
+6. Add the map to [`maps.json`](what_youll_need#maps.json), and supply [properties](maps#map-properties) like its `on_load` and `on_tick` scripts.
 
 ## Dialog Skins
 
@@ -51,7 +51,7 @@ Prepare dialog skin(s). For each skin:
 1. Acquire or produce [tilesets](tilesets).
 2. In Tiled, [make a tileset JSON file](tilesets#creating-a-tileset-json-file).
 	1. Put it in `scenario_source_files/tilesets/`.
-3. Add dialogSkin file(s) to `scenario.json`.
+3. Add dialogSkin file(s) to [`scenario.json`](what_youll_need#scenario.json).
 
 ## Game Logic
 
