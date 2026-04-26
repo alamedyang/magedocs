@@ -7,15 +7,17 @@ Unlike with [dialog and serial dialog message strings](dialog_and_serial_dialog_
 The string is wrapped with backticks: \`
 
 ```mgs
-fn set_entity_name_mr ($e) {
-	entity $e name = `Mr. {$e}`;
+fn store_entity_position ($e, $label) {
+	`{$label}_x` = entity $e x;
+	`{$label}_y` = entity $e y;
 }
 example {
-	set_entity_name_mr(Bob);
+	store_entity_position(Bob, bob_pos);
 }
 // Is equivalent to
 example {
-	entity Bob name = "Mr. Bob";
+	"bob_pos_x" = entity Bob x;
+	"bob_pos_y" = entity Bob y;
 }
 ```
 
@@ -23,7 +25,7 @@ example {
 These strongly resemble template strings in JavaScript, except that the dollar sign goes inside the curly braces instead of outside.
 :::
 
-The primary purpose of template strings is to limit the number of unique variable and flag names that must be created in advance and passed into a [fn](fns) when creating large amounts of unique state with that fn. This is because every variable is [always global and always exists](syntax_scopes#project-scope), and there is no "local scope" for different instances of a fn call to keep to itself.
+The primary purpose of template strings is to limit the number of unique variable and flag names that must be created in advance and passed into a [fn](fns) when creating large quantities of unique state with that fn. This is because every variable is [always global and always exists](syntax_scopes#project-scope), so different instances of a fn call cannot keep their own locally-scoped variables to themselves.
 
 Template strings cannot be stored into a variable and referenced later, except as a [compile-time constant](constants) value; inside a fn body, they must be fresh template strings every time, because consts can only be defined at the root of the file. (If this proves annoying enough we might change it… #todo)
 
@@ -35,7 +37,7 @@ However….
 
 ### Without Template Strings
 
-Every [variable](state#integer-variables), [flag](state#save-flags) and [array name](arrays) required for this behavior had to be passed into the fn explicitly, because the fn could not create fresh, locally-scoped variables to keep to itself. That meant every time this fn was "called," you had to pass nine arguments!
+Every [variable](state#integer-variables), [flag](state#save-flags) and [array name](arrays) required for this behavior had to be passed into the [fn](fns) explicitly, because the fn could not create fresh, locally-scoped [variables](state) for its own private use. That meant every time this fn was "called," you had to pass nine arguments!
 
 ```mgs
 fn follow_entity (

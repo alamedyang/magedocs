@@ -58,3 +58,4 @@ script after {
 	- E.g. `[var_name, flag_name] = [10, true];` is allowed.
 - The param "chunk" that is allowed to be expanded varies per [[actions|phrase]].
 	- E.g. for `[camera, entity Bob position] = geometry stick;`, it is the "[[actions#Position Assignment|movable]]" in the LHS that can be expanded, not the entity name.
+	- This is inconvenient, but was by far the simplest implementation, as expansions cannot be nested.

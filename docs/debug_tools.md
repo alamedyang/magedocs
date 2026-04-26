@@ -92,6 +92,8 @@ Tiles on the map will have their vector collision shapes drawn in green, unless 
 
 The player's collision spokes (drawn in purple) are projected in front of the player entity. When they cross a tile's collision geometry, a collision is detected, and the corresponding knockback vector is drawn as a red line extending in the opposite direction.
 
-### Collision Details
+Entities who are [floating](entities#floating) do not collide with anything, so this part of vector view will be absent when the [player entity's](entities#player) `is_floating` flag is set.
+
+#### Collision Details
 
 In the upper-left corner of the screen is a more detailed view of the actual math behind the collision algorithm.

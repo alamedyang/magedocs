@@ -21,7 +21,7 @@ Example multi-word identifiers:
 - `map town`
 - `button MEM0`
 
-All categories of identifiers are different namespaces. E.g. a [[scripts|script]] and a [[dialogs|dialog]] may have the same name. This is why sigils are necessary most of the time.
+All categories of identifiers are different namespaces. E.g. a [[scripts|script]] and a [[dialogs|dialog]] may have the same name. This is why sigils are almost always necessary.
 
 ## Vs Strings
 
@@ -31,10 +31,10 @@ Barewords can often be used for strings which traditionally should be wrapped in
 
 ```mgs
 _ {
-	entity Bob name = Job;
-	entity Bob name = "Job";
-	entity "Bob" name = Job;
-	entity "Bob" name = "Job";
+	entity Bob name = Bub;
+	entity Bob name = "Bub";
+	entity "Bob" name = Bub;
+	entity "Bob" name = "Bub";
 }
 ```
 
@@ -93,9 +93,9 @@ These are also the keyword sigils used for their associated string values.
 
 - `entity <name: string>`
 	- The entity's given name, i.e. the name the entity was given in Tiled.
-	- If multiple entities have this name, the first one found is targeted.
+	- If multiple entities have this name on the same map, the first one found is targeted.
 - `player`
-	- The player entity (the entity with its [[entities#Entity Properties|`is_player` flag]] set).
+	- The player entity (the entity with its [[entities#Player|`is_player` flag]] set).
 	- Short for `entity "%PLAYER%"`.
 - `self`
 	- The entity running the current [[scripts#Script Slots|script slot]].

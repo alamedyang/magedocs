@@ -19,6 +19,8 @@ Defined at [[syntax_scopes#Syntax Contexts|root level of the file]].
 ```mgs
 // example
 script script_name { wait 1s; }
+// or
+script_name { wait 1s; }
 ```
 ## Script Literal
 
@@ -32,16 +34,12 @@ Scripts can be defined-in-place with script literals in most (though not all) pl
 // example
 _ {
 	player on_interact = wait_one_sec { wait 1s; }
+	// or
+	player on_interact = { wait 1s; }
 }
 ```
 
 If the script does not need to be referenced by anything else, it's best to omit the name. This improves readability.
-```mgs
-// example
-_ {
-	player on_interact = { wait 1s; }
-}
-```
 
 ## Script Body Items
 

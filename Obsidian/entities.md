@@ -190,7 +190,7 @@ This number cannot be negative.
 
 ### Floating
 
-Floating entities are drawn above the topmost tile layer (as well as other entities). Player entities that are floating do not experience collision.
+Floating entities are drawn above the topmost tile layer (as well as other entities). Player entities that are floating do not experience collision; to observe this, turn on [[debug_tools#Vector View|vector view]] while running the game.
 
 - **Tiled**: `is_floating` (bool)
 - **MGS**: `floating` (bool)
@@ -201,7 +201,9 @@ Floating entities are drawn above the topmost tile layer (as well as other entit
 This is the entity the player will control within the map. There should be only one such entity per map. (If there is more than one, the [[encoder|encoder]] will throw an error.)
 
 - **Tiled**: `is_player` (bool)
-- **MGS**: n/a
+- **MGS**: (Does not use the `<entitiy identifier> <property>` syntax)
+	- [[actions#Player Assignment|Setable]]
+	- Not (currently) Checkable
 
 Without an `is_player` entity:
 

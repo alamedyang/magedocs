@@ -18,7 +18,9 @@ dialog <dialog name: string> { <dialog*> }
 
 ```mgs
 // example
-dialog greetings { PLAYER "Hello!" }
+dialog greetings {
+  PLAYER "Hello!"
+}
 ```
 ## Dialog Literal
 
@@ -32,8 +34,10 @@ The dialog name is optional. If you want to refer to the dialog additional place
 
 ```mgs
 // example
-script _ {
-  show dialog hello { entity Bob "Hello?" };
+_ {
+  show dialog hello {
+    entity Bob "Hello?"
+  };
 }
 ```
 

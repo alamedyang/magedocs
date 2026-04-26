@@ -33,7 +33,7 @@ _ {
 }
 ```
 
-In the second example above, the string "false" is interpreted as an int variable identifier and not a [[primitive_types#Boolean|boolean]], because booleans are not allowed in int expressions.
+In the second example above, the string "false" is interpreted as an int variable identifier and not a [[primitive_types#Boolean|boolean]], because booleans are not allowed in int expressions. (The syntax highlighter unfortunately will always color `false` like a boolean and not an identifier in these cases, making this a source of subtle bugs.)
 
 Operands and operators themselves cannot be expanded in [[action_param_expansions|action param expansions]], but the expression as a whole often can, depending on the [[actions|action phrase]].
 
@@ -62,9 +62,9 @@ To explain why some operands can be used some places and not others, it is usefu
 
 #### Getable
 
-**Getable operands** can copied into another value, which makes it easier to use them in more abstract ways. Most numerical entity properties can be moved into [[state#Integer Variables|integer variables]].
+**Getable operands** can copied into another value, which makes it easier to use them in more abstract ways. E.g. most numerical entity properties can be moved into [[state#Integer Variables|integer variables]].
 
-All [[state#Engine Flags|engine flags]] ([[primitive_types#Boolean|bools]]) are getable whenever they are checkable, as temporary bool values can be set based on whether the value check passed or not — trivial when there are only two possible states.
+All [[state#Engine Flags|engine flags]] ([[primitive_types#Boolean|bools]]) are getable whenever they are checkable, as temporary bool values can be set based on whether the [[#Checkable|value check]] passed or not — trivial when there are only two possible states.
 
 #### Checkable
 
@@ -72,7 +72,7 @@ All [[state#Engine Flags|engine flags]] ([[primitive_types#Boolean|bools]]) are 
 
 Some checkables can only be compared with [[primitive_types|literal values]] and cannot be compared to [[state#Save Flags|boolean variables]] and [[state#Integer Variables|integer variables]]. These are usually the operands that are not **getable** (able to be moved and stored into a new place), like strings.
 
-Checkables by their nature are used solely for boolean expressions, which means they can be daisy-chained into larger boolean expressions.
+Checkables by their nature are used solely for [[#Bool Expressions|boolean expressions]], which means they can be daisy-chained into larger boolean expressions.
 
 #### Setable
 
@@ -82,7 +82,7 @@ If an operand is setable but not checkable or getable, then it can only appear o
 
 #### Example: `debug_mode`
 
-`debug_mode` is an engine flag determining whether debug entities are loaded into the map, among other things. It is **not setable**, meaning you cannot set it using an assignment operation. (It's triggered using the buttons on the badge.)
+`debug_mode` is an engine flag determining whether debug entities are loaded into the map, among other things. It is **not setable**, meaning you cannot set it using an assignment operation. (It's triggered using the buttons on the badge. See [[debug_tools#Debug Mode|Debug Tools > Debug Mode]])
 
 ```mgs
 _ {
@@ -213,11 +213,10 @@ We found that the joystick clicks were aggressive on the hardware, and would tri
 
 #### Bool Checkables
 
-Any [[#Bool Getables|bool getable]] is also checkable.`
+Any [[#Bool Getables|bool getable]] is also checkable.
 
 #### Bool Setables
 
-- [[primitive_types#Boolean|Boolean literals]] e.g. `true`, `false`
 - [[identifiers|Variable identifiers]] ([[state#Save Flags|flags]])
 - [[state#Setable Engine Flags|Setable engine flags]]:
 	- `player_control`
@@ -283,7 +282,7 @@ _ {
 }
 ```
 
-Strings cannot be assigned or compared by reference. The first example below sets the player's name to the string "warp_state." It does not copy the value stored in the [[state#Warp State String|warp state string]] into the player's name, like it implies.
+Strings cannot be assigned or compared by reference. The first example below sets the player's name to the string "warp_state." It does not copy the value stored in the [[state#Warp State String|warp state string]] into the player's name, like it implies. (Note that `warp_state` in the below example is colored like an identifier, not a keyword.)
 
 ```mgs
 _ {
@@ -297,17 +296,7 @@ _ {
 
 There is no string concatenation or slicing, as strings cannot be manipulated in the MGE itself.
 
-```mgs
-_ {
-	if (player name == "Bob") {}
-	if (entity Bob direction != north) {}
-	if (entity Alice path == geometry "the stick") {}
-	if (
-		entity Delmar type == sheep
-		|| entity Delmar type == helga
-	) {}
-}
-```
+Certain manipulation can be done with strings at compile time using [[template_strings|template strings]], but the final game data will see only fixed strings, however.
 
 #### String Checkables
 
@@ -319,7 +308,7 @@ _ {
     - `<entity identifier> on_interact`
     - `<entity identifier> on_tick`
     - `<entity identifier> on_look`
-    - `<entity identifier> direction`
+    - `<entity identifier> direction` (only `north`, `south`, `east`, and `west`)
 	- **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
 
 #### String Setables
@@ -364,6 +353,16 @@ If you want to coerce the ambiguous expression to a boolean expression instead, 
 - **Int setable**: See [[#Int Setables]]
 - **Int expression**: See [[#Int Expressions]]
 
+```mgs
+// examples
+_ {
+	array[20] = 1;
+	var_name = 100;
+	player_x = player x;
+	entity Bob x = player_x + 40;
+}
+```
+
 ### Assign Bool Value
 
 ```
@@ -373,6 +372,15 @@ If you want to coerce the ambiguous expression to a boolean expression instead, 
 - **Bool setable**: See [[#Bool Setables]]
 - **Bool expression**: See [[#Bool Expressions]]
 
+```mgs
+// examples
+_ {
+	hex_control = true;
+	light LED_BIT128 = on;
+	player_control = !player glitched;
+}
+```
+
 ### Assign String Value
 
 ```
@@ -381,9 +389,17 @@ If you want to coerce the ambiguous expression to a boolean expression instead, 
 
 - **String setable**: See [[#String Setables]]
 
+```mgs
+// examples
+_ {
+	warp_state = north_door;
+	player name = Bob;
+}
+```
+
 ### Assign Script Value
 
-Similar to string assignment above, except the script can alternatively be [[scripts#Script Literal|defined in place]].
+Similar to string assignment above, except the script can alternatively be [[scripts#Script Literal|defined in place]]. ([[commands|Commands]] may be assigned scripts as well, but the syntax is slightly different.)
 
 ```
 <script setable[]> <script slot> = <string[]>;
@@ -399,7 +415,18 @@ Similar to string assignment above, except the script can alternatively be [[scr
 	- For entities:
 		- `on_interact`
 		- `on_tick`
-		- `on_look
+		- `on_look`
+
+```mgs
+// examples
+_ {
+  map on_tick = script_name;
+  player on_look = { wait 100ms; };
+  entity Bob on_interact = script_name {
+    wait 100ms;
+  };
+}
+```
 
 ### Assign Direction
 
@@ -415,13 +442,23 @@ Makes an [[entities|entity]] face the target. (Also see [[#Relative Turns]])
 	- `<entity identifier>` (See [[identifiers#Entity Identifier|Entity Identifier]])
 	- `north`, `south`, `east`, or `west`
 
+```mgs
+// examples
+_ {
+	self direction = geometry stick;
+	player direction = entity Bob;
+	entity Bob direction = west;
+}
+```
+
 ### Other Assignment Actions
 
 - [[actions#Position Assignment|Actions > Position Assignment]]
+- [[actions#Player Assignment|Actions > Player Assignment]]
 
 ## Change By Value Operation
 
-Similar to the [[#Assignment Operation]]. This operation assigns a value to an [[#Int Setable|int setable]] not by overwriting it but modifying it in place.
+Similar to the [[#Assignment Operation]]. This operation assigns a value to an [[#Int Setable|int setable]] by modifying it in place instead of by overwriting it.
 
 ### Change Int Value
 
@@ -439,11 +476,22 @@ Similar to the [[#Assignment Operation]]. This operation assigns a value to an [
 	- `?=`: RNG roll, exclusive (see [[macros#RNG|RNG Macro]])
 - **Int expression**: see [[expressions_and_operators#Expressions|Expressions]]
 
+```mgs
+_ {
+	// example
+	var_name += 5;
+	// is the same as
+	var_name = var_name + 5;
+}
+```
+
 ### Relative Turns
 
 Relative entity turns (e.g. turn 90º CCW) are instead made with the `+=` or `-=` operators alone. Note that these must use number literals on the RHS and cannot be set with int expressions like other [[expressions_and_operators#Change By Value Operation|op-equals]] expressions.
 
 These relative turns (+1, -1) correspond to a 90º rotation. The value is modulo 4, so +1 is the same as +5.
+
+This is one of the few places where negative numbers are allowed.
 
 ```
 <entity identifier[]> direction += <number[]>;
@@ -453,11 +501,11 @@ These relative turns (+1, -1) correspond to a 90º rotation. The value is modulo
 - **Entity identifier**: see [[identifiers#Entity Identifier|Entity Identifier]]
 
 ```mgs
+// examples
 _ {
-	// examples
-	var_name += 5;
-	// is the same as
-	var_name = var_name + 5;
+	self direction += 1;
+	player direction -= 1;
+	entity Bob direction += -2;
 }
 ```
 
@@ -492,9 +540,10 @@ These behave in the standard manner.
 	- Modulo: `%`
 
 ```mgs
-// example
+// examples
 _ {
-	target_int = player x + 30;
+	var_name = player x + 30;
+	var_name = other_var_name + fn_call(4) - 40;
 }
 ```
 
@@ -531,13 +580,13 @@ The only unary operator is `!`, which inverts the attached bool operand.
 ```
 
 - `!<bool exp>` is equivalent to `<bool exp> != true` or `<bool exp> == false`.
-- These are evaluated before other operators. To invert a larger expression, group it in parens and invert the grouping.
-- For multi-word bool "getables" like `entity Bob glitched` you can put a `!` before the first word to invert the whole phrase. No need to wrap the phrase in parens.
+- These are evaluated before other operators. To invert a larger expression, group it in parentheses and invert the grouping.
+- For multi-word bool "getables" like `entity Bob glitched`, you can put a `!` before the first word to invert the whole phrase. No need to wrap the phrase in parentheses.
 
 ```mgs
 //example
 _ {
-	target_bool = !flag_name;
+	if (!flag_name) {}
 }
 ```
 
@@ -555,12 +604,25 @@ These can be daisy chained and combined with groupings and other boolean operand
 	- Boolean OR: `||`
 	- Boolean AND: `&&`
 
-```
+```mgs
 // example
 _ {
-	target_bool = debug_mode || player glitched;
+	if (debug_mode && button LJOY_UP pressed) {}
 }
 ```
+
+::: tip Bool operands are not always evaluated!
+In a binary `OR` expression, if the RHS involves a [[fns#Fn Call|fn call]], the fn will not be run at all if the LHS evaluated to `true`. This may be important if the fn has side effects.
+
+```mgs
+_ {
+	//  LHS           RHS
+	//  vvvvvvvvvv    vvvvvvvvvvvvvvvvvv
+	if (debug_mode || do_math(900) > 100) {}
+}
+```
+:::
+
 
 #### Int Comparisons
 
@@ -577,6 +639,15 @@ _ {
 	- Equal to: `==`
 	- Not equal to: `!=`
 
+```mgs
+// examples
+_ {
+	if (var_name < 100) {}
+	if (player x != entity Bob x) {}
+	if (player x + 70 <= fibonacci(4)) {}
+}
+```
+
 #### Bool Equality Check
 
 ```
@@ -587,6 +658,14 @@ _ {
 - **Equality operator**:
 	- Equal to: `==`
 	- Not equal to: `!=`
+
+```mgs
+// examples
+_ {
+	if (flag_name != $constant_value) {}
+	if (debug_mode == (player glitched || entity Bob glitched)){}
+}
+```
 
 #### String Equality Check
 
@@ -602,12 +681,10 @@ _ {
 	- Not equal to: `!=`
 
 ```mgs
-//examples
+//example
 _ {
-	target_bool = player x < 100;
-	target_bool = flag_name != true;
-	target_bool = player name == "Bob";
-	target_bool = "Bob" != player name;
+	if (warp_state == from_west_door) {}
+	if ("Bob" != player name) {}
 }
 ```
 

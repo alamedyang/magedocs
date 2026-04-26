@@ -4,35 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "64d05debacc48573",
+        "id": "652862e317bad3d8",
         "type": "tabs",
         "children": [
           {
-            "id": "66068fbd8ebb7278",
+            "id": "e137106288e801c8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "entities.md",
+                "file": "commands.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "entities"
-            }
-          },
-          {
-            "id": "015ec39854b8fb68",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "expressions_and_operators.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "expressions_and_operators"
+              "title": "commands"
             }
           }
         ]
@@ -67,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "player_control",
+                "query": "warning",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -92,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 290.5
+    "width": 277.5
   },
   "right": {
     "id": "b88649f0b66c4ce7",
@@ -183,36 +169,36 @@
       "bases:Create new base": false
     }
   },
-  "active": "66068fbd8ebb7278",
+  "active": "e137106288e801c8",
   "lastOpenFiles": [
-    "expressions_and_operators.md",
-    "entities.md",
-    "encoder.md",
-    "scripts.md",
-    "hex_editor.md",
-    "jargon_and_syntax.md",
-    "state.md",
-    "public/MageGameScript-MAGE.png",
-    "public",
-    "entity_types.md",
-    "primitive_types.md",
-    "json_literals.md",
-    "index.md",
-    "actions.md",
-    "cutscenes.md",
-    "introduction_to_mgs.md",
-    "handlers.md",
-    "macros.md",
-    "serial_dialogs.md",
     "arrays.md",
-    "animations.md",
+    "script_control_flow.md",
+    "scripts.md",
+    "macros.md",
+    "debug_tools.md",
+    "actions.md",
+    "expressions_and_operators.md",
+    "template_strings.md",
     "syntax_scopes.md",
     "action_param_expansions.md",
-    "commands.md",
-    "script_control_flow.md",
-    "fns.md",
+    "serial_dialogs.md",
+    "dialogs.md",
     "identifiers.md",
-    "updating_the_hardware.md",
+    "dialog_and_serial_dialog_strings.md",
+    "dialog_and_serial_dialog_settings.md",
+    "TODOS.md",
+    "entities.md",
+    "public/MageGameScript-MAGE.png",
+    "public",
+    "constants.md",
+    "fns.md",
+    "general_process.md",
+    "json_literals.md",
+    "jargon_and_syntax.md",
+    "introduction_to_mgs.md",
+    "commands.md",
+    "primitive_types.md",
+    "encoder.md",
     "media/colors-textmate.png",
     "media/colors-vscode.png",
     "media/colors-sublime.png",

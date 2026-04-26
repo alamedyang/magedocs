@@ -45,6 +45,17 @@ command <verb: string[]> fail = <script name: string[]>;
 command <verb: string[]> fail = <script literal>;
 ```
 
+```mgs
+// examples
+_ {
+  command man = explain_manual;
+  command man + warp = warp_manual;
+  command man fail = {
+    show serial_dialog { "No manual found by that name!" };
+  };
+}
+```
+
 ### Unregister Command
 
 Removes a command registration for various arg or fail combinations, or for the verb overall.
@@ -60,6 +71,15 @@ delete command <verb: string[]> + <argument: string[]>;
 delete command <verb: string[]> fail;
 ```
 
+```mgs
+// examples
+_ {
+  delete command man;
+  delete command man + warp;
+  delete command man fail;
+}
+```
+
 ### Hide or Unhide Command
 
 Hides or unhides a verb from the **`HELP`** list.
@@ -70,6 +90,14 @@ hide command <verb: string[]>;
 
 // UNHIDE
 unhide command <verb: string[]>;
+```
+
+```mgs
+// examples
+_ {
+  hide command debug;
+  unhide command debug;
+}
 ```
 
 ## Aliases
@@ -84,4 +112,12 @@ alias <string[]> = <command: string[]>;
 
 // DELETE
 delete alias <string[]>;
+```
+
+```mgs
+// examples
+_ {
+  alias i = inventory;
+  alias h = help;
+}
 ```

@@ -27,7 +27,7 @@ Dialogs can only print ASCII characters, and serial dialogs *should* only print 
 - Escaped newlines (`\n`) are changed to real newlines.
 - Any other escaped character will pass through, i.e. the escape character `\` will be ignored.
 
-As these are of the [[primitive_types#Quoted String|quoted string]] [[primitive_types|primitive type]], any quotes inside the string must be escaped with backslash (e.g. `\"`).
+As dialog and serial dialog strings are of the [[primitive_types#Quoted String|quoted string]] [[primitive_types|primitive type]], any quotes inside the string must be escaped with backslash (e.g. `\"`).
 
 ## Printing Current Values
 

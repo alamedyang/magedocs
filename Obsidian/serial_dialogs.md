@@ -14,7 +14,9 @@ serial_dialog <serial dialog name: string> { <serial dialog> }
 
 ```mgs
 // example
-serial_dialog print_warning { "Warning!" }
+serial_dialog print_warning {
+  "Warning!"
+}
 ```
 ## Serial Dialog Literal
 
@@ -28,7 +30,9 @@ Serial dialogs can be defined at the point of use with serial dialog literals. I
 
 ```mgs
 _ {
-	show serial_dialog cursor { "<--" };
+  show serial_dialog cursor {
+    "<--"
+  };
 }
 ```
 

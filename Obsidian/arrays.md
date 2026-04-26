@@ -14,9 +14,9 @@ Arrays are built, modified, and destroyed inside [[scripts|scripts]] using [[act
 ```mgs
 // quick syntax examples:
 _ {
-	array odd_numbers = [3, 1, 9, 7, 5];
-	array sorted = odd_numbers.sort();
-	delete array odd_numbers;
+  array odd_numbers = [3, 1, 9, 7, 5];
+  array sorted = odd_numbers.sort().reverse();
+  delete array odd_numbers;
 }
 ```
 
@@ -42,6 +42,14 @@ array <name: string> = <initial value>;
 	- 0+ comma-separated int expressions, wrapped in `[]`
 	- [[#Returns an Array|Array method chain that returns an array]] (as opposed to one returning a value or nothing).
 
+```mgs
+// examples
+_ {
+  array new_array = [0, 1, 2, 3];
+  array new_new_array = new_array.slice(2);
+}
+```
+
 ### Delete
 
 Deletes named array(s). If the array already doesn't exist, nothing will happen.
@@ -50,12 +58,41 @@ Deletes named array(s). If the array already doesn't exist, nothing will happen.
 delete array <string[]>;
 ```
 
+```mgs
+// example
+_ {
+  delete new_array;
+}
+```
+
 ### Print
 
 Prints the array(s)'s values to the serial console, but only if the game is in [[debug_tools#Debug Mode|debug mode]].
 
 ```
 print array <string[]>;
+```
+
+```mgs
+// example
+_ {
+  print new_array;
+}
+```
+
+### Rename
+
+Moves the array to a new array identifier. This is faster and more memory efficient than slicing into a new array and deleting the old one.
+
+```
+array <old name: string[]> name = <new name: string[]>;
+```
+
+```mgs
+// example
+_ {
+  array working_data name = final_data;
+}
 ```
 
 ## Array Methods

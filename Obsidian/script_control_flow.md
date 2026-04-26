@@ -14,6 +14,14 @@ If an int expression is given after the keyword `return`, that value will be put
 
 [[scripts|Scripts]] and [[fns|fns]] can both return values.
 
+```mgs
+// example
+_ {
+  // ...
+  return var_name + 7;
+}
+```
+
 ## If / Else Chain
 
 ```
@@ -35,6 +43,20 @@ These ifs and elses behave as you would expect in a modern programming language.
 
 If an `if` or `else if` condition is met, no other conditions in that chain is checked. `else` defines behavior that happens if none of the above `if` or `else if` conditions are met.
 
+```mgs
+// example
+_ {
+  if (debug_mode) {
+    // ...
+  } else if (button MEM0 down) {
+    // ...
+  } else {
+    // ...
+  }
+}
+```
+
+
 ## If Single
 
 This is a simpler branching syntax meant for printing compiled output, not for writing outright. (MGS "natlang" had to be written like this.)
@@ -51,6 +73,15 @@ if <simple condition> then goto index <number>;
 
 - **Simple condition**: a [[expressions_and_operators#Bool Expressions|boolean expression]] with a direct counterpart to a bytecode action. 
 	- I'm not going to write these out, as there's not much point doing it, but if you must find which kinds of comparisons are legal here, it's the parameters in bytecode actions that start with `CHECK_` . Look for bytecode param information in the MGE [[encoder|encoder]] source code.
+
+```mgs
+// example
+_ {
+  if debug_mode then goto script_name;
+  if button MEM0 down then goto label rendezvous;
+  if player glitched then goto index 0;
+}
+```
 
 ## While Block
 
@@ -69,12 +100,30 @@ while (<condition: boolean expression>) { <looping body item*> }
 		- `break;`
 	- Continue and break only work on their own loop, not any parent loops. (Cannot `break` to a labeled loop.) If you want this behavior, you must use label definitions and `goto label <string>;`.
 
+```mgs
+// example
+_ {
+  while (player intersects geometry lava) {
+    player x -= 5;
+  }
+}
+```
+
 ## Do While Block
 
 Like a [[#While Block|while block]], except that the body items are guaranteed to be executed at least once.
 
 ```
 do { <looping body item*> } while (<condition: boolean expression>)
+```
+
+```mgs
+// example
+_ {
+  do {
+    player x -= 5;
+  } while (player intersects geometry lava)
+}
 ```
 
 ## For Block
@@ -89,6 +138,15 @@ for (<initializer>; <condition>; <incrementer>) { <looping body items> }
 - There must be a semicolon separating these things.
 	- Normally action items end in a semicolon, but these do not, because the separator semicolon serves the same purpose.
 	- The final action item does not end in a semicolon.
+
+```mgs
+// example
+_ {
+  for (i = 0; i < 10; i += 1) {
+    // ...
+  }
+}
+```
 
 Fun fact, a for block is effectively a [[#While Block|while block]] with extra steps:
 

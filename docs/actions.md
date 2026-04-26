@@ -1,6 +1,6 @@
 # Actions
 
-- **Bytecode action**: a single bytecode instruction. These are the basic scripting unit of the Mage Game Engine.
+- **Bytecode action**: a single bytecode instruction. This are the basic scripting unit of the Mage Game Engine.
 - **Action phrase**: a phrase of multiple words or sub-patterns that produce one or more bytecode instructions when compiled.
 	- Action phrases are used inside a [script block](scripts).
 	- They must end with a semicolon.
@@ -205,6 +205,20 @@ Jumps to the named label in the currently-executing [script](scripts).
 ```
 goto label <string[]>;
 ```
+
+## Player Assignment
+
+This action changes which entity in the current map is the `player` entity. See [Entities > Entity Properties > Player](entities#player)
+
+```
+player = <entity identifier>;
+```
+
+- **Entity identifier:** See [ Identifiers > Entity Identifier](identifiers#entity-identifier)
+
+::: warning WARNING
+Remember: when you change which entity is the player entity, all `entity "%PLAYER%` (and keyword `player`) references will change!
+:::
 
 ## Position Assignment
 
