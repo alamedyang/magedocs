@@ -41,7 +41,9 @@ A common use is to enable interaction behavior for things that aren't themselves
 
 **Disadvantages**: The null entity can be hacked into another tile (presumably one with pixel data), in which case a new object will seemingly appear out of nowhere.
 
-You cannot click on transparent pixels in Tiled. To select a null entity, you'll need to use the Layers pallet. To move one, change its X and Y values in the properties pane once you've selected it.
+::: tip
+If you find you cannot click on transparent entities to select them or move them, go into Edit > Preferences > Interface, and make sure "Pixel-perfect tile object selection" is turned off.
+:::
 
 ## Animation Entity
 

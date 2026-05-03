@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "entities.md",
+                "file": "entity_types.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "entities"
+              "title": "entity_types"
             }
           },
           {
@@ -67,7 +67,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "warning",
+                "query": "null entity",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -185,11 +185,13 @@
   },
   "active": "4130613a852dc7cc",
   "lastOpenFiles": [
+    "maps.md",
+    "entity_types.md",
+    "entities.md",
     "constants.md",
     "actions.md",
     "expressions_and_operators.md",
     "primitive_types.md",
-    "maps.md",
     "commands.md",
     "arrays.md",
     "script_control_flow.md",
@@ -205,14 +207,12 @@
     "dialog_and_serial_dialog_strings.md",
     "dialog_and_serial_dialog_settings.md",
     "TODOS.md",
-    "entities.md",
     "public/MageGameScript-MAGE.png",
     "public",
     "fns.md",
     "general_process.md",
     "json_literals.md",
     "jargon_and_syntax.md",
-    "introduction_to_mgs.md",
     "media/colors-textmate.png",
     "media/colors-vscode.png",
     "media/colors-sublime.png",
