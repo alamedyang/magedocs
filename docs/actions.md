@@ -306,7 +306,7 @@ No other [script items](scripts#script-body-items) will execute in that script u
 
 If an entity is compelled to move around on the [map](maps), it will abort this animation playback.
 
-To change an entity's animation indefinitely, use the [Assign Int Value](#assign-int-value) action phrase for the entity's [`current_animation`](entities#entity-properties).
+To change an entity's animation indefinitely, use the [assign int value](expressions_and_operators#assign-int-value) action phrase for the entity's [`current_animation`](entities#entity-properties).
 
 ```
 <entity identifier[]> animation -> <animation: number[]> <play count: quantity[]>;
@@ -326,6 +326,8 @@ camera fade in -> <color[]> over <duration[]>;
 // fade out
 camera fade out -> <color[]> over <duration[]>;
 ```
+
+- **Color**: see [Primitive Types > Color](primitive_types#color)
 
 ## Shake Camera
 

@@ -9,7 +9,8 @@ Within Tiled:
 	- Orientation: Orthogonal
 	- Tile layer format: CSV
 	- Tile render order: Right Down
-3. Map size can be changed later, so don't worry about setting it correctly right now.
+3. Map size should be "Fixed," not "Infinite."
+	- Map size can be changed later, so don't worry about setting it correctly right now.
 	- The map size limit for the MGE is quite large. Don't worry about surpassing this limit.
 4. For Tile size, use the tile size for the tileset you intend to use for this map. (Black Mage Game tilesets are 32x32.)
 5. Save the map file:
@@ -63,7 +64,7 @@ Entities are placed as tiles on an object layer with the "Insert Tile" button (s
 
 Entities are Y-indexed in the MGE, meaning they are rendered in front of or behind other entities according to their Y position. For entities being used as environment props, this can result in odd behavior (e.g. the player appearing underneath a bundle of cables if they walk too far behind it).
 
-Each map can have a maximum of 64 entities.
+Each map can have a maximum of 64 entities, but must have at least 1.
 
 ## Map Properties
 

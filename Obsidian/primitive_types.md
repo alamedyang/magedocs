@@ -129,7 +129,7 @@ _ {
 }
 ```
 
-### Color
+## Color
 
 - Any CSS-style hexadecimal color value (e.g. `#FF0000`) using upper or lowercase letters.
 	- These can be 3 or 6 digits (e.g. `#a0b` or `#aa00bb`).
